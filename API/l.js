@@ -7,7 +7,7 @@ $(document).ready(function() {
     };
 
     $.ajax({
-        url: 'http://localhost/TEST%20API/api/daticlienti/',
+        url: 'http://localhost/API/api/daticlienti/',
         type: 'patch',
         contentType: 'application/json',
         accept: "*/*",
@@ -21,12 +21,12 @@ $(document).ready(function() {
     });
 });
 
-// http://localhost/TEST%20API/api/prodotti/?idCategoria=[idCategoria]
-// http://localhost/TEST%20API/api/prodotti/?key=[parola chiave]
-// http://localhost/TEST%20API/api/amministratori/?email=[email]
-// http://localhost/TEST%20API/api/amministratori/?username=[username]
-// http://localhost/TEST%20API/api/daticliente/?email=[email]
-// http://localhost/TEST%20API/api/ordini/?idCliente=[idCliente]
-// http://localhost/TEST%20API/api/ordini/?codice=[codice]
-// http://localhost/TEST%20API/api/immagini/?idProdotto=[idProdotto]
-// http://localhost/TEST%20API/api/dettaglioordine/?idOrdine=[idOrdine]
+// http://localhost/API/api/prodotti/?idCategoria=[idCategoria]
+// http://localhost/API/api/prodotti/?key=[parola chiave]
+// http://localhost/API/api/amministratori/?email=[email]
+// http://localhost/API/api/amministratori/?username=[username]
+// http://localhost/API/api/daticliente/?email=[email]
+// http://localhost/API/api/ordini/?idCliente=[idCliente]
+// http://localhost/API/api/ordini/?codice=[codice]
+// http://localhost/API/api/immagini/?idProdotto=[idProdotto]
+// http://localhost/API/api/dettaglioordine/?idOrdine=[idOrdine]

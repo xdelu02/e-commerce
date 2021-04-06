@@ -15,12 +15,12 @@ RewriteRule api/([a-zA-Z0-9_.-]*) api/$1/update.php
 
 
 # "REGOLE" SPECIALI
-# http://localhost/TEST%20API/api/prodotti/?idCategoria=[idCategoria]
-# http://localhost/TEST%20API/api/prodotti/?key=[parola chiave]
-# http://localhost/TEST%20API/api/amministratori/?email=[email]
-# http://localhost/TEST%20API/api/amministratori/?username=[username]
-# http://localhost/TEST%20API/api/daticliente/?email=[email]
-# http://localhost/TEST%20API/api/ordini/?idCliente=[idCliente]
-# http://localhost/TEST%20API/api/ordini/?codice=[codice]
-# http://localhost/TEST%20API/api/immagini/?idProdotto=[idProdotto]
-# http://localhost/TEST%20API/api/dettaglioordine/?idOrdine=[idOrdine]
+# http://localhost/DIR/api/prodotti/?idCategoria=[idCategoria]
+# http://localhost/DIR/api/prodotti/?key=[parola chiave]
+# http://localhost/DIR/api/amministratori/?email=[email]
+# http://localhost/DIR/api/amministratori/?username=[username]
+# http://localhost/DIR/api/daticliente/?email=[email]
+# http://localhost/DIR/api/ordini/?idCliente=[idCliente]
+# http://localhost/DIR/api/ordini/?codice=[codice]
+# http://localhost/DIR/api/immagini/?idProdotto=[idProdotto]
+# http://localhost/DIR/api/dettaglioordine/?idOrdine=[idOrdine]
