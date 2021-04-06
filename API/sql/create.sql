@@ -20,16 +20,17 @@ CREATE TABLE Immagini(
 	path TEXT NOT NULL
 );
 CREATE TABLE Clienti(
-	idCliente int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	idCliente int PRIMARY KEY NOT NULL,
 	nome VARCHAR(25) NOT NULL,
 	cognome VARCHAR(25) NOT NULL,
 	dataN date NOT NULL
 );
 CREATE TABLE DatiClienti(
-	idCliente int PRIMARY KEY NOT NULL,
+	idCliente int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	email VARCHAR(255) NOT NULL,
 	password LONGTEXT NOT NULL,
-	saldo float NOT NULL
+	saldo float NOT NULL,
+	UNIQUE (email)
 );
 CREATE TABLE Amministratori(
 	idAdmin int AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -37,7 +38,9 @@ CREATE TABLE Amministratori(
 	cognome VARCHAR(25) NOT NULL,
 	username VARCHAR(30) NOT NULL,
 	email VARCHAR(255) NOT NULL,
-	password LONGTEXT NOT NULL
+	password LONGTEXT NOT NULL,
+	UNIQUE (username),
+	UNIQUE (email)
 );
 CREATE TABLE Ordini(
 	idOrdine int AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -52,3 +55,7 @@ CREATE TABLE DettaglioOrdine(
 	prezzoU float NOT NULL,
 	quantita int NOT NULL
 );
+INSERT INTO
+	Amministratori (nome, cognome, email, username, password)
+VALUES
+	('Admin', 'Admin', 'admin@admin.admin', 'admin', 'admin');

@@ -2,7 +2,7 @@ USE ecommerce;
 
 Categorie( idCategoria (PK) )
 
-Prodotto( idProdotto (PK), nome, descS, descL, prezzo, quantita, idCategoria )
+Prodotti( idProdotto (PK), nome, descS, descL, prezzo, quantita, idCategoria (FK) )
 
 Immagini( idImmagine (PK), idProdotto (FK), path )
 
@@ -10,7 +10,7 @@ Clienti( idCliente (PK), nome, cognome, dataN )
 
 DatiClienti( idCliente (PK), email, password, saldo )
 
-Amministratori( idAdmin (PK), nome, cognome, email, password )
+Amministratori( idAdmin (PK), nome, cognome, username, email, password )
 
 Ordini( idOrdine (PK), idCliente (FK), indirizzo, codice )
 

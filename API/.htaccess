@@ -1,0 +1,26 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule api/([a-zA-Z0-9_.-]*)/([0-9]{1,10}) api/$1/read_one.php?id=$2
+RewriteRule api/([a-zA-Z0-9_.-]*) api/$1/read.php
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule api/([a-zA-Z0-9_.-]*) api/$1/create.php
+
+RewriteCond %{REQUEST_METHOD} DELETE
+RewriteRule api/([a-zA-Z0-9_.-]*) api/$1/delete.php
+
+RewriteCond %{REQUEST_METHOD} PATCH
+RewriteRule api/([a-zA-Z0-9_.-]*) api/$1/update.php
+
+
+# "REGOLE" SPECIALI
+# http://localhost/TEST%20API/api/prodotti/?idCategoria=[idCategoria]
+# http://localhost/TEST%20API/api/prodotti/?key=[parola chiave]
+# http://localhost/TEST%20API/api/amministratori/?email=[email]
+# http://localhost/TEST%20API/api/amministratori/?username=[username]
+# http://localhost/TEST%20API/api/daticliente/?email=[email]
+# http://localhost/TEST%20API/api/ordini/?idCliente=[idCliente]
+# http://localhost/TEST%20API/api/ordini/?codice=[codice]
+# http://localhost/TEST%20API/api/immagini/?idProdotto=[idProdotto]
+# http://localhost/TEST%20API/api/dettaglioordine/?idOrdine=[idOrdine]
