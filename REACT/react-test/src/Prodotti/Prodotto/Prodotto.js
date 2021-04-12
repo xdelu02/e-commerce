@@ -3,7 +3,7 @@ import "./Prodotto.css";
 
 function Prodotto(props) {
 	return (
-		<div className="prodotto">
+		<div className="prodotto" id={props.id}>
 			<img src={props.path} alt="prodotto"/>
 			<div className="flex">
 				<div className="descrizzione">

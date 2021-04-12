@@ -24,7 +24,7 @@ class Prodotti extends React.Component {
 	render () {
 		return (
 			<div className="prodotti">
-				{this.state.prodotti.map((e, index) => <Prodotto path={"http://localhost/API/img/"+e.nome+".png"} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />)}
+				{this.state.prodotti.map((e, index) => <Prodotto id={e.idProdotto} path={"http://localhost/API/img/"+e.nome+".png"} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />)}
 			</div>
 		);
 	};

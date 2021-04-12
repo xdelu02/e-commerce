@@ -1,0 +1,112 @@
+.dettaglioprodotto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dettaglioprodotto .section1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-top: 120px;
+  padding-bottom: 100px;
+  background: #E9E9E9;
+}
+
+.dettaglioprodotto .section1 img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.dettaglioprodotto .section1 .details {
+  border: none;
+  border-radius: 8px;
+  height: auto;
+  padding: 0px 30px 30px 30px;
+  margin-top: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dettaglioprodotto .section1 .details .titolo {
+  margin-top: 50px;
+  color: #2C2C2C;
+  font-weight: bold;
+}
+
+.dettaglioprodotto .section1 .details .prezzo {
+  color: #2C2C2C;
+  font-weight: bold;
+}
+
+.dettaglioprodotto .section1 .details .descS {
+  color: #707070;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.dettaglioprodotto .section1 .details .m {
+  margin-bottom: 50px;
+}
+
+.dettaglioprodotto .section1 .details .btn-addtocart {
+  border: none;
+  height: 45px;
+  font-weight: bold;
+  border-radius: 8px;
+  background: #6F64F8;
+  color: #FFFFFF;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dettaglioprodotto .section1 .details .btn-addtocart:hover {
+  color: #6F64F8;
+  background: #FFFFFF;
+  border: 1px solid #6F64F8;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dettaglioprodotto .section2 {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0px 30px 30px 30px;
+}
+/*# sourceMappingURL=DettaglioProdotto.css.map */
