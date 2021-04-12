@@ -1,0 +1,101 @@
+$background-prodotto: #FFFFFF;
+$button-addToCart: #6F64F8;
+$button-addToCart-text: #FFFFFF;
+$button-wishlist: #EDEDED;
+$button-wishlist-text: #2C2C2C;
+$tile: #2C2C2C;
+$description: #2C2C2C;
+$price: #2C2C2C;
+
+.prodotto {
+	border: none;
+	border-radius: 8px;
+	width: 371px;
+	height: 486px;
+	background: $background-prodotto;
+    margin: 15px 15px 15px 15px;
+	padding: 0px;
+	padding-top: 20px;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+	&:hover {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+
+	img {
+		object-fit: cover;
+		width: 300px;
+		height: 300px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	button {
+		border: none;
+		height: 45px;
+		position: absolute;
+		bottom: 0px;
+		font-weight: bold;
+	}
+
+	.flex {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.prezzo {
+		float: right;
+		margin-right: 15px;
+		color: $price;
+	}
+
+	.titolo {
+		margin-left: 15px;
+		font-weight: bold;
+		color: $tile;
+	}
+
+	.descS {
+		margin-left: 15px;
+		color: $description;
+	}
+
+	.btn-addtocart {
+		border-radius: 0px 0px 8px 0px;
+		width: 186px;
+		right: 0px;
+		background: $button-addToCart;
+		color: $button-addToCart-text;
+
+		&:hover {
+			color: $button-addToCart;
+			background: $button-addToCart-text;
+			border-top: 1px solid $button-addToCart;
+			border-left: 1px solid $button-addToCart;
+		}
+	}
+
+	.btn-wishlist {
+		border-radius: 0px 0px 0px 8px;
+		width: 185px;
+		left: 0px;
+		background: $button-wishlist;
+		color: $button-wishlist-text;
+	}
+
+	.btn-addtocart2 {
+		border-radius: 0px 0px 8px 8px;
+		width: 371px;
+		right: 0px;
+		background: $button-addToCart;
+		color: $button-addToCart-text;
+
+		&:hover {
+			color: $button-addToCart;
+			background: $button-addToCart-text;
+			border-top: 1px solid $button-addToCart;
+		}
+	}
+}

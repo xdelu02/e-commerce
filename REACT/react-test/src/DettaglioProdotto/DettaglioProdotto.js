@@ -1,49 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DettaglioProdotto.css";
 
-class DettaglioProdotto extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			error: null,
-			isLoaded: false,
-			id: props.id,
-			prodotto: {
-				nome: "logo"
-			}
-		};
-	}
+function DettaglioProdotto({ match }) {
+	useEffect(() => {
+		getProdotto();
+	});
 
-	componentDidMount () {	
-		fetch("https://localhost/API/api/prodotti/"+this.props.id)
-		.then(res => res.json())
-		.then(
-			(result) => { this.setState({ prodotto: result }) },
-			(error) => { console.log(error); }
+	const [prodotto, setProdotto] = useState({
+		nome: "logo"
+	});
+
+	const getProdotto = async () => {	
+		const getProdotto = await fetch(
+			"https://localhost/API/api/prodotti/"+match.params.id
 		);
+
+		const item = await getProdotto.json();
+		setProdotto(item);
 	}
 
-	render () {
-		return (
-			<div className="dettaglioprodotto flex" id={this.state.id}>
-				<div className="section1">
-					<div>
-						<img src={"http://localhost/API/img/"+this.state.prodotto.nome+".png"} alt="prodotto"/>
-					</div>
-					<div className="details">
-						<h1 className="titolo m">{this.state.prodotto.nome}</h1>
-						<h2 className="prezzo m">€ {this.state.prodotto.prezzo}</h2>
-						<p className="descS m">{this.state.prodotto.descS}</p>
-						<button className="btn-addtocart">ADD TO CHART</button>
-					</div>
+	return (
+		<div className="dettaglioprodotto flex" id={prodotto.idProdotto}>
+			<div className="section1">
+				<div>
+					<img src={"http://localhost/API/img/"+prodotto.nome+".png"} alt="prodotto"/>
 				</div>
-				<div className="section2">
-					<h3>Descrizione</h3>
-					<p>{this.state.prodotto.descL}</p>
+				<div className="details">
+					<h1 className="titolo m">{prodotto.nome}</h1>
+					<h2 className="prezzo m">€ {prodotto.prezzo}</h2>
+					<p className="descS m">{prodotto.descS}</p>
+					<button className="btn-addtocart">ADD TO CHART</button>
 				</div>
 			</div>
-		);
-	};
+			<div className="section2">
+				<h3>Descrizione</h3>
+				<p>{prodotto.descL}</p>
+			</div>
+		</div>
+	);
 }
 
 export default DettaglioProdotto;

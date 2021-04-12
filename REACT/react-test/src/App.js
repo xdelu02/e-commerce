@@ -1,25 +1,18 @@
 import React from 'react';
-import Filtri from './Filtri/Filtri';
-import BarraRicerca from './BarraRicerca/BarraRicerca';
-import Prodotti from './Prodotti/Prodotti';
-//import DettaglioProdotto from './DettaglioProdotto/DettaglioProdotto';
+import Shop from './Shop/Shop';
+import DettaglioProdotto from './DettaglioProdotto/DettaglioProdotto';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
 	return (
-		<div>
-			<Filtri />
-			<BarraRicerca />
-			<Prodotti />
-		</div>
+		<Router>
+			<Switch>
+				<Route path="/" exact component={Shop} />
+				<Route path="/shop" exact component={Shop} />
+				<Route path="/shop/:id" exact component={DettaglioProdotto} />
+			</Switch>
+		</Router>
 	);
-	/*
-		<Filtri />
-		<BarraRicerca />
-		<Prodotti />
-	*/
-	/*
-		<DettaglioProdotto id="1" />
-	*/
 }
 
 export default App;
