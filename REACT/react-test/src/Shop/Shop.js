@@ -2,13 +2,16 @@ import React from 'react';
 import Filtri from './Filtri/Filtri';
 import BarraRicerca from './BarraRicerca/BarraRicerca';
 import Prodotti from './Prodotti/Prodotti';
+import "./Shop.css";
 
 function Shop() {
 	return (
-		<div>
+		<div className="all">
 			<Filtri />
-			<BarraRicerca />
-			<Prodotti />
+			<div className="prod">
+				<BarraRicerca />
+				<Prodotti />
+			</div>
 		</div>
 	);
 }

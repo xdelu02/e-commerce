@@ -14,9 +14,8 @@ $price: #2C2C2C;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-evenly;
-		padding-top: 120px;
+		padding-top: 100px;
 		padding-bottom: 100px;
-		background: $background-section1;
 
 		img {
 			object-fit: cover;
@@ -28,6 +27,7 @@ $price: #2C2C2C;
 			margin-top: 30px;
 			margin-left: 15px;
 			margin-right: 15px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 		}
 
 		.details {
@@ -88,5 +88,6 @@ $price: #2C2C2C;
 		display: flex;
 		flex-direction: column;
 		padding: 0px 30px 30px 30px;
+		background: $background-section1;
 	}
 }

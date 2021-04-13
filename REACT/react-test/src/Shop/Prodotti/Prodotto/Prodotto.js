@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import "./Prodotto.css";
 
 function Prodotto(props) {
@@ -14,7 +16,7 @@ function Prodotto(props) {
 						<p className="descS">{props.descS}</p>
 					</div>
 					<div className="buttons">
-						<button className="btn-addtocart2">ADD TO CART</button>
+						<button className="btn-addtocart2">ADD TO CART <FontAwesomeIcon className="fa" icon={faCartArrowDown} aria-hidden="true"></FontAwesomeIcon></button>
 					</div>
 				</div>
 			</div>

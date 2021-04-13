@@ -8,10 +8,10 @@ $text: #2C2C2C;
 	width: auto;// 1171px;
 	height: 62px;
 	background: $background-barradiricerca;
-	position: absolute;
+	position: relative;
 	top: 30px;
-	left: 430px;
-	right: 30px;
+	left: 30px;
+	margin-right: 60px;
 	color: $text;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 

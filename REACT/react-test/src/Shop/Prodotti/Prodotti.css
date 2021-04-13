@@ -7,8 +7,9 @@
           justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  position: absolute;
-  top: 105px;
-  left: 415px;
+  position: relative;
+  top: 45px;
+  left: 15px;
+  margin-right: 35px;
 }
 /*# sourceMappingURL=Prodotti.css.map */

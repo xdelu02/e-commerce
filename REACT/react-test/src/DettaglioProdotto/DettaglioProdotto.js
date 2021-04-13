@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import "./DettaglioProdotto.css";
 
 function DettaglioProdotto({ match }) {
@@ -29,7 +31,7 @@ function DettaglioProdotto({ match }) {
 					<h1 className="titolo m">{prodotto.nome}</h1>
 					<h2 className="prezzo m">€ {prodotto.prezzo}</h2>
 					<p className="descS m">{prodotto.descS}</p>
-					<button className="btn-addtocart">ADD TO CHART</button>
+					<button className="btn-addtocart">ADD TO CHART <FontAwesomeIcon className="fa" icon={faCartArrowDown} aria-hidden="true"></FontAwesomeIcon></button>
 				</div>
 			</div>
 			<div className="section2">

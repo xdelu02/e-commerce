@@ -17,9 +17,8 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding-top: 120px;
+  padding-top: 100px;
   padding-bottom: 100px;
-  background: #E9E9E9;
 }
 
 .dettaglioprodotto .section1 img {
@@ -33,6 +32,8 @@
   margin-top: 30px;
   margin-left: 15px;
   margin-right: 15px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dettaglioprodotto .section1 .details {
@@ -109,5 +110,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 0px 30px 30px 30px;
+  background: #E9E9E9;
 }
 /*# sourceMappingURL=DettaglioProdotto.css.map */
