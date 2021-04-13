@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAGA,AAAA,UAAU,CAAC;EACP,UAAU,EAAE,GAAG,CAAC,KAAK,CAJV,OAAO;EAKlB,UAAU,EAAE,IAAI;CAMnB;;AARD,AAII,UAJM,CAIN,MAAM,CAAC;EACH,WAAW,EAAE,IAAI;EACjB,KAAK,EARM,OAAO;CASrB",
-    "sources": [
-        "Categorie.scss"
-    ],
-    "names": [],
-    "file": "Categorie.css"
-}
