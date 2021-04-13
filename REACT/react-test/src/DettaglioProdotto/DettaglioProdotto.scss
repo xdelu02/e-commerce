@@ -44,6 +44,22 @@ $price: #2C2C2C;
 			background: $background-details;
 			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 			
+			select {
+				border: none;
+				border-radius: 8px;
+				padding: 4px 8px 4px 8px;
+				background-color: $button-addToCart;
+				color: $button-addToCart-text;
+
+				&::after {
+					border-color: transparent transparent $button-addToCart-text transparent;
+				}
+
+				&:focus {
+					border-radius: 8px 8px 0px 0px;
+				}
+			}
+
 			.titolo {
 				margin-top: 50px;
 				color: $tile;

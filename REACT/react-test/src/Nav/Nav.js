@@ -24,7 +24,7 @@ function Nav() {
 					<li>About</li>
 				</Link>
 			</ul>
-			<Link to={"/shop"} style={{ textDecoration: 'none' }}>
+			<Link to={"/carrello"} style={{ textDecoration: 'none' }}>
 				<div className="cart"><FontAwesomeIcon className="fa fa-2x" icon={faShoppingCart} aria-hidden="true"></FontAwesomeIcon></div>
 			</Link>
 		</div>
