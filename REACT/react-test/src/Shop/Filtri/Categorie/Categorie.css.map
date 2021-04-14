@@ -1,8 +1,10 @@
 {
     "version": 3,
-    "mappings": "AAGA,AAAA,UAAU,CAAC;EACP,UAAU,EAAE,GAAG,CAAC,KAAK,CAJV,OAAO;EAKlB,UAAU,EAAE,IAAI;CAMnB;;AARD,AAII,UAJM,CAIN,MAAM,CAAC;EACH,WAAW,EAAE,IAAI;EACjB,KAAK,EARM,OAAO;CASrB",
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACP,UAAU,EAAE,GAAG,CAAC,KAAK,CCiCV,OAAO;EDhClB,UAAU,EAAE,IAAI;CAMnB;;AARD,AAII,UAJM,CAIN,MAAM,CAAC;EACH,WAAW,EAAE,IAAI;EACjB,KAAK,EC2BM,OAAO;CD1BrB",
     "sources": [
-        "Categorie.scss"
+        "Categorie.scss",
+        "../../../variables.scss",
+        "../../../colors.scss"
     ],
     "names": [],
     "file": "Categorie.css"

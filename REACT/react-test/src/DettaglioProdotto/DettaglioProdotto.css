@@ -61,7 +61,7 @@
   border: none;
   border-radius: 8px;
   padding: 4px 8px 4px 8px;
-  background-color: #6F64F8;
+  background-color: #007CC3;
   color: #FFFFFF;
 }
 
@@ -100,16 +100,16 @@
   height: 45px;
   font-weight: bold;
   border-radius: 8px;
-  background: #6F64F8;
+  background: #007CC3;
   color: #FFFFFF;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dettaglioprodotto .section1 .details .btn-addtocart:hover {
-  color: #6F64F8;
+  color: #007CC3;
   background: #FFFFFF;
-  border: 1px solid #6F64F8;
+  border: 1px solid #007CC3;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

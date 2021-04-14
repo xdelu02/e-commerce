@@ -23,11 +23,11 @@
   top: -2px;
   left: -1px;
   position: relative;
-  background-color: #6F64F8;
+  background-color: #007CC3;
   content: '';
   display: inline-block;
   visibility: visible;
-  border: 1px solid #6F64F8;
+  border: 1px solid #007CC3;
 }
 
 .prezzi .title {

@@ -2,7 +2,9 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "Carrello.scss"
+        "Carrello.scss",
+        "../variables.scss",
+        "../colors.scss"
     ],
     "names": [],
     "file": "Carrello.css"

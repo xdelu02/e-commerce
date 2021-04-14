@@ -1,11 +1,4 @@
-$background-prodotto: #FFFFFF;
-$button-addToCart: #6F64F8;
-$button-addToCart-text: #FFFFFF;
-$button-wishlist: #EDEDED;
-$button-wishlist-text: #2C2C2C;
-$tile: #2C2C2C;
-$description: #2C2C2C;
-$price: #2C2C2C;
+@import "../../../variables";
 
 .prodotto {
 	border: none;
@@ -75,14 +68,6 @@ $price: #2C2C2C;
 			border-top: 1px solid $button-addToCart;
 			border-left: 1px solid $button-addToCart;
 		}
-	}
-
-	.btn-wishlist {
-		border-radius: 0px 0px 0px 8px;
-		width: 185px;
-		left: 0px;
-		background: $button-wishlist;
-		color: $button-wishlist-text;
 	}
 
 	.btn-addtocart2 {

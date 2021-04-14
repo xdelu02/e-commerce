@@ -1,11 +1,4 @@
-$background-details: #FFFFFF;
-$background-section1: #E9E9E9;
-$button-addToCart: #6F64F8;
-$button-addToCart-text: #FFFFFF;
-$border: #979797;
-$tile: #2C2C2C;
-$description: #707070;
-$price: #2C2C2C;
+@import "../variables";
 
 .dettaglioprodotto {
 	display: flex;
@@ -104,6 +97,6 @@ $price: #2C2C2C;
 		display: flex;
 		flex-direction: column;
 		padding: 0px 30px 30px 30px;
-		background: $background-section1;
+		background: $background-section2;
 	}
 }

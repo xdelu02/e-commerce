@@ -40,14 +40,14 @@
 }
 
 .nav ul li:hover {
-  border-bottom: 1px solid #6F64F8;
-  color: #6F64F8;
+  border-bottom: 1px solid #007CC3;
+  color: #007CC3;
 }
 
 .nav .cart {
   position: absolute;
   top: 55px;
   right: 75px;
-  color: #6F64F8;
+  color: #007CC3;
 }
 /*# sourceMappingURL=Nav.css.map */

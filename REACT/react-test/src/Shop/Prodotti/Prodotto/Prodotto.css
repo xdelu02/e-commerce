@@ -59,43 +59,35 @@
 
 .prodotto .descS {
   margin-left: 15px;
-  color: #2C2C2C;
+  color: #707070;
 }
 
 .prodotto .btn-addtocart {
   border-radius: 0px 0px 8px 0px;
   width: 186px;
   right: 0px;
-  background: #6F64F8;
+  background: #007CC3;
   color: #FFFFFF;
 }
 
 .prodotto .btn-addtocart:hover {
-  color: #6F64F8;
+  color: #007CC3;
   background: #FFFFFF;
-  border-top: 1px solid #6F64F8;
-  border-left: 1px solid #6F64F8;
-}
-
-.prodotto .btn-wishlist {
-  border-radius: 0px 0px 0px 8px;
-  width: 185px;
-  left: 0px;
-  background: #EDEDED;
-  color: #2C2C2C;
+  border-top: 1px solid #007CC3;
+  border-left: 1px solid #007CC3;
 }
 
 .prodotto .btn-addtocart2 {
   border-radius: 0px 0px 8px 8px;
   width: 371px;
   right: 0px;
-  background: #6F64F8;
+  background: #007CC3;
   color: #FFFFFF;
 }
 
 .prodotto .btn-addtocart2:hover {
-  color: #6F64F8;
+  color: #007CC3;
   background: #FFFFFF;
-  border-top: 1px solid #6F64F8;
+  border-top: 1px solid #007CC3;
 }
 /*# sourceMappingURL=Prodotto.css.map */
