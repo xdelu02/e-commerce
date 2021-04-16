@@ -20,13 +20,13 @@
 
 	// make sure data is not empty
 	if(
-		!empty($data->idCliente) &&
+		!empty($data->email) &&
 		!empty($data->nome) &&
 		!empty($data->cognome) &&
 		!empty($data->dataN)
 	) {
 		// set obj property values
-		$obj->idCliente = $data->idCliente;
+		$obj->email = $data->email;
 		$obj->nome = $data->nome;
 		$obj->cognome = $data->cognome;
 		$obj->dataN = $data->dataN;

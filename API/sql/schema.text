@@ -6,9 +6,9 @@ Prodotti( idProdotto (PK), nome, descS, descL, prezzo, quantita, idCategoria (FK
 
 Immagini( idImmagine (PK), idProdotto (FK), path )
 
-Clienti( idCliente (PK), nome, cognome, dataN )
+Clienti( email (PK), nome, cognome, dataN )
 
-DatiClienti( idCliente (PK), email, password, saldo )
+DatiClienti( email (PK), password )
 
 Amministratori( idAdmin (PK), nome, cognome, username, email, password )
 

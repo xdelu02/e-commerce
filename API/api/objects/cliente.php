@@ -5,7 +5,7 @@
 		private $table_name = "clienti";
 
 		// proprietà
-		public $idCliente;
+		public $email;
 		public $nome;
 		public $cognome;
 		public $dataN;
@@ -19,7 +19,7 @@
 		function read() {
 			// select all query
 			$query = "SELECT
-						idCliente, nome, cognome, dataN
+						email, nome, cognome, dataN
 					FROM
 						" . $this->table_name;
 		
@@ -33,21 +33,21 @@
 		function readOne() {
 			// query to read single record
 			$query = "SELECT
-						idCliente, nome, cognome, dataN
+						email, nome, cognome, dataN
 					FROM
 						" . $this->table_name . " c
 					WHERE
-						c.idCliente = ?
+						c.email = ?
 					LIMIT
 						0,1";
 
 			$stmt = $this->conn->prepare( $query );
-			$stmt->bindParam(1, $this->idCliente);
+			$stmt->bindParam(1, $this->email);
 
 			$stmt->execute();
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				// set values to object properties
-				$this->idCliente = $row['idCliente'];
+				$this->email = $row['email'];
 				$this->nome = $row['nome'];
 				$this->cognome = $row['cognome'];
 				$this->dataN = $row['dataN'];
@@ -62,18 +62,18 @@
 			$query = "INSERT INTO
 						" . $this->table_name . "
 					SET
-						idCliente=:idCliente, nome=:nome, cognome=:cognome, dataN=:dataN";
+						email=:email, nome=:nome, cognome=:cognome, dataN=:dataN";
 
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
+			$this->email=htmlspecialchars(strip_tags($this->email));
 			$this->nome=htmlspecialchars(strip_tags($this->nome));
 			$this->cognome=htmlspecialchars(strip_tags($this->cognome));
 			$this->dataN=htmlspecialchars(strip_tags($this->dataN));
 		
 			// bind params
-			$stmt->bindParam(":idCliente", $this->idCliente);
+			$stmt->bindParam(":email", $this->email);
 			$stmt->bindParam(":nome", $this->nome);
 			$stmt->bindParam(":cognome", $this->cognome);
 			$stmt->bindParam(":dataN", $this->dataN);
@@ -87,16 +87,16 @@
 		// delete
 		function delete() {
 			// delete query
-			$query = "DELETE FROM " . $this->table_name . " WHERE idCliente = ?";
+			$query = "DELETE FROM " . $this->table_name . " WHERE email = ?";
 		
 			// prepare query
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
+			$this->email=htmlspecialchars(strip_tags($this->email));
 		
 			// bind id
-			$stmt->bindParam(1, $this->idCliente);
+			$stmt->bindParam(1, $this->email);
 		
 			if($stmt->execute())
 				return true;
@@ -112,18 +112,18 @@
 					SET
 						nome=:nome, cognome=:cognome, dataN=:dataN
 					WHERE
-						idCliente=:idCliente";
+						email=:email";
 
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
+			$this->email=htmlspecialchars(strip_tags($this->email));
 			$this->nome=htmlspecialchars(strip_tags($this->nome));
 			$this->cognome=htmlspecialchars(strip_tags($this->cognome));
 			$this->dataN=htmlspecialchars(strip_tags($this->dataN));
 		
 			// bind params
-			$stmt->bindParam(":idCliente", $this->idCliente);
+			$stmt->bindParam(":email", $this->email);
 			$stmt->bindParam(":nome", $this->nome);
 			$stmt->bindParam(":cognome", $this->cognome);
 			$stmt->bindParam(":dataN", $this->dataN);

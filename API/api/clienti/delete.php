@@ -19,7 +19,7 @@
 	$data = json_decode(file_get_contents("php://input"));
 
 	// set product id to be deleted
-	$obj->idCliente = $data->idCliente;
+	$obj->email = $data->email;
 
 	// delete the product
 	if($obj->delete()) {

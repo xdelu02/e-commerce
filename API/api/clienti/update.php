@@ -20,13 +20,13 @@
 	
 	// make sure data is not empty
 	if(
-		!empty($data->idCliente) &&
+		!empty($data->email) &&
 		!empty($data->nome) &&
 		!empty($data->cognome) &&
 		!empty($data->dataN)
 	) {
 		// set ID property to be edited
-		$obj->idCliente = $data->idCliente;
+		$obj->email = $data->email;
 		
 		// set property values
 		$obj->nome = $data->nome;

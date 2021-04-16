@@ -31,7 +31,7 @@
 			extract($row);
 
 			$item=array(
-				"idCliente" => $idCliente,
+				"email" => $email,
 				"nome" => $nome,
 				"cognome" => $cognome,
 				"dataN" => $dataN

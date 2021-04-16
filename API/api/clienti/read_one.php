@@ -16,14 +16,14 @@
 	$obj = new Cliente($db);
 
 	// set ID property of record to read
-	$obj->idCliente = isset($_GET['id']) ? $_GET['id'] : die();
+	$obj->email = isset($_GET['id']) ? $_GET['id'] : die();
 
 	// read the details of obj to be edited
 	$obj->readOne();
 
 	if($obj->nome!=null) {
 		$arr = array(
-			"idCliente" =>  $obj->idCliente,
+			"email" =>  $obj->email,
 			"nome" => $obj->nome,
 			"cognome" => $obj->cognome,
 			"dataN" => $obj->dataN
