@@ -1,36 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Nav.scss";
+import shoppingCart from "../../assets/icons/shopping-cart.png";
 
 function Nav() {
 	return (
-		<div className="nav">
-			<Link to={"/shop"} style={{ textDecoration: 'none' }}>
-				<img src="http://localhost/API/img/logo.png" alt="logo"/>
+		<header>
+			<Link to={"/shop"}>
+				<img
+					src="http://localhost/API/img/logo.png"
+					alt="logo"
+					id="logo"
+				/>
 			</Link>
-			<ul>
-				<Link to={"/"} style={{ textDecoration: 'none' }}>
-					<li>Home</li>
-				</Link>
-				<Link to={"/shop"} style={{ textDecoration: 'none' }}>
-					<li>Shop</li>
-				</Link>
-				<Link to={"/shop"} style={{ textDecoration: 'none' }}>
-					<li>Contact</li>
-				</Link>
-				<Link to={"/shop"} style={{ textDecoration: 'none' }}>
-					<li>About</li>
-				</Link>
-				<Link to={"/shop"} style={{ textDecoration: 'none' }}>
-					<li>Login</li>
-				</Link>
-			</ul>
-			<Link to={"/carrello"} style={{ textDecoration: 'none' }}>
-				<div className="cart"><FontAwesomeIcon className="fa fa-2x" icon={faShoppingCart} aria-hidden="true"></FontAwesomeIcon></div>
+			<input type="checkbox" id="nav-toggle" className="nav-toggle"/>
+			<nav>
+				<ul>
+					<li><Link to={"/"}>Home</Link></li>
+
+					<li><Link to={"/shop"}>Shop</Link></li>
+
+					<li><Link to={"/shop"}>Contact</Link></li>
+
+					<li><Link to={"/shop"}>About</Link></li>
+
+					<li><Link to={"/shop"}>Login</Link></li>
+				</ul>
+			</nav>
+			<Link to={"/carrello"}>
+				<img src={shoppingCart} id="shoppingCart" alt="shopping cart"/>
 			</Link>
-		</div>
+			<label htmlFor="nav-toggle" className="nav-toggle-label"><span></span></label>
+		</header>
 	);
 }
 
