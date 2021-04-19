@@ -84,7 +84,7 @@ nav {
 	display: block;
 	background: white;
 	height: 2px;
-	width: 2em;
+	width: 1.5em;
 	border-radius: 2px;
 	position: relative;
 }
@@ -147,7 +147,7 @@ nav {
 	nav a::before {
 		content: '';
 		display: block;
-		height: 5px;
+		height: 4px;
 		background-color: black;
 		position: absolute;
 		bottom: -.75em;
@@ -177,5 +177,5 @@ nav {
 }
 
 #logo {
-	width: 5rem;
+	width: 3rem;
 }
