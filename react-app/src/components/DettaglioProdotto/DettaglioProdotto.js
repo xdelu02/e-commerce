@@ -1,7 +1,7 @@
-import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
-import "./DettaglioProdotto.scss";
+import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCartArrowDown} from '@fortawesome/free-solid-svg-icons';
+import './DettaglioProdotto.scss';
 
 class DettaglioProdotto extends React.Component {
 	constructor(props) {
@@ -11,33 +11,34 @@ class DettaglioProdotto extends React.Component {
 			error: null,
 			isLoaded: false,
 			prodotto: {
-				nome: "logo"
+				nome: 'logo'
 			},
 			qtaMAX: 1
 		};
 	}
 
-	componentDidMount () {
-		fetch("https://localhost/API/api/prodotti/"+this.state.props.match.params.id)
-		.then(res => res.json())
-		.then(
-			(result) => {
-				if (result.quantita === 0)
-					window.location.href = "/shop";
-				this.setState({
-					prodotto: result,
-					qtaMAX: Math.floor((result.quantita === 1) ? 1 : ((result.quantita/2 > 10) ? 10 : result.quantita/2))
-				});
-			},
-			(error) => { console.log(error); }
-		);
+	componentDidMount() {
+		fetch('https://localhost/API/api/prodotti/' + this.state.props.match.params.id)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					if (result.quantita === '0') window.location.href = '/shop';
+					this.setState({
+						prodotto: result,
+						qtaMAX: Math.floor(result.quantita === '1' ? 1 : result.quantita / 2 > 10 ? 10 : result.quantita / 2)
+					});
+				},
+				(error) => {
+					console.log(error);
+				}
+			);
 	}
-	render () {
+	render() {
 		return (
 			<div className="dettaglioprodotto flex" id={this.state.prodotto.idProdotto}>
 				<div className="section1">
 					<div>
-						<img src={"http://localhost/API/img/"+this.state.prodotto.nome+".png"} alt="prodotto"/>
+						<img src={'http://localhost/API/img/' + this.state.prodotto.nome + '.png'} alt="prodotto" />
 					</div>
 					<div className="details">
 						<h1 className="titolo m">{this.state.prodotto.nome}</h1>
@@ -45,10 +46,16 @@ class DettaglioProdotto extends React.Component {
 						<p className="descS m">{this.state.prodotto.descS}</p>
 						<div className="custom-select m">
 							<select>
-								{(Array.from(new Array(this.state.qtaMAX), (x, i) => i + 1)).map(n => <option value={n} key={n}> {n} </option>)}
+								{Array.from(new Array(this.state.qtaMAX), (x, i) => i + 1).map((n) => (
+									<option value={n} key={n}>
+										{n}
+									</option>
+								))}
 							</select>
 						</div>
-						<button className="btn-addtocart">ADD TO CHART <FontAwesomeIcon className="fa" icon={faCartArrowDown} aria-hidden="true"></FontAwesomeIcon></button>
+						<button className="btn-addtocart">
+							ADD TO CHART <FontAwesomeIcon className="fa" icon={faCartArrowDown} aria-hidden="true"></FontAwesomeIcon>
+						</button>
 					</div>
 				</div>
 				<div className="section2">
