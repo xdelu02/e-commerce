@@ -18,11 +18,17 @@ class DettaglioProdotto extends React.Component {
 	}
 
 	componentDidMount () {
-		
 		fetch("https://localhost/API/api/prodotti/"+this.state.props.match.params.id)
 		.then(res => res.json())
 		.then(
-			(result) => { this.setState({ prodotto: result, qtaMAX: (result.quantita/2 > 10) ? 10 : result.quantita/2 }) },
+			(result) => {
+				if (result.quantita === 0)
+					window.location.href = "/shop";
+				this.setState({
+					prodotto: result,
+					qtaMAX: Math.floor((result.quantita === 1) ? 1 : ((result.quantita/2 > 10) ? 10 : result.quantita/2))
+				});
+			},
 			(error) => { console.log(error); }
 		);
 	}
