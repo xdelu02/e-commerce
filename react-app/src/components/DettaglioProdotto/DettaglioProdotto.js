@@ -2,6 +2,8 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartArrowDown} from '@fortawesome/free-solid-svg-icons';
 import './DettaglioProdotto.scss';
+import { addToCart } from '../../actions';
+import { useDispatch } from 'react-redux';
 
 class DettaglioProdotto extends React.Component {
 	constructor(props) {
@@ -13,7 +15,8 @@ class DettaglioProdotto extends React.Component {
 			prodotto: {
 				nome: 'logo'
 			},
-			qtaMAX: 1
+			qtaMAX: 1,
+			qta: 1
 		};
 	}
 
@@ -33,6 +36,18 @@ class DettaglioProdotto extends React.Component {
 				}
 			);
 	}
+
+	handleChange = async (e) => {
+		this.setState({
+			qta: e.target.value
+		});
+	};
+
+	handleAddToCart(prod) {
+		//useDispatch(addToCart(prod));
+		console.log(prod);
+	};
+
 	render() {
 		return (
 			<div className="dettaglioprodotto flex" id={this.state.prodotto.idProdotto}>
@@ -45,7 +60,7 @@ class DettaglioProdotto extends React.Component {
 						<h2 className="prezzo m">€ {this.state.prodotto.prezzo}</h2>
 						<p className="descS m">{this.state.prodotto.descS}</p>
 						<div className="custom-select m">
-							<select>
+							<select onChange={this.handleChange}>
 								{Array.from(new Array(this.state.qtaMAX), (x, i) => i + 1).map((n) => (
 									<option value={n} key={n}>
 										{n}
@@ -53,7 +68,15 @@ class DettaglioProdotto extends React.Component {
 								))}
 							</select>
 						</div>
-						<button className="btn-addtocart">
+						<button
+							className="btn-addtocart"
+							onClick={() =>
+								this.handleAddToCart({
+									idProdotto: this.state.prodotto.idProdotto,
+									quantita: this.state.qta
+								})
+							}
+						>
 							ADD TO CHART <FontAwesomeIcon className="fa" icon={faCartArrowDown} aria-hidden="true"></FontAwesomeIcon>
 						</button>
 					</div>
