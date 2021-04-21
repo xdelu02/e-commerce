@@ -24,7 +24,8 @@
 			$query = "SELECT
 						idProdotto, nome, descS, descL, prezzo, quantita, idCategoria
 					FROM
-						" . $this->table_name;
+						" . $this->table_name . "
+					ORDER BY nome";
 		
 			$stmt = $this->conn->prepare($query);
 			$stmt->execute();
