@@ -18,7 +18,8 @@
 			$query = "SELECT
 						idCategoria
 					FROM
-						" . $this->table_name;
+						" . $this->table_name . "
+					ORDER BY idCategoria";
 		
 			$stmt = $this->conn->prepare($query);
 			$stmt->execute();
