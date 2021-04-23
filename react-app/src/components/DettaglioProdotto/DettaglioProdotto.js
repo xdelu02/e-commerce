@@ -53,7 +53,7 @@ class DettaglioProdotto extends React.Component {
 			<div className="dettaglioprodotto flex" id={this.state.prodotto.idProdotto}>
 				<div className="section1">
 					<div>
-						<img src={'http://localhost/API/img/' + this.state.prodotto.nome + '.png'} alt="prodotto" />
+						<img src={'https://ecommerce.ideeinbit.it/img/' + this.state.prodotto.nome + '.png'} alt="prodotto" />
 					</div>
 					<div className="details">
 						<h1 className="titolo m">{this.state.prodotto.nome}</h1>

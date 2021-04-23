@@ -10,7 +10,7 @@ function Prodotto(props) {
 			<div className="card" id={props.id}>
 				<img src={props.path} alt="prodotto" className="product-image" />
 				<div className="flex">
-					<div className="descrizzione">
+					<div className="descrizione">
 						<p className="prezzo">{props.prezzo} €</p>
 						<br />
 						<p className="titolo">{props.titolo}</p>
