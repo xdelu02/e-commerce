@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHtmlParser, {processNodes, convertNodeToElement, htmlparser2} from 'react-html-parser';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartArrowDown} from '@fortawesome/free-solid-svg-icons';
 import './DettaglioProdotto.scss';
@@ -83,7 +84,7 @@ class DettaglioProdotto extends React.Component {
 				</div>
 				<div className="section2">
 					<h3>Descrizione</h3>
-					<p>{this.state.prodotto.descL}</p>
+					<p>{ReactHtmlParser(this.state.prodotto.descL)}</p>
 				</div>
 			</div>
 		);
