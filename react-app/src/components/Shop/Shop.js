@@ -1,7 +1,5 @@
 import React from 'react';
-import Filtri from './Filtri/Filtri';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import Filter from './Filtri/Filter';
 import Prodotto from './Prodotto/Prodotto';
 import './Shop.scss';
 
@@ -21,7 +19,7 @@ class Shop extends React.Component {
 	}
 
 	load() {
-		fetch('https://localhost/API/api/prodotti/?key=' + this.state.key)
+		fetch('https://ecommerce.ideeinbit.it/api/prodotti/?key=' + this.state.key)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -48,23 +46,22 @@ class Shop extends React.Component {
 
 	render() {
 		return (
-			<div className="all">
-				<Filtri />
-				<div className="prod">
-					<div className="barraricerca">
-						<input type="text" name="search" placeholder="Search here..." onChange={this.filter} />
-					</div>
-					<div className="prodotti">
+			<main className="shop-container">
+				<div className="barraricerca">
+					<input type="text" name="search" placeholder="Search here..." onChange={this.filter} />
+				</div>
+				<div className="wrapper">
+					<div className="auto-grid">
 						{this.state.prodotti
 							.filter((val) => {
 								if (val.quantita > 0) return val;
 							})
 							.map((e, index) => (
-								<Prodotto id={e.idProdotto} path={'http://localhost/API/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
+								<Prodotto id={e.idProdotto} path={'https://ecommerce.ideeinbit.it/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
 							))}
 					</div>
 				</div>
-			</div>
+			</main>
 		);
 	}
 }

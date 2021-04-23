@@ -7,7 +7,7 @@ function Nav() {
 	return (
 		<header>
 			<Link to={'/shop'}>
-				<img src="http://localhost/API/img/logo-noname.png" alt="logo" id="logo" />
+				<img id='logo' src='https://ecommerce.ideeinbit.it/img/logo.png'/>
 			</Link>
 			<input type="checkbox" id="nav-toggle" className="nav-toggle" />
 			<nav>
@@ -36,6 +36,10 @@ function Nav() {
 			<Link to={'/carrello'}>
 				<img src={shoppingCart} id="shoppingCart" alt="shopping cart" />
 			</Link>
+			<Link to={'/account'}>
+				<img src={shoppingCart} id="shoppingCart" alt="shopping cart" />
+			</Link>
+
 			<label htmlFor="nav-toggle" className="nav-toggle-label">
 				<span></span>
 			</label>

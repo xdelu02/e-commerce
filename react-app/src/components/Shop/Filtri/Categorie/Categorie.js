@@ -13,7 +13,7 @@ class Categorie extends React.Component {
 	}
 
 	componentDidMount () {
-		fetch("https://localhost/API/api/categorie/")
+		fetch("https://ecommerce.ideeinbit.it/api/categorie/")
 		.then(res => res.json())
 		.then(
 			(result) => { this.setState({ categorie: result.records }) },

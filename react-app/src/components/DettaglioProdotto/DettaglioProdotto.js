@@ -21,7 +21,7 @@ class DettaglioProdotto extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://localhost/API/api/prodotti/' + this.state.props.match.params.id)
+		fetch('https://ecommerce.ideeinbit.it/api/prodotti/' + this.state.props.match.params.id)
 			.then((res) => res.json())
 			.then(
 				(result) => {

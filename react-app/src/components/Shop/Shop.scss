@@ -1,65 +1,48 @@
-@import "/src/scss/variables";
+@use "../../scss/index" as *;
 
-.all {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    top: 100px;
+/*
+  AUTO GRID
+  Set the minimum item size with `--auto-grid-min-size` and you'll
+  get a fully responsive grid with no media queries.
+*/
 
-    .prod {
+.auto-grid {
+    a {
         display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
     }
 }
 
-.barraricerca {
-	border: none;
-	border-radius: 8px;
-	width: auto;// 1171px;
-	height: 62px;
-	background: $background-barradiricerca;
-	position: relative;
-	top: 30px;
-	left: 30px;
-	margin-right: 60px;
-	color: $text;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+.auto-grid > * {
+	max-width: 25rem;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-	&:hover {
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.auto-grid > * + * {
+	margin-top: 1rem;
+}
+
+@supports (display: grid) {
+	.auto-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
+		grid-gap: 1rem;
 	}
 
-	input[type="text"] {
-		border: none;
-		background: none;
-		width: 90%;
-		height: 62px;
-		margin: auto;
-		padding-left: 30px;
-		padding-right: 30px;
-		font-size: 22px;
-	}
-
-	button {
-		border: none;
-		border-left: 1px solid $border-search;
-		width: auto;
-		height: auto;
-		background: none;
-		padding: 18px 30px 18px 30px;
-		position: absolute;
-		right: 0px;
-		top: 0px;
+	.auto-grid > * {
+		max-width: unset;
+		margin: unset;
 	}
 }
 
-.prodotti {
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
-	position: relative;
-	top: 45px;
-	left: 15px;
-	margin-right: 35px;
+/*
+    WRAPPER
+    A utility with a max width that contains child elements and horizontal centers them
+  */
+.wrapper {
+	max-width: 62rem;
+	margin: 0 auto;
+	padding: 0 1rem;
 }

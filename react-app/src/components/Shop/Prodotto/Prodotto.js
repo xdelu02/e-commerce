@@ -7,8 +7,8 @@ import "./Prodotto.scss";
 function Prodotto(props) {
 	return (
 		<Link to={"/shop/"+props.id} style={{ textDecoration: 'none' }}>
-			<div className="prodotto" id={props.id}>
-				<img src={props.path} alt="prodotto"/>
+			<div className="card" id={props.id}>
+				<img src={props.path} alt="prodotto" className="product-image"/>
 				<div className="flex">
 					<div className="descrizzione">
 						<p className="prezzo">{props.prezzo} €</p><br/>
