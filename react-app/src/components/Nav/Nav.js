@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Nav.scss';
 import shoppingCart from '../../assets/icons/shopping-cart.png';
+import accountIcon from '../../assets/icons/account.png';
 
 function Nav() {
 	return (
@@ -10,7 +11,7 @@ function Nav() {
 				<img id='logo' src='https://ecommerce.ideeinbit.it/img/logo-noname.png' onError={(e)=>{e.target.onerror = null; e.target.src="../../assets/icons/shopping-cart.png"}}/>
 			</Link>
 			<input type="checkbox" id="nav-toggle" className="nav-toggle" />
-			<nav>
+			<nav className="nav">
 				<ul>
 					<li>
 						<Link to={'/'}>Home</Link>
@@ -27,17 +28,14 @@ function Nav() {
 					<li>
 						<Link to={'/shop'}>About</Link>
 					</li>
-
-					<li>
-						<Link to={'/shop'}>Login</Link>
-					</li>
 				</ul>
 			</nav>
 			<Link to={'/carrello'}>
-				<img src={shoppingCart} id="shoppingCart" alt="shopping cart" />
+				<img src={shoppingCart} id="shoppingCart" alt="" />
 			</Link>
+
 			<Link to={'/account'}>
-				<img src={shoppingCart} id="shoppingCart" alt="shopping cart" />
+				<img src={accountIcon} id="accountIcon" alt="" />
 			</Link>
 
 			<label htmlFor="nav-toggle" className="nav-toggle-label">
