@@ -42,6 +42,7 @@ class Shop extends React.Component {
 		this.setState({
 			key : event.target.value
 		});
+		this.load();
 	};
 
 	render() {
