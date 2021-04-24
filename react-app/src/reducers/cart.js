@@ -1,4 +1,4 @@
-const cartReducer = (state = new Array(), action) => {
+const cartReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'add':
 			state.push(action.prodotto);

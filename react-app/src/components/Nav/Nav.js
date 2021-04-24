@@ -8,7 +8,7 @@ function Nav() {
 	return (
 		<header>
 			<Link to={'/shop'}>
-				<img id='logo' src='https://ecommerce.ideeinbit.it/img/logo-noname.png' onError={(e)=>{e.target.onerror = null; e.target.src="../../assets/icons/shopping-cart.png"}}/>
+				<img id='logo' src='https://ecommerce.ideeinbit.it/img/logo-noname.png' alt="" onError={(e)=>{e.target.onerror = null; e.target.src="../../assets/icons/shopping-cart.png"}}/>
 			</Link>
 			<input type="checkbox" id="nav-toggle" className="nav-toggle" />
 			<nav className="nav">

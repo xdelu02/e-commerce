@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './Filter.scss';
 import filterIcon from '../../../assets/icons/filter.png';
 import Prezzi from './Prezzi/Prezzi';
@@ -11,7 +10,7 @@ function Filter() {
 	return (
 		<>
 			<div className="topBar">
-				<img src={filterIcon} onClick={openFilterMenu} />
+				<img src={filterIcon} onClick={openFilterMenu} alt=""/>
 			</div>
 
 			<div className="filter-menu">

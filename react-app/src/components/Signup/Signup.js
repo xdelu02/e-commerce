@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useAuth } from "../../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Signup() {
 	const { signup } = useAuth();
@@ -40,6 +40,7 @@ export default function Signup() {
 			
 		} catch {
 			setError("Failed to create an account");
+			console.log(error)
 		}
 
 		setLoading(false);

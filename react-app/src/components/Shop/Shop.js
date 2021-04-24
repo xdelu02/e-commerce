@@ -1,5 +1,4 @@
 import React from 'react';
-import Filter from './Filtri/Filter';
 import Prodotto from './Prodotto/Prodotto';
 import './Shop.scss';
 
@@ -23,7 +22,7 @@ class Shop extends React.Component {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					if (result.message == 'No matching Prodotti found.') {
+					if (result.message === 'No matching Prodotti found.') {
 						this.setState({
 							prodotti: []
 						});
@@ -40,8 +39,9 @@ class Shop extends React.Component {
 	}
 
 	filter = (event) => {
-		this.state.key = event.target.value;
-		this.load();
+		this.setState({
+			key : event.target.value
+		});
 	};
 
 	render() {
@@ -55,6 +55,7 @@ class Shop extends React.Component {
 						{this.state.prodotti
 							.filter((val) => {
 								if (val.quantita > 0) return val;
+								else return null;
 							})
 							.map((e, index) => (
 								<Prodotto id={e.idProdotto} path={'https://ecommerce.ideeinbit.it/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />

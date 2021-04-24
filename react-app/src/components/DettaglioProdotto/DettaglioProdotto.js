@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactHtmlParser, {processNodes, convertNodeToElement, htmlparser2} from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartArrowDown} from '@fortawesome/free-solid-svg-icons';
 import './DettaglioProdotto.scss';
-import { addToCart } from '../../actions';
-import { useDispatch } from 'react-redux';
+
 
 class DettaglioProdotto extends React.Component {
 	constructor(props) {
