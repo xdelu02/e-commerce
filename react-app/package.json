@@ -19,7 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
-    "sass": "^1.32.10",
+    "sass": "^1.32.11",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -45,5 +45,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "optionalDependencies": {}
 }
