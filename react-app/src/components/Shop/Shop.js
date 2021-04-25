@@ -48,9 +48,6 @@ class Shop extends React.Component {
 	render() {
 		return (
 			<main className="shop-container">
-				<div className="barraricerca">
-					<input type="text" name="search" placeholder="Search here..." onChange={this.filter} />
-				</div>
 				<div className="wrapper">
 					<div className="auto-grid">
 						{this.state.prodotti

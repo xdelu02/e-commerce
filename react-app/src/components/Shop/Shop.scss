@@ -1,13 +1,5 @@
 @use "../../scss/index" as *;
 
-.auto-grid {
-    a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
 .auto-grid > * {
 	max-width: 25rem;
 	margin-left: auto;
@@ -22,7 +14,7 @@
 	.auto-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
-		gap: 1.3rem;
+		gap: 1rem;
 	}
 
 	.auto-grid > * {
@@ -33,6 +25,6 @@
 
 .wrapper {
 	max-width: 68rem;
-	margin: 0 auto;
+	margin: 1rem auto;
 	padding: 0 1rem;
 }
