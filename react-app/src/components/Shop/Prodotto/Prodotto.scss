@@ -2,9 +2,28 @@
 
 .card {
 	width: 15rem;
+	height: 24rem;
 	background: white;
+	border-radius: 8px;
+	padding: 0.8rem;
+	text-decoration: none;
+	color: black;
+	box-shadow: 0 0 0.23em 0.23em rgba(0, 0, 0, 0.20);
+
+	&:hover {
+		box-shadow: 0 0 0.50em 0.50em rgba(0, 0, 0, 0.35);
+	}
 }
 
 .product-image {
 	width: 15rem;
+	height: 14rem;
+	object-fit: scale-down;
+}
+
+.descS {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }

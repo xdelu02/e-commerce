@@ -4,8 +4,8 @@ import './Prodotto.scss';
 
 function Prodotto(props) {
 	return (
-		<Link to={'/shop/' + props.id} style={{textDecoration: 'none'}}>
-			<div className="card" id={props.id}>
+		<Link className="card" to={'/shop/' + props.id}>
+			<div id={props.id}>
 				<img src={props.path} alt="prodotto" className="product-image" />
 				<div className="flex">
 					<div className="descrizione">
@@ -14,7 +14,9 @@ function Prodotto(props) {
 						<p className="titolo">{props.titolo}</p>
 						<p className="descS">{props.descS}</p>
 					</div>
-					<button type="button" className="btn btn--block btn--down-br">ADD TO CART</button>
+					<button type="button" className="btn btn--block btn--down-br">
+						ADD TO CART
+					</button>
 				</div>
 			</div>
 		</Link>
