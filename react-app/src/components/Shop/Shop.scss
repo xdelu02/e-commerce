@@ -1,11 +1,5 @@
 @use "../../scss/index" as *;
 
-/*
-  AUTO GRID
-  Set the minimum item size with `--auto-grid-min-size` and you'll
-  get a fully responsive grid with no media queries.
-*/
-
 .auto-grid {
     a {
         display: flex;
@@ -37,10 +31,6 @@
 	}
 }
 
-/*
-    WRAPPER
-    A utility with a max width that contains child elements and horizontal centers them
-  */
 .wrapper {
 	max-width: 62rem;
 	margin: 0 auto;
