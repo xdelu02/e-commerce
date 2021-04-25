@@ -13,6 +13,7 @@
 @supports (display: grid) {
 	.auto-grid {
 		display: grid;
+		align-items: center;
 		grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
 		gap: 1rem;
 	}
@@ -27,4 +28,10 @@
 	max-width: 68rem;
 	margin: 1rem auto;
 	padding: 0 1rem;
+}
+
+@media screen and (max-width: 700px) {
+	.product-wrapper {
+		margin: 0 auto;
+	}
 }
