@@ -14,9 +14,11 @@ function Prodotto(props) {
 						<p className="titolo">{props.titolo}</p>
 						<p className="descS">{props.descS}</p>
 					</div>
-					<button type="button" className="btn btn--block btn--down-br">
-						ADD TO CART
-					</button>
+					<div className="container_btn_add_to_cart">
+						<button type="button" className="btn btn--block btn--down-br">
+							ADD TO CART
+						</button>
+					</div>
 				</div>
 			</div>
 		</Link>

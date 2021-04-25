@@ -21,9 +21,19 @@
 	object-fit: scale-down;
 }
 
+.prezzo {
+	font-family: "roboto";
+	font-weight: 500;
+}
+
 .descS {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+}
+
+.container_btn_add_to_cart {
+	font-family: "roboto";
+	font-weight: 700;
 }
