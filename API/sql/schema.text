@@ -1,0 +1,17 @@
+USE ecommerce;
+
+Categorie( idCategoria (PK) )
+
+Prodotti( idProdotto (PK), nome, descS, descL, prezzo, quantita, idCategoria (FK) )
+
+Immagini( idImmagine (PK), idProdotto (FK), path )
+
+Clienti( email (PK), nome, cognome, dataN )
+
+DatiClienti( email (PK), password )
+
+Amministratori( idAdmin (PK), nome, cognome, username, email, password )
+
+Ordini( idOrdine (PK), idCliente (FK), indirizzo, codice )
+
+DettaglioOrdine( idDettaglioOrdine (PK), idOrdine (FK), idProdotto (FK), prezzoU, quantita )
