@@ -1,0 +1,47 @@
+@use '../../../scss/index';
+
+.product-wrapper {
+	width: 15rem;
+	height: 25rem;
+	background: white;
+	border-radius: 8px;
+	text-decoration: none;
+	color: black;
+	box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&:hover {
+		box-shadow: 0 0 11px rgb(33 33 33 / 20%);
+	}
+}
+
+.product-wrapper > *:not(button, img){
+	margin-left: 1rem;
+}
+
+.product-image {
+	width: 100%;
+	height: 14rem;
+	max-height: 14rem;
+	object-fit: scale-down;
+	background: white;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.title {
+	font-weight: 500;
+}
+
+.descS {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.price {
+	font-weight: 500;
+}
