@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import Carrello from "./components/Carrello/Carrello";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login"
+import Account from "./components/Account/Account"
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/shop" exact component={Shop} />
 				<Route path="/shop/:id" exact component={DettaglioProdotto} />
 				<Route path="/carrello" exact component={Carrello} />
+				<Route path="/account" exact component={Account} />
 			</Switch>
 			<AuthProvider>
 				<Switch>

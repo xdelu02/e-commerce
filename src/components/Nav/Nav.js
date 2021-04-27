@@ -3,12 +3,13 @@ import {Link} from 'react-router-dom';
 import './Nav.scss';
 import shoppingCart from '../../assets/icons/shopping-cart.png';
 import accountIcon from '../../assets/icons/account.png';
+import logo from '../../assets/logo/logo.png';
 
 function Nav() {
 	return (
 		<header>
 			<Link to={'/shop'}>
-				<img id='logo' src='https://ecommerce.ideeinbit.it/img/logo-noname.png' alt="" onError={(e)=>{e.target.onerror = null; e.target.src="../../assets/icons/shopping-cart.png"}}/>
+				<img id="logo" src={logo} alt="" />
 			</Link>
 			<input type="checkbox" id="nav-toggle" className="nav-toggle" />
 			<nav className="nav">

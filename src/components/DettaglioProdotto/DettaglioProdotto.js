@@ -13,7 +13,7 @@ function DettaglioProdotto(props) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		fetch('https://ecommerce.ideeinbit.it/api/prodotti/' + props.match.params.id)
+		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + props.match.params.id)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -33,7 +33,7 @@ function DettaglioProdotto(props) {
 
 	const handleChange = async (e) => {
 		setQta(
-			e.target.value
+			parseInt(e.target.value)
 		);
 	};
 
@@ -41,7 +41,7 @@ function DettaglioProdotto(props) {
 		<div className="dettaglioprodotto flex" id={prodotto.idProdotto}>
 			<div className="section1">
 				<div>
-					<img src={'https://ecommerce.ideeinbit.it/img/' + prodotto.nome + '.png'} alt="prodotto" />
+					<img src={'http://ecommerce.ideeinbit.it/img/' + prodotto.nome + '.png'} alt="prodotto" />
 				</div>
 				<div className="details">
 					<h1 className="titolo m">{prodotto.nome}</h1>

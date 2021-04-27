@@ -18,7 +18,7 @@ class Shop extends React.Component {
 	}
 
 	load() {
-		fetch('https://ecommerce.ideeinbit.it/api/prodotti/?key=' + this.state.key)
+		fetch('http://ecommerce.ideeinbit.it/api/prodotti/?key=' + this.state.key)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -56,7 +56,7 @@ class Shop extends React.Component {
 								else return null;
 							})
 							.map((e, index) => (
-								<Prodotto id={e.idProdotto} path={'https://ecommerce.ideeinbit.it/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
+								<Prodotto id={e.idProdotto} path={'http://ecommerce.ideeinbit.it/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
 							))}
 					</div>
 				</div>

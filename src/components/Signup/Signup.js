@@ -20,7 +20,7 @@ export default function Signup() {
 			setLoading(true);
 			await signup(user.email, user.password);
 			fetch(
-				"https://ecommerce.ideeinbit.it/api/clienti/",
+				"http://ecommerce.ideeinbit.it/api/clienti/",
 				{
 					method: "POST",
 					headers: {
