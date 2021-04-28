@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {Formik, Field, Form} from 'formik';
-import {useAuth} from '../../contexts/AuthContext';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Formik, Field, Form } from 'formik';
+import { useAuth } from '../../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
-	const {login} = useAuth();
+	const { login } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
@@ -37,11 +37,11 @@ export default function Login() {
 			>
 				<Form>
 					{}
-					<label htmlFor="email">Email</label>
-					<Field id="email" name="email" placeholder="jane@acme.com" type="email" />
-					<label htmlFor="password">password</label>
-					<Field id="password" name="password" type="password" />
-					<button disabled={loading} type="submit">
+					<label htmlFor='email'>Email</label>
+					<Field id='email' name='email' placeholder='jane@acme.com' type='email' />
+					<label htmlFor='password'>password</label>
+					<Field id='password' name='password' type='password' />
+					<button disabled={loading} type='submit'>
 						Submit
 					</button>
 				</Form>

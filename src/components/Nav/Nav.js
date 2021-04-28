@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Nav.scss';
 import shoppingCart from '../../assets/icons/shopping-cart.png';
 import accountIcon from '../../assets/icons/account.png';
@@ -9,10 +9,10 @@ function Nav() {
 	return (
 		<header>
 			<Link to={'/shop'}>
-				<img id="logo" src={logo} alt="" />
+				<img id='logo' src={logo} alt='' />
 			</Link>
-			<input type="checkbox" id="nav-toggle" className="nav-toggle" />
-			<nav className="nav">
+			<input type='checkbox' id='nav-toggle' className='nav-toggle' />
+			<nav className='nav'>
 				<ul>
 					<li>
 						<Link to={'/'}>Home</Link>
@@ -32,14 +32,14 @@ function Nav() {
 				</ul>
 			</nav>
 			<Link to={'/carrello'}>
-				<img src={shoppingCart} id="shoppingCart" alt="" />
+				<img src={shoppingCart} id='shoppingCart' alt='' />
 			</Link>
 
 			<Link to={'/account'}>
-				<img src={accountIcon} id="accountIcon" alt="" />
+				<img src={accountIcon} id='accountIcon' alt='' />
 			</Link>
 
-			<label htmlFor="nav-toggle" className="nav-toggle-label">
+			<label htmlFor='nav-toggle' className='nav-toggle-label'>
 				<span></span>
 			</label>
 		</header>

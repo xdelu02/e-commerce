@@ -4,7 +4,7 @@ header {
 	z-index: 999;
 	width: 100%;
 	background-color: cornflowerblue;
-	font-family: "roboto";
+	font-family: 'roboto';
 	font-weight: 500;
 }
 
@@ -41,7 +41,6 @@ header {
 	a:hover {
 		color: red;
 	}
-
 }
 
 .nav-toggle:checked ~ nav {
@@ -53,7 +52,6 @@ header {
 	top: -9999px !important;
 	left: -9999px !important;
 }
-
 
 .nav-toggle-label {
 	position: absolute;
@@ -78,7 +76,7 @@ header {
 
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
-	content: "";
+	content: '';
 	position: absolute;
 }
 
@@ -137,7 +135,7 @@ header {
 		height: 4px;
 		background-color: black;
 		position: absolute;
-		bottom: -.75em;
+		bottom: -0.75em;
 		left: 0;
 		right: 0;
 		transform: scale(0, 1);
@@ -146,7 +144,7 @@ header {
 	}
 
 	.nav a:hover::before {
-		transform: scale(1,1);
+		transform: scale(1, 1);
 	}
 
 	#shoppingCart {

@@ -40,16 +40,16 @@ class Shop extends React.Component {
 
 	filter = (event) => {
 		this.setState({
-			key : event.target.value
+			key: event.target.value
 		});
 		this.load();
 	};
 
 	render() {
 		return (
-			<main className="shop-container">
-				<div className="wrapper">
-					<div className="auto-grid">
+			<main className='shop-container'>
+				<div className='wrapper'>
+					<div className='auto-grid'>
 						{this.state.prodotti
 							.filter((val) => {
 								if (val.quantita > 0) return val;

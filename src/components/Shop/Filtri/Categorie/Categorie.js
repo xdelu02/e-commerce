@@ -1,6 +1,6 @@
 import React from 'react';
 import Categoria from './Categoria/Categoria';
-import "./Categorie.scss";
+import './Categorie.scss';
 
 class Categorie extends React.Component {
 	constructor(props) {
@@ -12,23 +12,29 @@ class Categorie extends React.Component {
 		};
 	}
 
-	componentDidMount () {
-		fetch("http://ecommerce.ideeinbit.it/api/categorie/")
-		.then(res => res.json())
-		.then(
-			(result) => { this.setState({ categorie: result.records }) },
-			(error) => { console.log(error); }
-		);
+	componentDidMount() {
+		fetch('http://ecommerce.ideeinbit.it/api/categorie/')
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					this.setState({ categorie: result.records });
+				},
+				(error) => {
+					console.log(error);
+				}
+			);
 	}
 
-	render () {
+	render() {
 		return (
-			<div className="categorie">
-				<p className="title">Categorie</p>
-				{this.state.categorie.map((e, i) => <Categoria categoria={e.idCategoria} key={i} />)}
+			<div className='categorie'>
+				<p className='title'>Categorie</p>
+				{this.state.categorie.map((e, i) => (
+					<Categoria categoria={e.idCategoria} key={i} />
+				))}
 			</div>
 		);
-	};
+	}
 }
 
 export default Categorie;
