@@ -1,55 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import {useAsync} from 'react-async';
 import {useSelector} from 'react-redux';
-import "./Carrello.scss";
+import ProdCart from './ProdCart/ProdCart';
+import './Carrello.scss';
 
 function Carrello() {
-	const cart = useSelector(state => state.cart);
-	const [prodotto, setProdotto] = useState({idProdotto: 0});
-	const prodotti = [];
+	const cart = useSelector((state) => state.cart);
 
-	const load = (id) => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id)
-			.then((result) => result.json())
-			.then(
-				(result) => {
-					return result;
-				},
-				(error) => {
-					console.log(error);
-				}
-			);
-	}
+	const fetchPerson = async ({id}, {signal}) => {
+		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id, {signal});
+		if (!response.ok) throw new Error(response.status);
+		return response.json();
+	};
 
-	useEffect(() => {
-		cart.forEach(element => {
-			prodotti.push(load(element.idProdotto));
-			console.log(load(element.idProdotto));
-			console.log(prodotti);
-		});
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/1')
-			.then((result) => result.json())
-			.then(
-				(result) => {
-					if (result.message === 'No matching Prodotti found.') {
-						return ;
-					} else {
-						setProdotto(result);
-					}
-				},
-				(error) => {
-					console.log(error);
-				}
-			);
-	},[]);
+	const Prodotto = ({id}) => {
+		const {data, error} = useAsync({promiseFn: fetchPerson, id});
+		if (error) {
+			console.log(error.message);
+		}
+		return data ? <ProdCart id={data.id} nome={data.nome} descS={data.descS} prezzo={data.prezzo} /> : null;
+	};
 
-    return (
-        <>
-            <h1>CARRELLO</h1>
-            {cart.map((e, index) => <p key={index}>id: {e.idProdotto}; qta: {e.quantita}</p>)}
-			{prodotto.idProdotto}
-			{prodotti.map((e, index) => <p key={index}>e</p>)}
-        </>
-    );
+	return (
+		<>
+			<h1>CARRELLO</h1>
+			{cart.map((e, i) => (
+				<Prodotto id={e.idProdotto} key={i} />
+			))}
+		</>
+	);
 }
 
 export default Carrello;
