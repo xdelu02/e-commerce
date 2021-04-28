@@ -3,7 +3,7 @@ const cartReducer = (state = [], action) => {
 		case 'add':
 			let bool =  true;
 			state.forEach(element => {
-				if(element.idProdotto == action.prodotto.idProdotto) {
+				if(element.idProdotto === action.prodotto.idProdotto) {
 					element.quantita += action.prodotto.quantita;
 					bool = false;
 					return state;
