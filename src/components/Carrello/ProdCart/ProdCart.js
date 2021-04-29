@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { removeToCart, updateToCart } from '../../../actions';
 import del from '../../../assets/icons/delete-red.png';
 
@@ -7,6 +8,7 @@ export default function ProdCart(props) {
 	const cart = useSelector((state) => state.cart);
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const removeProd = (e) => {
 		dispatch(
@@ -14,6 +16,7 @@ export default function ProdCart(props) {
 				idProdotto: e.target.id
 			})
 		);
+		history.push('/carrello');
 	};
 
 	const handleChange = async (e) => {
@@ -37,7 +40,7 @@ export default function ProdCart(props) {
 
 	return (
 		<div id={props.id}>
-			<img src={'http://ecommerce.ideeinbit.it/img/' + props.nome + '.png'} alt='prodotto' id='logo' />
+			<img src={'http://ecommerce.ideeinbit.it/img/' + props.nome + '.png'} alt='prodotto' style={{ width: '75px', height: '75px', objectFit: 'cover' }} />
 			<p className='title'>{props.nome}</p>
 			<p className='descS'>{props.descS}</p>
 			<p className='prezzo'>{props.prezzo + '€'}</p>
@@ -51,9 +54,7 @@ export default function ProdCart(props) {
 					))}
 				</select>
 			</div>
-			<button id={props.id} onClick={removeProd}>
-				<img src={del} id='delete' alt='' />
-			</button>
+			<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px' }} />
 		</div>
 	);
 }
