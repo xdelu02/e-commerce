@@ -24,9 +24,11 @@ function Carrello() {
 	return (
 		<>
 			<h1>CARRELLO</h1>
-			{cart.map((e, i) => (
-				<Prodotto id={e.idProdotto} key={i} />
-			))}
+			<div>
+				{cart.map((e, i) => (
+					<Prodotto id={e.idProdotto} key={i} />
+				))}
+			</div>
 		</>
 	);
 }
