@@ -4,3 +4,17 @@ export function addToCart(prod) {
 		prodotto: prod
 	};
 }
+
+export function removeToCart(prod) {
+	return {
+		type: 'remove',
+		prodotto: prod
+	};
+}
+
+export function updateToCart(prod) {
+	return {
+		type: 'update',
+		prodotto: prod
+	};
+}

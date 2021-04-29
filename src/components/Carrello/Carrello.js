@@ -18,7 +18,7 @@ function Carrello() {
 		if (error) {
 			console.log(error.message);
 		}
-		return data ? <ProdCart id={data.id} nome={data.nome} descS={data.descS} prezzo={data.prezzo} /> : null;
+		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} /> : null;
 	};
 
 	return (
