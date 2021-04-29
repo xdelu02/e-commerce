@@ -179,7 +179,7 @@ form {
 }
 
 @media screen and (max-width: 1050px) {
-	.container {
+	.container-login {
 		grid-gap: 5rem;
 	}
 }
@@ -200,7 +200,7 @@ form {
 }
 
 @media screen and (max-width: 900px) {
-	.container {
+	.container-login {
 		grid-template-columns: 1fr;
 	}
 
