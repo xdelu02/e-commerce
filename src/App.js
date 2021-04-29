@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
 import Shop from './components/Shop/Shop';
 import DettaglioProdotto from './components/DettaglioProdotto/DettaglioProdotto';
 import Nav from './components/Nav/Nav';
@@ -11,9 +11,13 @@ import Account from './components/Account/Account';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
+	const Main = withRouter(({ location }) => {
+		return <div>{location.pathname !== '/login' && location.pathname !== '/signup' && <Nav />}</div>;
+	});
+
 	return (
 		<Router>
-			<Nav></Nav>
+			<Main />
 
 			<Switch>
 				<Route path='/' exact component={Home} />
