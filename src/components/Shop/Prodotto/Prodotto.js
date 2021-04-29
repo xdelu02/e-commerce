@@ -1,21 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { addToCart } from '../../../actions';
 import './Prodotto.scss';
 
 function Prodotto(props) {
 	const dispatch = useDispatch();
-	let history = useHistory();
 
-	const handleOnClick = () => {
+	const handleOnClick = (e) => {
+		e.preventDefault();
 		dispatch(
 			addToCart({
 				idProdotto: props.id,
 				quantita: 1
 			})
 		);
-		history.push('/shop');
 	};
 
 	return (
