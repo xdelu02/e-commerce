@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeToCart, updateToCart } from '../../../actions';
+import del from '../../../assets/icons/delete-red.png';
 
 export default function ProdCart(props) {
 	const cart = useSelector((state) => state.cart);
@@ -51,7 +52,7 @@ export default function ProdCart(props) {
 				</select>
 			</div>
 			<button id={props.id} onClick={removeProd}>
-				RIMUOVI
+				<img src={del} id='delete' alt='' />
 			</button>
 		</div>
 	);
