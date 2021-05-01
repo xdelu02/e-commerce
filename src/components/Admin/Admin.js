@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard';
 import Ordini from './Ordini/Ordini';
 import Prodotti from './Prodotti/Prodotti';

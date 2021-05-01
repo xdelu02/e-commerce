@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { addToCart } from '../../actions';
 
 function DettaglioProdotto(props) {
@@ -60,7 +58,7 @@ function DettaglioProdotto(props) {
 							)
 						}
 					>
-						ADD TO CHART <FontAwesomeIcon className='fa' icon={faCartArrowDown} aria-hidden='true'></FontAwesomeIcon>
+						ADD TO CHART
 					</button>
 				</div>
 			</div>

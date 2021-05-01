@@ -1,10 +1,5 @@
 $mainColor: #007cc3;
 
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-}
 
 .wrapper {
 	font-family: 'Poppins', sans-serif;
@@ -100,8 +95,8 @@ $mainColor: #007cc3;
 	transition: 0.3s;
 }
 
-.input-div:before,
-.input-div:after {
+.input-div::before,
+.input-div::after {
 	content: '';
 	position: absolute;
 	bottom: -2px;
@@ -111,16 +106,16 @@ $mainColor: #007cc3;
 	transition: 0.4s;
 }
 
-.input-div:before {
+.input-div::before {
 	right: 50%;
 }
 
-.input-div:after {
+.input-div::after {
 	left: 50%;
 }
 
-.input-div.focus:before,
-.input-div.focus:after {
+.input-div.focus::before,
+.input-div.focus::after {
 	width: 50%;
 }
 
