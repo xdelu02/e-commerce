@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Nav.scss';
+import CSSModules from 'react-css-modules';
+import styles from './Nav.module.scss';
 import shoppingCart from '../../assets/icons/shopping-cart.png';
 import accountIcon from '../../assets/icons/account.png';
 import logo from '../../assets/logo/logo.png';
 
 function Nav() {
 	return (
-		<header>
+		<header styleName="header">
 			<Link to={'/shop'}>
-				<img id='logo' src={logo} alt='' />
+				<img styleName='logo' src={logo} alt='' />
 			</Link>
-			<input type='checkbox' id='nav-toggle' className='nav-toggle' />
-			<nav className='nav'>
+			<input type='checkbox' styleName='nav-toggle' />
+			<nav styleName='nav'>
 				<ul>
 					<li>
 						<Link to={'/'}>Home</Link>
@@ -32,18 +33,18 @@ function Nav() {
 				</ul>
 			</nav>
 			<Link to={'/carrello'}>
-				<img src={shoppingCart} id='shoppingCart' alt='' />
+				<img src={shoppingCart} styleName='shopping-cart' alt='' />
 			</Link>
 
 			<Link to={'/account'}>
-				<img src={accountIcon} id='accountIcon' alt='' />
+				<img src={accountIcon} styleName='account-icon' alt='' />
 			</Link>
 
-			<label htmlFor='nav-toggle' className='nav-toggle-label'>
+			<label htmlFor='nav-toggle' styleName='nav-toggle-label'>
 				<span></span>
 			</label>
 		</header>
 	);
 }
 
-export default Nav;
+export default CSSModules(Nav, styles, { allowMultiple: true });
