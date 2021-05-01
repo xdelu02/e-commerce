@@ -1,6 +1,5 @@
 import React from 'react';
 import Categoria from './Categoria/Categoria';
-import './Categorie.scss';
 
 class Categorie extends React.Component {
 	constructor(props) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import './Categoria.scss';
 
 function Categoria(props) {
 	return (
