@@ -14,7 +14,7 @@ import Admin from './components/Admin/Admin';
 
 function App() {
 	const Main = withRouter(({ location }) => {
-		return <div>{location.pathname !== '/login' && location.pathname !== '/signup' && <Nav />}</div>;
+		return <div>{location.pathname !== '/login' && location.pathname !== '/signup' &&  <Nav />}</div>;
 	});
 
 	return (
