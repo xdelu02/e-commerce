@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ProdAdmin from './ProdAdmin';
+import CSSModules from 'react-css-modules';
+import styles from './Prodotti.module.scss';
 
-export default function Prodotti() {
+function Prodotti() {
 	const [prodotti, setProdotti] = useState([]);
 
 	const load = () => {
@@ -25,7 +27,7 @@ export default function Prodotti() {
 
 	return (
 		<>
-			<p>Prodotti</p>
+			<p styleName="test">Prodotti</p>
 			<table>
 				<thead>
 					<tr>
@@ -44,3 +46,5 @@ export default function Prodotti() {
 		</>
 	);
 }
+
+export default CSSModules(Prodotti, styles, { allowMultiple: true });

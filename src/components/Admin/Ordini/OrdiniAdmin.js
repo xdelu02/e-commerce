@@ -1,8 +1,10 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import styles from './OrdiniAdmin.module.scss';
 
-export default function OrdiniAdmin({ idOrdine, idCliente, indirizzo, codice }) {
+function OrdiniAdmin({ idOrdine, idCliente, indirizzo, codice }) {
 	return (
-		<>
+		<table styleName="test">
 			<tbody>
 				<tr>
 					<th>{idOrdine}</th>
@@ -11,6 +13,8 @@ export default function OrdiniAdmin({ idOrdine, idCliente, indirizzo, codice }) 
 					<th>{codice}</th>
 				</tr>
 			</tbody>
-		</>
+		</table>
 	);
 }
+
+export default CSSModules(OrdiniAdmin, styles, { allowMultiple: true });

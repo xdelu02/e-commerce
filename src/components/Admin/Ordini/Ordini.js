@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import OrdiniAdmin from './OrdiniAdmin';
+import CSSModules from 'react-css-modules';
+import styles from './Ordini.module.scss';
 
-export default function Ordini() {
+function Ordini() {
 	const [ordini, setOrdini] = useState([]);
 
 	const load = () => {
@@ -25,7 +27,7 @@ export default function Ordini() {
 
 	return (
 		<>
-			<p>Ordini</p>
+			<p styleName="test">Ordini</p>
 			<table>
 				<thead>
 					<tr>
@@ -42,3 +44,5 @@ export default function Ordini() {
 		</>
 	);
 }
+
+export default CSSModules(Ordini, styles, { allowMultiple: true });
