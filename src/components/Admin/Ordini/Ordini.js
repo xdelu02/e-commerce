@@ -9,7 +9,7 @@ export default function Ordini() {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					if (result.message != 'No Ordini found.') {
+					if (result.message !== 'No Ordini found.') {
 						setOrdini(result.records);
 					}
 				},
