@@ -6,7 +6,7 @@ import Prodotti from './Prodotti/Prodotti';
 
 export default function Admin() {
 	return (
-		<div style={{display:'flex'}}>
+		<div>
 			<div for="select">
 				<a href='/admin'>Dashboard</a>
 				<br />
