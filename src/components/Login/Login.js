@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Formik, Field, Form } from 'formik';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
-import './Login.scss';
+import CSSModules from 'react-css-modules';
+import styles from './Login.module.scss';
 import wave from '../../assets/icons/wave.png';
 import bg from '../../assets/icons/bg.svg';
 import logo from '../../assets/logo/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 
-export default function Login() {
+function Login() {
 	const { login } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -43,43 +43,43 @@ export default function Login() {
 	}
 
 	return (
-		<>
-			<img className='wave' src={wave} alt='' />
-			<div className='container-login'>
-				<div className='img'>
+		<div styleName='wrapper'>
+			<img styleName='wave' src={wave} alt='' />
+			<div styleName='container'>
+				<div styleName='img'>
 					<img src={bg} alt='' />
 				</div>
-				<div className='login-content'>
+				<div styleName='login-content'>
 					<form onSubmit={handleSubmit}>
 						<img src={logo} alt='logo' />
-						<h2 className='title'>Welcome</h2>
-						<div className='input-div one'>
-							<div className='i'>
+						<h2>Welcome</h2>
+						<div styleName='input-div one'>
+							<div styleName='i'>
 								<FontAwesomeIcon icon={faUser} />
 							</div>
-							<div className='div'>
+							<div>
 								<h5>Username</h5>
-								<input type='text' className='input' name='email' onChange={emailHandler} />
+								<input type='text' name='email' onChange={emailHandler} />
 							</div>
 						</div>
-						<div className='input-div pass'>
-							<div className='i'>
+						<div styleName='input-div pass'>
+							<div styleName='i'>
 								<FontAwesomeIcon icon={faLock} />
 							</div>
-							<div className='div'>
+							<div>
 								<h5>Password</h5>
-								<input type='password' className='input' name='password' onChange={passwordHandler} />
+								<input type='password' name='password' onChange={passwordHandler} />
 							</div>
 						</div>
-						<a href='#' className='forgotPasswordAnchor'>
-							Forgot Password?
-						</a>
-						<button type='submit' className='btn-login' disabled={loading}>
+						<a href='#' styleName="forgot-password-anchor">Forgot Password?</a>
+						<button type='submit' styleName='btn' disabled={loading}>
 							Login
 						</button>
 					</form>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
+
+export default CSSModules(Login, styles, { allowMultiple: true });

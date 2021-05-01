@@ -1,6 +1,18 @@
+$mainColor: #007cc3;
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.wrapper {
+	font-family: 'Poppins', sans-serif;
+	overflow: hidden;
+}
 
 .wave {
-	filter: invert(66%) sepia(25%) saturate(5871%) hue-rotate(193deg) brightness(95%) contrast(95%);
+    filter: invert(66%) sepia(25%) saturate(5871%) hue-rotate(193deg) brightness(95%) contrast(95%);
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -8,7 +20,7 @@
 	z-index: -1;
 }
 
-.container-login {
+.container {
 	width: 100vw;
 	height: 100vh;
 	display: grid;
@@ -95,7 +107,7 @@ form {
 	bottom: -2px;
 	width: 0%;
 	height: 2px;
-	background-color: #007cc3;
+	background-color: $mainColor;
 	transition: 0.4s;
 }
 
@@ -118,7 +130,7 @@ form {
 }
 
 .input-div.focus > .i > i {
-	color: #007cc3;
+	color: $mainColor;
 }
 
 .input-div > div > input {
@@ -140,7 +152,7 @@ form {
 	margin-bottom: 4px;
 }
 
-.forgotPasswordAnchor {
+a {
 	display: block;
 	text-align: right;
 	text-decoration: none;
@@ -149,18 +161,18 @@ form {
 	transition: 0.3s;
 }
 
-.forgotPasswordAnchor:hover {
-	color: #007cc3;
+a:hover {
+	color: $mainColor;
 }
 
-.btn-login {
+.btn {
 	display: block;
 	width: 100%;
 	height: 50px;
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: linear-gradient(to right, #2d98d6, #007cc3, #026caa);
+	background-image: linear-gradient(to right, scale-color($mainColor, $lightness: -10%), $mainColor, scale-color($mainColor, $lightness: +10%));
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
@@ -170,12 +182,16 @@ form {
 	cursor: pointer;
 	transition: 0.5s;
 }
-.btn-login:hover {
+.btn:hover {
 	background-position: right;
 }
 
+.forgot-password-anchor {
+    font-weight: 600;
+}
+
 @media screen and (max-width: 1050px) {
-	.container-login {
+	.container {
 		grid-gap: 5rem;
 	}
 }
@@ -196,7 +212,7 @@ form {
 }
 
 @media screen and (max-width: 900px) {
-	.container-login {
+	.container {
 		grid-template-columns: 1fr;
 	}
 

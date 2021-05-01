@@ -4,7 +4,6 @@ import ReactHtmlParser from 'react-html-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { addToCart } from '../../actions';
-import './DettaglioProdotto.scss';
 
 function DettaglioProdotto(props) {
 	const [prodotto, setProdotto] = useState({ nome: 'logo' });

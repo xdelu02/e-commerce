@@ -2,7 +2,7 @@ import React from 'react';
 import { useAsync } from 'react-async';
 import { useSelector } from 'react-redux';
 import ProdCart from './ProdCart/ProdCart';
-import './Carrello.scss';
+
 
 function Carrello() {
 	const cart = useSelector((state) => state.cart);
