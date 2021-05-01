@@ -28,13 +28,12 @@ function App() {
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
 				<Route path='/404' exact component={NotFound} />
-			</Switch>
-			<AuthProvider>
-				<Switch>
+				<AuthProvider>
 					<Route path='/signup' exact component={Signup} />
 					<Route path='/login' exact component={Login} />
-				</Switch>
-			</AuthProvider>
+				</AuthProvider>
+				<Route exact component={NotFound} />
+			</Switch>
 		</Router>
 	);
 }
