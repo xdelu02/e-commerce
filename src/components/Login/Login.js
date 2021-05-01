@@ -50,7 +50,7 @@ function Login() {
 					<img src={bg} alt='' />
 				</div>
 				<div styleName='login-content'>
-					<form onSubmit={handleSubmit}>
+					<form styleName="form" onSubmit={handleSubmit}>
 						<img src={logo} alt='logo' />
 						<h2>Welcome</h2>
 						<div styleName='input-div one'>
