@@ -2,24 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import { addToCart } from '../../actions';
+import { useHistory } from 'react-router';
 
 function DettaglioProdotto(props) {
 	const [prodotto, setProdotto] = useState({ nome: 'logo' });
 	const [qtaMAX, setQtaMAX] = useState(1);
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + props.match.params.id)
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					if (result.quantita === '0') window.location.href = '/shop';
+					if (!(typeof result.records === 'undefined' || result.records === null)) {
+						history.push('/404');
+					}
+					if (result.quantita === '0') {
+						history.push('/shop');
+					}
 					setProdotto(result);
 					setQtaMAX(Math.floor(result.quantita === '1' ? 1 : result.quantita / 2 > 10 ? 10 : result.quantita / 2));
 				},
 				(error) => {
 					console.log(error);
+					history.push('/');
 				}
 			);
 	}, []);
