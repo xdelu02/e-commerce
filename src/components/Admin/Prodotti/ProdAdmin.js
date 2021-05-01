@@ -1,16 +1,16 @@
 import React from 'react';
 
-export default function ProdAdmin(props) {
+export default function ProdAdmin({ idProdotto, nome, descS, descL, quantita, prezzo }) {
 	return (
 		<>
 			<tbody>
 				<tr>
-					<th>{props.idProdotto}</th>
-					<th>{props.nome}</th>
-					<th>{props.descS}</th>
-					<th>{props.descL}</th>
-					<th>{props.quantita}</th>
-					<th>{props.prezzo}</th>
+					<th>{idProdotto}</th>
+					<th>{nome}</th>
+					<th>{descS}</th>
+					<th>{descL}</th>
+					<th>{quantita}</th>
+					<th>{prezzo} €</th>
 				</tr>
 			</tbody>
 		</>

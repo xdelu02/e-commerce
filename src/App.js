@@ -10,6 +10,7 @@ import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import Account from './components/Account/Account';
 import Admin from './components/Admin/Admin';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 	const Main = withRouter(({ location }) => {
@@ -26,6 +27,7 @@ function App() {
 				<Route path='/carrello' exact component={Carrello} />
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
+				<Route path='' component={NotFound} />
 			</Switch>
 			<AuthProvider>
 				<Switch>

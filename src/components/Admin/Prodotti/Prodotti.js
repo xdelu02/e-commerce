@@ -9,7 +9,7 @@ export default function Prodotti() {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					if (result.message != 'No matching Prodotti found.') {
+					if (result.message != 'No Prodotti found.') {
 						setProdotti(result.records);
 					}
 				},

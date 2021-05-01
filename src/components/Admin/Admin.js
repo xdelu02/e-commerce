@@ -6,15 +6,24 @@ import Prodotti from './Prodotti/Prodotti';
 
 export default function Admin() {
 	return (
-		<>
-			<h1>ADMIN</h1>
-			<Router>
-				<Switch>
-					<Route path='/admin' exact component={Dashboard} />
-					<Route path='/admin/prodotti' exact component={Prodotti} />
-					<Route path='/admin/ordini' exact component={Ordini} />
-				</Switch>
-			</Router>
-		</>
+		<div style={{display:'flex'}}>
+			<div for="select">
+				<a href='/admin'>Dashboard</a>
+				<br />
+				<a href='/admin/prodotti'>Prodotti</a>
+				<br />
+				<a href='/admin/ordini'>Ordini</a>
+				<br />
+			</div>
+			<div for='specifiche'>
+				<Router>
+					<Switch>
+						<Route path='/admin' exact component={Dashboard} />
+						<Route path='/admin/prodotti' exact component={Prodotti} />
+						<Route path='/admin/ordini' exact component={Ordini} />
+					</Switch>
+				</Router>
+			</div>
+		</div>
 	);
 }
