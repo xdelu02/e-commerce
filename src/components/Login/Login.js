@@ -71,7 +71,7 @@ function Login() {
 								<input type='password' name='password' onChange={passwordHandler} />
 							</div>
 						</div>
-						<a href='#' styleName="forgot-password-anchor">Forgot Password?</a>
+						<a href='/shop' styleName="forgot-password-anchor">Forgot Password?</a>
 						<button type='submit' styleName='btn' disabled={loading}>
 							Login
 						</button>
