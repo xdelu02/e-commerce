@@ -4,6 +4,9 @@ import Dashboard from './Dashboard/Dashboard';
 import Ordini from './Ordini/Ordini';
 import Prodotti from './Prodotti/Prodotti';
 import CSSModules from 'react-css-modules';
+import Home from '../../assets/icons/home.png';
+import Bag from '../../assets/icons/bag.png';
+import Sent from '../../assets/icons/sent.png';
 import styles from './Admin.module.scss';
 
 function Admin() {
@@ -11,12 +14,15 @@ function Admin() {
 		<div styleName='admin'>
 			<div htmlFor='select' styleName='selectors'>
 				<a href='/admin' styleName='selector'>
+					<img src={Home} styleName='icon' alt='icon' />
 					Dashboard
 				</a>
 				<a href='/admin/prodotti' styleName='selector'>
+					<img src={Bag} styleName='icon' alt='icon' />
 					Prodotti
 				</a>
 				<a href='/admin/ordini' styleName='selector'>
+					<img src={Sent} styleName='icon' alt='icon' />
 					Ordini
 				</a>
 			</div>

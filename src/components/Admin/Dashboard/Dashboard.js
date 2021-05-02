@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CSSModules from 'react-css-modules';
 import { useHistory } from 'react-router';
+import Sent from '../../../assets/icons/sent.png';
 import styles from './Dashboard.module.scss';
 
 function Dashboard() {
@@ -34,7 +35,7 @@ function Dashboard() {
 			.then(
 				(result) => {
 					if (result.message !== 'No Ordini found.') {
-						setAdmin(result.records.length);
+						setnOrdini(result.records.length);
 					}
 				},
 				(error) => {
@@ -50,12 +51,14 @@ function Dashboard() {
 	}, []);
 
 	return (
-		<>
+		<div styleName='dashboard'>
 			<p>
 				{saluti[Math.floor(Math.floor(Math.random() * 10) / 2)]}, {admin.nome}
 			</p>
-			<p>numero totale di ordini: {nOrdini}</p>
-		</>
+			<p>
+				numero totale di ordini: {nOrdini} <img src={Sent} styleName='icon' alt='icon' />
+			</p>
+		</div>
 	);
 }
 
