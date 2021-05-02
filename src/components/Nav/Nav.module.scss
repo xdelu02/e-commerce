@@ -154,6 +154,13 @@
 	}
 }
 
+@media screen and (max-width: 800px) {
+	.account-icon {
+		display: none;
+	}
+
+}
+
 .shopping-cart {
 	width: 2rem;
 	position: absolute;

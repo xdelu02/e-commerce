@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import { addToCart } from '../../actions';
 import { useHistory } from 'react-router';
+import CSSModules from 'react-css-modules';
+import styles from './DettaglioProdotto.module.scss';
 
 function DettaglioProdotto(props) {
 	const [prodotto, setProdotto] = useState({ nome: 'logo' });
@@ -37,26 +39,31 @@ function DettaglioProdotto(props) {
 	};
 
 	return (
-		<div className='dettaglioprodotto flex' id={prodotto.idProdotto}>
-			<div className='section1'>
-				<div>
-					<img src={'http://ecommerce.ideeinbit.it/img/' + prodotto.nome + '.png'} alt='prodotto' />
+		<div styleName='wrapper'>
+			<div styleName='product-title'>
+				<h3>{prodotto.nome}</h3>
+			</div>
+			<div styleName='product-image'>
+				<img src={'http://ecommerce.ideeinbit.it/img/' + prodotto.nome + '.png'} alt='prodotto' />
+			</div>
+			<div styleName='product-buy'>
+				<div styleName='product-price'>
+					<h4>Prezzo:</h4>
+					<p>€ {prodotto.prezzo}</p>
 				</div>
-				<div className='details'>
-					<h1 className='titolo m'>{prodotto.nome}</h1>
-					<h2 className='prezzo m'>€ {prodotto.prezzo}</h2>
-					<p className='descS m'>{prodotto.descS}</p>
-					<div className='custom-select m'>
-						<select onChange={handleChange}>
-							{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
-								<option value={n} key={n}>
-									{n}
-								</option>
-							))}
-						</select>
-					</div>
+
+				<div styleName='product-option'>
+					<h4>Quantità:</h4>
+					<select onChange={handleChange}>
+						{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
+							<option value={n} key={n}>
+								{n}
+							</option>
+						))}
+					</select>
+
 					<button
-						className='btn-addtocart'
+						className='btn btn--block'
 						onClick={() =>
 							dispatch(
 								addToCart({
@@ -66,16 +73,16 @@ function DettaglioProdotto(props) {
 							)
 						}
 					>
-						ADD TO CHART
+						ADD TO CART
 					</button>
 				</div>
 			</div>
-			<div className='section2'>
-				<h3>Descrizione</h3>
+			<div styleName='product-description'>
+				<h4>Descrizione</h4>
 				<p>{ReactHtmlParser(prodotto.descL)}</p>
 			</div>
 		</div>
 	);
 }
 
-export default DettaglioProdotto;
+export default CSSModules(DettaglioProdotto, styles, { allowMultiple: true });
