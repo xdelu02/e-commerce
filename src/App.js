@@ -14,7 +14,20 @@ import NotFound from './components/NotFound/NotFound';
 
 function App() {
 	const Main = withRouter(({ location }) => {
-		return <div>{location.pathname !== '/login' && location.pathname !== '/signup' && location.pathname !== '/admin' && location.pathname !== '/404' && <Nav />}</div>;
+		return (
+			<div>
+				{
+					location.pathname !== '/login' &&
+					location.pathname !== '/signup' &&
+					location.pathname !== '/admin' &&
+					location.pathname !== '/admin/' &&
+					location.pathname !== '/admin/prodotti' &&
+					location.pathname !== '/admin/ordini' &&
+					location.pathname !== '/404' &&
+					<Nav />
+				}
+			</div>
+		);
 	});
 
 	return (

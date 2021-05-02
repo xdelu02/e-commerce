@@ -1,3 +1,32 @@
-.test {
-    background-color: red;
+$main-color: #007cc3;
+$text: #ffffff;
+
+.admin {
+	background-color: $main-color;
+	padding: 1rem 1rem 1rem 2rem;
+	display: flex;
+	flex-direction: row;
+
+	.selectors {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+
+		.selector {
+			color: $text;
+			text-decoration: none;
+
+			&:visited,
+			&:link {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.specs {
+		border-radius: 2rem;
+		background-color: $text;
+		padding: 1rem 1rem 1rem 2rem;
+		flex-grow: 1;
+	}
 }

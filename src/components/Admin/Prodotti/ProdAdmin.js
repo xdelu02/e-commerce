@@ -4,7 +4,7 @@ import styles from './ProdAdmin.module.scss';
 
 function ProdAdmin({ idProdotto, nome, descS, descL, quantita, prezzo }) {
 	return (
-		<table styleName="test">
+		<table styleName="prod-admin">
 			<tbody>
 				<tr>
 					<th>{idProdotto}</th>
