@@ -8,16 +8,19 @@ import styles from './Admin.module.scss';
 
 function Admin() {
 	return (
-		<div styleName='test'>
-			<div htmlFor='select'>
-				<a href='/admin'>Dashboard</a>
-				<br />
-				<a href='/admin/prodotti'>Prodotti</a>
-				<br />
-				<a href='/admin/ordini'>Ordini</a>
-				<br />
+		<div styleName='admin'>
+			<div htmlFor='select' styleName='selectors'>
+				<a href='/admin' styleName='selector'>
+					Dashboard
+				</a>
+				<a href='/admin/prodotti' styleName='selector'>
+					Prodotti
+				</a>
+				<a href='/admin/ordini' styleName='selector'>
+					Ordini
+				</a>
 			</div>
-			<div htmlFor='specifiche'>
+			<div htmlFor='specifiche' styleName='specs'>
 				<Router>
 					<Switch>
 						<Route path='/admin' exact component={Dashboard} />
