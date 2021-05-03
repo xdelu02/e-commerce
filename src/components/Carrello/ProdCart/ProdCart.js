@@ -34,6 +34,7 @@ export default function ProdCart(props) {
 			if (val.idProdotto === props.id) {
 				return val.quantita;
 			}
+			return null;
 		});
 		setQta(c[0].quantita);
 	});

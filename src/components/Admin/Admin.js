@@ -12,20 +12,26 @@ import styles from './Admin.module.scss';
 function Admin() {
 	return (
 		<div styleName='admin'>
-			<div htmlFor='select' styleName='selectors'>
-				<a href='/admin' styleName='selector'>
-					<img src={Home} styleName='icon' alt='icon' />
-					Dashboard
-				</a>
-				<a href='/admin/prodotti' styleName='selector'>
-					<img src={Bag} styleName='icon' alt='icon' />
-					Prodotti
-				</a>
-				<a href='/admin/ordini' styleName='selector'>
-					<img src={Sent} styleName='icon' alt='icon' />
-					Ordini
-				</a>
-			</div>
+			<ul htmlFor='select' styleName='selectors'>
+				<li styleName='selector active'>
+					<a href='/admin' styleName='a main'>
+						<img src={Home} styleName='icon' alt='icon' />
+						Dashboard
+					</a>
+				</li>
+				<li styleName='selector'>
+					<a href='/admin/prodotti' styleName='a tex'>
+						<img src={Bag} styleName='icon' alt='icon' />
+						Prodotti
+					</a>
+				</li>
+				<li styleName='selector'>
+					<a href='/admin/ordini' styleName='a tex'>
+						<img src={Sent} styleName='icon' alt='icon' />
+						Ordini
+					</a>
+				</li>
+			</ul>
 			<div htmlFor='specifiche' styleName='specs'>
 				<Router>
 					<Switch>

@@ -27,22 +27,29 @@ function Prodotti() {
 
 	return (
 		<>
-			<p styleName="test">Prodotti</p>
-			<table>
-				<thead>
-					<tr>
-						<th>idProdotto</th>
-						<th>nome</th>
-						<th>descS</th>
-						<th>descL</th>
-						<th>quantita</th>
-						<th>prezzo</th>
-					</tr>
-				</thead>
+			<p>Prodotti</p>
+			<div styleName='prodotti'>
+				<div styleName='elemento'>
+					<div>
+						<b>idProdotto</b>
+					</div>
+					<div>
+						<b>nome</b>
+					</div>
+					<div>
+						<b>desc</b>
+					</div>
+					<div>
+						<b>quantita</b>
+					</div>
+					<div>
+						<b>prezzo</b>
+					</div>
+				</div>
 				{prodotti.map((e, i) => (
-					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} descS={e.descS} descL={e.descL} quantita={e.quantita} prezzo={e.prezzo} />
+					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} descS={e.descS} quantita={e.quantita} prezzo={e.prezzo} />
 				))}
-			</table>
+			</div>
 		</>
 	);
 }

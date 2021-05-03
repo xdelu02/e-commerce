@@ -8,17 +8,36 @@ $text: #ffffff;
 	flex-direction: row;
 
 	.selectors {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
+		list-style-type: none;
+		margin: 0;
+		padding: 2rem 0 2rem 0;
+		width: 10%;
+		height: 100%;
+		overflow: auto;
+
+		.active {
+			background-color: $text;
+			color: $main-color;
+		}
 
 		.selector {
-			color: $text;
-			text-decoration: none;
+			border-bottom-left-radius: 1rem;
+			border-top-left-radius: 1rem;
+			padding: 0.5rem;
 
-			&:visited,
-			&:link {
+			.a,
+			.a:visited,
+			.a:link,
+			.a:active,
+			.a:hover {
 				text-decoration: none;
+			}
+
+			.tex {
+				color: $text;
+			}
+			.main {
+				color: $main-color;
 			}
 		}
 
