@@ -8,7 +8,7 @@ function Dashboard() {
 	const saluti = ['Ciao', 'Benvenuto', 'Bentornato', 'Salve', 'Buongiorno'];
 	const [nOrdini, setnOrdini] = useState(0);
 	const [admin, setAdmin] = useState({
-		email: 'admin@admin.admi'
+		email: 'admin@admin.admin'
 	});
 	const history = useHistory();
 
@@ -18,7 +18,7 @@ function Dashboard() {
 			.then(
 				(result) => {
 					if (typeof result.records === 'undefined' || result.records === null) {
-						//history.push('/404');
+						history.push('/404');
 						//window.location.href = '/404';
 					}
 					setAdmin(result.records[0]);
@@ -48,7 +48,7 @@ function Dashboard() {
 	useEffect(() => {
 		getCredentials();
 		getOrdini();
-	}, [getCredentials, getOrdini]);
+	}, []);
 
 	return (
 		<div styleName='dashboard'>
