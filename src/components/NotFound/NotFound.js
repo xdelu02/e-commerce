@@ -10,16 +10,15 @@ function NotFound() {
 	};
 
 	return (
-		<>
-			<div styleName='wrapper'>
-				<img src={window.screen.width > 800 ? notFound : notFoundMobile} alt='' />
-			</div>
+		<div styleName='wrapper'>
+			<h3>Ti sei perso ...</h3>
+			<div styleName='img'></div>
 			<div styleName='wrapper-btn'>
-				<button styleName='btn' onClick={handleOnClick}>
-					GO TO HOMEPAGE
-				</button>
+				<a className='btn' onClick={handleOnClick}>
+					Torna a casa
+				</a>
 			</div>
-		</>
+		</div>
 	);
 }
 
