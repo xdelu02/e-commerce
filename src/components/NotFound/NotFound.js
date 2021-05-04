@@ -1,5 +1,6 @@
 import React from 'react';
-import notFoundImage from '../../assets/svg/notFoundSvg.svg';
+import notFound from '../../assets/svg/notFound.svg';
+import notFoundMobile from '../../assets/svg/notFound-mobile.svg';
 import CSSModules from 'react-css-modules';
 import styles from './NotFound.module.scss';
 
@@ -11,7 +12,7 @@ function NotFound() {
 	return (
 		<>
 			<div styleName='wrapper'>
-				<img src={notFoundImage} alt='' />
+				<img src={(window.screen.width > 800)? notFound : notFoundMobile} alt='' />
 			</div>
 			<div styleName='wrapper-btn'>
 				<button className='btn' onClick={handleOnClick}>
