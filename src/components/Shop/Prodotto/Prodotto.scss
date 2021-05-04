@@ -1,4 +1,4 @@
-
+$mainColor: #007CC3;
 
 .product-wrapper {
 	width: 15rem;
@@ -44,4 +44,21 @@
 
 .price {
 	font-weight: 500;
+}
+
+.prod-btn {
+	width: 100%;
+	outline: none;
+	border: none;
+	border-radius: 0px 0px 6px 6px;
+	background-image: linear-gradient(to right, scale-color($mainColor, $lightness: -10%), $mainColor, scale-color($mainColor, $lightness: +10%));
+	background-size: 200%;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 6px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+.prod-btn:hover {
+	background-position: right;
 }
