@@ -11,8 +11,8 @@ function NotFound() {
 
 	return (
 		<div styleName='wrapper'>
-			<h3>Ti sei perso ...</h3>
 			<div styleName='img'></div>
+			<h3>Ti sei perso ...</h3>
 			<div styleName='wrapper-btn'>
 				<a className='btn' onClick={handleOnClick}>
 					Torna a casa
