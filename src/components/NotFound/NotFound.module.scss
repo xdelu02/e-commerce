@@ -1,12 +1,33 @@
+$mainColor: #007cc3;
+
 .wrapper {
 	display: flex;
-    place-content: center;
-    justify-content: center;
-
+	place-content: center;
+	justify-content: center;
 }
 
 .wrapper-btn {
-    display: flex;
-    place-content: center;
-    justify-content: center;
+	display: flex;
+	place-content: center;
+	justify-content: center;
+
+	.btn {
+		display: block;
+		border-radius: 25px;
+		outline: none;
+		border: none;
+		background-image: linear-gradient(to right, scale-color($mainColor, $lightness: -10%), $mainColor, scale-color($mainColor, $lightness: +10%));
+		background-size: 200%;
+		font-size: 1.2rem;
+		color: #fff;
+		font-family: 'Poppins', sans-serif;
+		text-transform: uppercase;
+		margin: 1rem 0;
+        padding: 1rem;
+		cursor: pointer;
+		transition: 0.5s;
+	}
+	.btn:hover {
+		background-position: right;
+	}
 }

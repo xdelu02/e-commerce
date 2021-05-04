@@ -12,10 +12,10 @@ function NotFound() {
 	return (
 		<>
 			<div styleName='wrapper'>
-				<img src={(window.screen.width > 800)? notFound : notFoundMobile} alt='' />
+				<img src={window.screen.width > 800 ? notFound : notFoundMobile} alt='' />
 			</div>
 			<div styleName='wrapper-btn'>
-				<button className='btn' onClick={handleOnClick}>
+				<button styleName='btn' onClick={handleOnClick}>
 					GO TO HOMEPAGE
 				</button>
 			</div>
