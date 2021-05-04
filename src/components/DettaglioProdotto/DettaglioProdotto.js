@@ -11,7 +11,7 @@ function DettaglioProdotto(props) {
 	const [qtaMAX, setQtaMAX] = useState(1);
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const history = useHistory('/shop');
 
 	useEffect(() => {
 		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + props.match.params.id)
