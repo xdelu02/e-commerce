@@ -1,70 +1,158 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
-import Dashboard from './Dashboard/Dashboard';
-import Ordini from './Ordini/Ordini';
-import Prodotti from './Prodotti/Prodotti';
-import { useAuth } from '../../contexts/AuthContext';
-import Home from '../../assets/icons/home.png';
-import Bag from '../../assets/icons/bag.png';
-import Sent from '../../assets/icons/sent.png';
-import styles from './Admin.module.scss';
-import { Sidenav, Nav, Icon, Dropdown, Toggle } from 'rsuite';
-import 'rsuite/dist/styles/rsuite-default.css';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-function Admin() {
-	//const { getCurrentUserEmail } = useAuth();
-	const email = 'admin@admin.admin';
+const drawerWidth = 240;
 
-	const getCredentials = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/amministratori/?email=' + email)
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (typeof result.records === 'undefined' || result.records === null) {
-						//history.push('/404');
-						window.location.href = '/404';
-					}
-				},
-				(error) => {
-					console.log(error);
-					//history.push('/404');
-					window.location.href = '/404';
-				}
-			);
+const useStyles = makeStyles((theme) => ({
+	root: {
+		display: 'flex'
+	},
+	drawer: {
+		[theme.breakpoints.up('sm')]: {
+			width: drawerWidth,
+			flexShrink: 0
+		}
+	},
+	appBar: {
+		[theme.breakpoints.up('sm')]: {
+			width: `calc(100% - ${drawerWidth}px)`,
+			marginLeft: drawerWidth
+		}
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+		[theme.breakpoints.up('sm')]: {
+			display: 'none'
+		}
+	},
+	// necessary for content to be below app bar
+	toolbar: theme.mixins.toolbar,
+	drawerPaper: {
+		width: drawerWidth
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3)
+	}
+}));
+
+function Admin(props) {
+	const { window } = props;
+	const classes = useStyles();
+	const theme = useTheme();
+	const [mobileOpen, setMobileOpen] = React.useState(false);
+
+	const handleDrawerToggle = () => {
+		setMobileOpen(!mobileOpen);
 	};
 
+	const drawer = (
+		<div>
+			<div className={classes.toolbar} />
+
+			<List>
+				<ListItem button key={'Dashboard'}>
+					<ListItemIcon>
+						<DashboardIcon />
+					</ListItemIcon>
+					<ListItemText primary={'Dashboard'} />
+				</ListItem>
+
+				<ListItem button key={'Ordini'}>
+					<ListItemIcon>
+						<ReceiptIcon />
+					</ListItemIcon>
+					<ListItemText primary={'Ordini'} />
+				</ListItem>
+
+				<ListItem button key={'Prodotti'}>
+					<ListItemIcon>
+						<DashboardIcon />
+					</ListItemIcon>
+					<ListItemText primary={'Prodotti'} />
+				</ListItem>
+
+				<ListItem button key={'Admin'}>
+					<ListItemIcon>
+						<SupervisorAccountIcon />
+					</ListItemIcon>
+					<ListItemText primary={'Admin'} />
+				</ListItem>
+			</List>
+		</div>
+	);
+
+	const container = window !== undefined ? () => window().document.body : undefined;
+
 	return (
-		<div styleName="container">
-			<Sidenav defaultOpenKeys={['3', '4']} activeKey='1'>
-				<Sidenav.Body>
-					<Nav>
-						<Nav.Item eventKey='1' icon={<Icon icon='dashboard' />}>
-							Dashboard
-						</Nav.Item>
-						<Nav.Item eventKey='2' icon={<Icon icon='group' />}>
-							User Group
-						</Nav.Item>
-						<Dropdown eventKey='3' title='Advanced' icon={<Icon icon='magic' />}>
-							<Dropdown.Item eventKey='3-1'>Geo</Dropdown.Item>
-							<Dropdown.Item eventKey='3-2'>Devices</Dropdown.Item>
-							<Dropdown.Item eventKey='3-3'>Loyalty</Dropdown.Item>
-							<Dropdown.Item eventKey='3-4'>Visit Depth</Dropdown.Item>
-						</Dropdown>
-						<Dropdown eventKey='4' title='Settings' icon={<Icon icon='gear-circle' />}>
-							<Dropdown.Item eventKey='4-1'>Applications</Dropdown.Item>
-							<Dropdown.Item eventKey='4-2'>Channels</Dropdown.Item>
-							<Dropdown.Item eventKey='4-3'>Versions</Dropdown.Item>
-							<Dropdown.Menu eventKey='4-5' title='Custom Action'>
-								<Dropdown.Item eventKey='4-5-1'>Action Name</Dropdown.Item>
-								<Dropdown.Item eventKey='4-5-2'>Action Params</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-					</Nav>
-				</Sidenav.Body>
-			</Sidenav>
+		<div className={classes.root}>
+			<CssBaseline />
+			<AppBar position='fixed' className={classes.appBar}>
+				<Toolbar>
+					<IconButton color='inherit' aria-label='open drawer' edge='start' onClick={handleDrawerToggle} className={classes.menuButton}>
+						<MenuIcon />
+					</IconButton>
+					<Typography variant='h6' noWrap>
+						Gestione shop
+					</Typography>
+				</Toolbar>
+			</AppBar>
+			<nav className={classes.drawer} aria-label='mailbox folders'>
+				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+				<Hidden smUp implementation='css'>
+					<Drawer
+						container={container}
+						variant='temporary'
+						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+						open={mobileOpen}
+						onClose={handleDrawerToggle}
+						classes={{
+							paper: classes.drawerPaper
+						}}
+						ModalProps={{
+							keepMounted: true // Better open performance on mobile.
+						}}
+					>
+						{drawer}
+					</Drawer>
+				</Hidden>
+				<Hidden xsDown implementation='css'>
+					<Drawer
+						classes={{
+							paper: classes.drawerPaper
+						}}
+						variant='permanent'
+						open
+					>
+						{drawer}
+					</Drawer>
+				</Hidden>
+			</nav>
+			<main className={classes.content}>
+				<div className={classes.toolbar} />
+				<Typography paragraph>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+					facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+				</Typography>
+			</main>
 		</div>
 	);
 }
 
-export default CSSModules(Admin, styles, { allowMultiple: true });
+export default Admin;
