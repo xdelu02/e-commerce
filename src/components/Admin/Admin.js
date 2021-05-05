@@ -1,15 +1,37 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CSSModules from 'react-css-modules';
 import Dashboard from './Dashboard/Dashboard';
 import Ordini from './Ordini/Ordini';
 import Prodotti from './Prodotti/Prodotti';
-import CSSModules from 'react-css-modules';
+import { useAuth } from '../../contexts/AuthContext';
 import Home from '../../assets/icons/home.png';
 import Bag from '../../assets/icons/bag.png';
 import Sent from '../../assets/icons/sent.png';
 import styles from './Admin.module.scss';
 
 function Admin() {
+	//const { getCurrentUserEmail } = useAuth();
+	const email = 'admin@admin.admin';
+
+	const getCredentials = () => {
+		fetch('http://ecommerce.ideeinbit.it/api/amministratori/?email=' + email)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					if (typeof result.records === 'undefined' || result.records === null) {
+						//history.push('/404');
+						window.location.href = '/404';
+					}
+				},
+				(error) => {
+					console.log(error);
+					//history.push('/404');
+					window.location.href = '/404';
+				}
+			);
+	};
+
 	return (
 		<div styleName='admin'>
 			<ul htmlFor='select' styleName='selectors'>
