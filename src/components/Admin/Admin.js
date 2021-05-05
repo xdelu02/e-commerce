@@ -9,6 +9,8 @@ import Home from '../../assets/icons/home.png';
 import Bag from '../../assets/icons/bag.png';
 import Sent from '../../assets/icons/sent.png';
 import styles from './Admin.module.scss';
+import { Sidenav, Nav, Icon, Dropdown, Toggle } from 'rsuite';
+import 'rsuite/dist/styles/rsuite-default.css';
 
 function Admin() {
 	//const { getCurrentUserEmail } = useAuth();
@@ -33,36 +35,34 @@ function Admin() {
 	};
 
 	return (
-		<div styleName='admin'>
-			<ul htmlFor='select' styleName='selectors'>
-				<li styleName='selector active'>
-					<a href='/admin' styleName='a main'>
-						<img src={Home} styleName='icon' alt='icon' />
-						Dashboard
-					</a>
-				</li>
-				<li styleName='selector'>
-					<a href='/admin/prodotti' styleName='a tex'>
-						<img src={Bag} styleName='icon' alt='icon' />
-						Prodotti
-					</a>
-				</li>
-				<li styleName='selector'>
-					<a href='/admin/ordini' styleName='a tex'>
-						<img src={Sent} styleName='icon' alt='icon' />
-						Ordini
-					</a>
-				</li>
-			</ul>
-			<div htmlFor='specifiche' styleName='specs'>
-				<Router>
-					<Switch>
-						<Route path='/admin' exact component={Dashboard} />
-						<Route path='/admin/prodotti' exact component={Prodotti} />
-						<Route path='/admin/ordini' exact component={Ordini} />
-					</Switch>
-				</Router>
-			</div>
+		<div styleName="container">
+			<Sidenav defaultOpenKeys={['3', '4']} activeKey='1'>
+				<Sidenav.Body>
+					<Nav>
+						<Nav.Item eventKey='1' icon={<Icon icon='dashboard' />}>
+							Dashboard
+						</Nav.Item>
+						<Nav.Item eventKey='2' icon={<Icon icon='group' />}>
+							User Group
+						</Nav.Item>
+						<Dropdown eventKey='3' title='Advanced' icon={<Icon icon='magic' />}>
+							<Dropdown.Item eventKey='3-1'>Geo</Dropdown.Item>
+							<Dropdown.Item eventKey='3-2'>Devices</Dropdown.Item>
+							<Dropdown.Item eventKey='3-3'>Loyalty</Dropdown.Item>
+							<Dropdown.Item eventKey='3-4'>Visit Depth</Dropdown.Item>
+						</Dropdown>
+						<Dropdown eventKey='4' title='Settings' icon={<Icon icon='gear-circle' />}>
+							<Dropdown.Item eventKey='4-1'>Applications</Dropdown.Item>
+							<Dropdown.Item eventKey='4-2'>Channels</Dropdown.Item>
+							<Dropdown.Item eventKey='4-3'>Versions</Dropdown.Item>
+							<Dropdown.Menu eventKey='4-5' title='Custom Action'>
+								<Dropdown.Item eventKey='4-5-1'>Action Name</Dropdown.Item>
+								<Dropdown.Item eventKey='4-5-2'>Action Params</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
+					</Nav>
+				</Sidenav.Body>
+			</Sidenav>
 		</div>
 	);
 }

@@ -28,6 +28,11 @@
 	max-width: 68rem;
 	margin: 1rem auto;
 	padding: 0 1rem;
+
+	.search-bar {
+		background-color: black;
+		color: white;
+	}
 }
 
 @media screen and (max-width: 900px) {
@@ -35,4 +40,3 @@
 		margin: 0 auto;
 	}
 }
-
