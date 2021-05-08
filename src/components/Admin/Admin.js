@@ -4,13 +4,18 @@ import styles from './Admin.module.scss';
 import Logo from '../../assets/logo/logo.png';
 import ordersIcon from '../../assets/icons/piggy-bank.png';
 import profitIcon from '../../assets/icons/check-list.png';
-import temp from "../../assets/icons/chart.png"
+import temp from '../../assets/icons/chart.png';
 
 function Admin() {
 	const [show, setShow] = useState(false);
 
 	return (
 		<div styleName='container'>
+			<ul styleName='side-menu'>
+				<li>ds</li>
+      </ul>
+			<input type='checkbox' id='side-menu-btn' styleName='side-menu-btn' defaultChecked />
+			<label htmlFor='side-menu-btn' styleName='lbl-for-side-btn'></label>
 			<main styleName='main-content'>
 				<div>
 					<h1>Welcome, admin</h1>
@@ -28,8 +33,8 @@ function Admin() {
 							<h4>&euro; 12890,89</h4> Ricavo
 						</div>
 					</div>
-        </div>
-        <img src={temp} style={{width:'35rem'}}/>
+				</div>
+				<img src={temp} style={{ width: '35rem' }} />
 			</main>
 		</div>
 	);
