@@ -4,6 +4,7 @@ import styles from './Admin.module.scss';
 import Logo from '../../assets/logo/logo.png';
 import ordersIcon from '../../assets/icons/piggy-bank.png';
 import profitIcon from '../../assets/icons/check-list.png';
+import temp from "../../assets/icons/chart.png"
 
 function Admin() {
 	const [show, setShow] = useState(false);
@@ -27,7 +28,8 @@ function Admin() {
 							<h4>&euro; 12890,89</h4> Ricavo
 						</div>
 					</div>
-				</div>
+        </div>
+        <img src={temp} style={{width:'35rem'}}/>
 			</main>
 		</div>
 	);
