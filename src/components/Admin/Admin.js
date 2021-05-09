@@ -11,21 +11,25 @@ import AdminIcon from '../../assets/icons/admin.png';
 import temp from '../../assets/icons/chart.png';
 
 function Admin() {
-	const [show, setShow] = useState(false);
+	const [menu, setMenu] = useState(0);
+
+	const changeMenu = (id) => {
+		setMenu(id);
+	};
 
 	return (
 		<div styleName='container'>
 			<ul styleName='side-menu'>
-				<li>
+				<li onClick={() => setMenu(0)} styleName={menu === 0 ? 'active' : 'non-active'}>
 					<img src={DashboardIcon} /> Dashboard
 				</li>
-				<li>
+				<li onClick={() => changeMenu(1)} styleName={menu === 1 ? 'active' : 'non-active'}>
 					<img src={OrdersIcon} /> Ordini
 				</li>
-				<li>
+				<li onClick={() => changeMenu(2)} styleName={menu === 2 ? 'active' : 'non-active'}>
 					<img src={ProductsIcon} /> Prodotti
 				</li>
-				<li>
+				<li onClick={() => changeMenu(3)} styleName={menu === 3 ? 'active' : 'non-active'}>
 					<img src={AdminIcon} /> Admin
 				</li>
 			</ul>

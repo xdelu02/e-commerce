@@ -1,8 +1,7 @@
-$main-color: #007cc3;
 $text: #ffffff;
 $side-menu-color: #f3f6ff;
 $side-menu-text-color: #a0aac8;
-$side-menu-text-hovered-color: #42427d;
+$main-color: #42427d;
 
 .container {
 	overflow-x: hidden;
@@ -11,7 +10,7 @@ $side-menu-text-hovered-color: #42427d;
 	h2,
 	h3,
 	h4 {
-		color: #42427d;
+		color: $main-color;
 	}
 }
 
@@ -91,23 +90,39 @@ $side-menu-text-hovered-color: #42427d;
 }
 
 .side-menu li {
+	margin-left: 1rem;
 	padding: 1em;
 	width: 300px;
 	font-weight: 400;
-	color: $side-menu-text-color;
 	display: flex;
 	justify-content: start;
 	align-items: start;
-	gap:.5rem;
+	gap: 0.5rem;
 
 	&:hover {
-		background-color: darken(red, 10);
+		color: $main-color;
+		img {
+			filter: invert(22%) sepia(98%) saturate(414%) hue-rotate(202deg) brightness(91%) contrast(86%);
+		}
 	}
 
 	&:nth-child(1) {
 		margin-top: 5rem;
 	}
+}
 
+.active {
+	background-color: white;
+	color: $main-color;
+	border-radius: 20px;
+	img {
+		filter: invert(22%) sepia(98%) saturate(414%) hue-rotate(202deg) brightness(91%) contrast(86%);
+	}
+}
+
+.non-active {
+	background-color: $side-menu-color;
+	color: $side-menu-text-color;
 	img {
 		filter: invert(75%) sepia(30%) saturate(240%) hue-rotate(187deg) brightness(87%) contrast(85%);
 	}
