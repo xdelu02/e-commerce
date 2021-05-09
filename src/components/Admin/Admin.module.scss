@@ -1,6 +1,8 @@
 $main-color: #007cc3;
 $text: #ffffff;
-$side-menu-color: black;
+$side-menu-color: #f3f6ff;
+$side-menu-text-color: #a0aac8;
+$side-menu-text-hovered-color: #42427d;
 
 .container {
 	overflow-x: hidden;
@@ -22,7 +24,7 @@ $side-menu-color: black;
 	flex-direction: column;
 	gap: 2rem;
 	justify-content: center;
-	align-items: center;
+	align-items: start;
 	flex-wrap: wrap;
 	min-height: 100vh;
 	min-width: 100vw;
@@ -31,7 +33,15 @@ $side-menu-color: black;
 	bottom: 100%;
 	left: 0;
 	z-index: 1;
-	padding: 4em;
+	padding: 2em;
+}
+
+//WELCOME-TEXT
+.welcome-text {
+	margin-top: 2rem;
+	span {
+		font-weight: 400;
+	}
 }
 
 //BOX
@@ -78,18 +88,28 @@ $side-menu-color: black;
 	bottom: 0;
 	left: 0;
 	z-index: 0;
-	
 }
 
 .side-menu li {
-	
 	padding: 1em;
-	color: #fff;
 	width: 300px;
 	font-weight: 400;
+	color: $side-menu-text-color;
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap:.5rem;
 
 	&:hover {
 		background-color: darken(red, 10);
+	}
+
+	&:nth-child(1) {
+		margin-top: 5rem;
+	}
+
+	img {
+		filter: invert(75%) sepia(30%) saturate(240%) hue-rotate(187deg) brightness(87%) contrast(85%);
 	}
 }
 
@@ -101,7 +121,7 @@ $side-menu-color: black;
 	height: 30px;
 	width: 30px;
 	cursor: pointer;
-	background-image: url("../../assets/icons/menu.png");
+	background-image: url('../../assets/icons/menu.png');
 	background-size: contain;
 }
 
@@ -129,7 +149,7 @@ $side-menu-color: black;
 	width: 3rem;
 }
 
-.icon {
+.box-icon {
 	width: 2.4rem;
 }
 
