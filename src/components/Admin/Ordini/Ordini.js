@@ -16,6 +16,7 @@ function Ordini() {
 					}
 				},
 				(error) => {
+					setOrdini([{}]);
 					console.log(error);
 				}
 			);

@@ -23,6 +23,7 @@ function App() {
 					location.pathname !== '/admin/' &&
 					location.pathname !== '/admin/prodotti' &&
 					location.pathname !== '/admin/ordini' &&
+					location.pathname !== '/admin/admins' &&
 					location.pathname !== '/404' &&
 					<Nav />
 				}

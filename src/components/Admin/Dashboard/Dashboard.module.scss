@@ -1,7 +1,57 @@
-.dashboard {
-    font-style: italic;
-    .icon {
-        width: 1rem;
-        height: 1rem;
-    }
+
+//WELCOME-TEXT
+.welcome-text {
+	margin-top: 2rem;
+	span {
+		font-weight: 400;
+	}
+}
+
+//BOX
+
+.box-container {
+	display: flex;
+	gap: 1rem;
+}
+
+.box {
+	height: 7rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
+
+	p,
+	h4 {
+		line-height: 0.1rem;
+	}
+}
+
+.orders-box {
+	background-color: #C7F2FF;
+	border-radius: 50px 10px;
+}
+
+.profit-box {
+	background-color: #ffe5ee;
+	border-radius: 10px 50px;
+}
+
+//IMAGE SECTION
+
+.box-icon {
+	width: 2.4rem;
+}
+
+//MEDIA QUERY
+
+@media screen and (max-width: 800px) {
+	.main-content {
+		max-width: 100vw;
+	}
+
+	.box-container {
+		flex-direction: column;
+	}
 }

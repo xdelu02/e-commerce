@@ -3,6 +3,9 @@ import CSSModules from 'react-css-modules';
 import { useHistory } from 'react-router';
 import Sent from '../../../assets/icons/sent.png';
 import styles from './Dashboard.module.scss';
+import ordersIcon from '../../../assets/icons/piggy-bank.png';
+import profitIcon from '../../../assets/icons/check-list.png';
+import temp from '../../../assets/icons/chart.png';
 
 function Dashboard() {
 	const saluti = ['Ciao', 'Benvenuto', 'Bentornato', 'Salve', 'Buongiorno'];
@@ -51,14 +54,28 @@ function Dashboard() {
 	}, []);
 
 	return (
-		<div styleName='dashboard'>
-			<p>
-				{saluti[Math.floor(Math.floor(Math.random() * 10) / 2)]}, {admin.nome}
-			</p>
-			<p>
-				numero totale di ordini: {nOrdini} <img src={Sent} styleName='icon' alt='icon' />
-			</p>
-		</div>
+			<main>
+				<div styleName='welcome-text'>
+					<h3>
+						<span>Benvenuto,</span> admin
+					</h3>
+				</div>
+				<div styleName='box-container'>
+					<div styleName='box orders-box'>
+						<img src={profitIcon} styleName='box-icon' />
+						<div>
+							<h4>23789</h4>Ordini
+						</div>
+					</div>
+					<div styleName='box profit-box'>
+						<img src={ordersIcon} styleName='box-icon' />
+						<div>
+							<h4>&euro; 12890,89</h4> Ricavo
+						</div>
+					</div>
+				</div>
+				<img src={temp} style={{ width: '35rem' }} />
+			</main>
 	);
 }
 

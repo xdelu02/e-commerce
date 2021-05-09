@@ -1,0 +1,20 @@
+$side-menu-color: #f3f6ff;
+$side-menu-text-color: #a0aac8;
+$main-color: #42427d;
+
+.active {
+	background-color: white;
+	color: $main-color;
+	border-radius: 20px;
+	img {
+		filter: invert(22%) sepia(98%) saturate(414%) hue-rotate(202deg) brightness(91%) contrast(86%);
+	}
+}
+
+.non-active {
+	background-color: $side-menu-color;
+	color: $side-menu-text-color;
+	img {
+		filter: invert(75%) sepia(30%) saturate(240%) hue-rotate(187deg) brightness(87%) contrast(85%);
+	}
+}
