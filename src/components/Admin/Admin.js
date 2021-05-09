@@ -6,7 +6,7 @@ import Products from './Prodotti/Prodotti';
 import Dashboard from './Dashboard/Dashboard';
 import Admins from './Admins/Admins';
 import Orders from './Ordini/Ordini';
-import Logo from '../../assets/logo/logo.png';
+import Logo from '../../assets/logo/fram4.png';
 import DashboardIcon from '../../assets/icons/dashboard.png';
 import ProductsIcon from '../../assets/icons/products.png';
 import OrdersIcon from '../../assets/icons/orders.png';
@@ -17,6 +17,7 @@ function Admin() {
 	return (
 		<div styleName='container'>
 			<ul styleName='side-menu'>
+				<img src={Logo} styleName='logo' />
 				<MenuLi id={0} img={DashboardIcon} name={'Dashboard'}>
 					<Link to={'/admin'} />
 				</MenuLi>

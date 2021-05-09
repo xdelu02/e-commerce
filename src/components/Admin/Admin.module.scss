@@ -28,6 +28,8 @@ $main-color: #42427d;
 	left: 0;
 	z-index: 0;
 
+
+
 	a {
 		text-decoration: none;
 	}
@@ -101,4 +103,14 @@ $main-color: #42427d;
 	left: 0;
 	z-index: 1;
 	padding: 2em;
+}
+
+
+//IMAGES
+
+.logo {
+	margin-top: 1.4rem;
+	margin-bottom: 4.5rem;
+	margin-left: 2rem;
+	width: 7rem;
 }
