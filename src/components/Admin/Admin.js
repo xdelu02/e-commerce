@@ -20,7 +20,7 @@ function Admin() {
 	return (
 		<div styleName='container'>
 			<ul styleName='side-menu'>
-				<li onClick={() => setMenu(0)} styleName={menu === 0 ? 'active' : 'non-active'}>
+				<li onClick={() => changeMenu(0)} styleName={menu === 0 ? 'active' : 'non-active'}>
 					<img src={DashboardIcon} /> Dashboard
 				</li>
 				<li onClick={() => changeMenu(1)} styleName={menu === 1 ? 'active' : 'non-active'}>
