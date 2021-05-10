@@ -6,7 +6,8 @@ import { useAuth } from '../../contexts/AuthContext';
 
 function Carrello() {
 	const [tot, setTot] = useState(0);
-	const cart = useSelector((state) => state.cart);
+	//const cart = useSelector((state) => state.cart);
+	const cart = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')) : [];
 	const { getCurrentUserEmail } = useAuth();
 
 	const fetchProd = async ({ id }, { signal }) => {

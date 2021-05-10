@@ -1,11 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../actions';
 import './Prodotto.scss';
 
 function Prodotto(props) {
 	const dispatch = useDispatch();
+	const cart = useSelector((state) => state.cart);
 
 	const handleOnClick = (e) => {
 		e.preventDefault();
@@ -15,6 +16,7 @@ function Prodotto(props) {
 				quantita: 1
 			})
 		);
+		localStorage.setItem('cart', JSON.stringify(cart));
 	};
 
 	return (
