@@ -5,7 +5,7 @@ import { removeToCart, updateToCart } from '../../../actions';
 import del from '../../../assets/icons/delete-red.png';
 
 export default function ProdCart(props) {
-	//const cart = useSelector((state) => state.cart);
+	const cartRedux = useSelector((state) => state.cart);
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
@@ -17,6 +17,7 @@ export default function ProdCart(props) {
 				idProdotto: e.target.id
 			})
 		);
+		localStorage.setItem('cart', JSON.stringify(cartRedux));
 		history.push('/carrello');
 	};
 
