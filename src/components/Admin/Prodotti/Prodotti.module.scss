@@ -1,11 +1,4 @@
-.prodotti {
-	padding: 15px 25px 25px 25px;
-
-	.elemento {
-		border: none;
-		border-top: 1px solid rgb(199, 198, 198);
-		padding: 10px;
-		display: grid;
-		grid-template-columns: 8% 37.5% 37.5% 7% 10%;
-	}
+.container {
+	display: flex;
+	
 }

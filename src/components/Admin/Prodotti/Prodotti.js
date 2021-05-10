@@ -26,31 +26,13 @@ function Prodotti() {
 	});
 
 	return (
-		<>
-			<p>Prodotti</p>
-			<div styleName='prodotti'>
-				<div styleName='elemento'>
-					<div>
-						<b>idProdotto</b>
-					</div>
-					<div>
-						<b>nome</b>
-					</div>
-					<div>
-						<b>desc</b>
-					</div>
-					<div>
-						<b>quantita</b>
-					</div>
-					<div>
-						<b>prezzo</b>
-					</div>
-				</div>
+		<div styleName="container">
+			<div>
 				{prodotti.map((e, i) => (
-					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} descS={e.descS} quantita={e.quantita} prezzo={e.prezzo} />
+					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} />
 				))}
 			</div>
-		</>
+		</div>
 	);
 }
 
