@@ -15,7 +15,7 @@ import NotFound from './components/NotFound/NotFound';
 function App() {
 	const Main = withRouter(({ location }) => {
 		return (
-			<div>
+			<>
 				{
 					location.pathname !== '/login' &&
 					location.pathname !== '/signup' &&
@@ -27,7 +27,7 @@ function App() {
 					location.pathname !== '/404' &&
 					<Nav />
 				}
-			</div>
+			</>
 		);
 	});
 

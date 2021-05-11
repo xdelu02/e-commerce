@@ -49,7 +49,7 @@ class Shop extends React.Component {
 		return (
 			<main className='shop-container'>
 				<div className='wrapper'>
-					<input type='text' onChange={this.filter} styleName='search-bar' placeholder='Search here...' />
+					<input type='text' onChange={this.filter} className='search-bar' placeholder='Search here...' />
 					<div className='auto-grid'>
 						{this.state.prodotti
 							.filter((val) => {
