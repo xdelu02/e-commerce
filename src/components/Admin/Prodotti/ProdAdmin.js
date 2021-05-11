@@ -4,11 +4,11 @@ import styles from './ProdAdmin.module.scss';
 
 function ProdAdmin({ idProdotto, nome, descS, quantita, prezzo }) {
 	return (
-		<div>
-			<div>{idProdotto}</div>
-			<div>{nome}</div>
-			<div>{quantita}</div>
-			<div>{prezzo} €</div>
+		<div styleName="product-card">
+			<p>{idProdotto}</p>
+			<p>{nome}</p>
+			<p>{quantita}</p>
+			<p>{prezzo} €</p>
 		</div>
 	);
 }
