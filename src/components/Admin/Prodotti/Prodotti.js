@@ -27,7 +27,7 @@ function Prodotti() {
 
 	return (
 		<div styleName="container">
-			<div>
+			<div styleName="auto-grid">
 				{prodotti.map((e, i) => (
 					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} />
 				))}
