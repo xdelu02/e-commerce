@@ -5,7 +5,6 @@ import styles from './Prodotti.module.scss';
 
 function Prodotti() {
 	const [prodotti, setProdotti] = useState([]);
-
 	const load = () => {
 		fetch('http://ecommerce.ideeinbit.it/api/prodotti/')
 			.then((res) => res.json())
@@ -26,8 +25,8 @@ function Prodotti() {
 	});
 
 	return (
-		<div styleName="container">
-			<div styleName="auto-grid">
+		<div styleName='container'>
+			<div styleName='auto-grid'>
 				{prodotti.map((e, i) => (
 					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} />
 				))}

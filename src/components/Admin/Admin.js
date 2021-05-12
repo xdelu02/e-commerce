@@ -16,6 +16,7 @@ import MenuLi from './MenuLi';
 function Admin() {
 	return (
 		<div styleName='container'>
+			{localStorage.getItem('menu') ? '' : localStorage.setItem('menu', 0)}
 			<ul styleName='side-menu'>
 				<img src={Logo} styleName='logo' />
 				<MenuLi id={0} img={DashboardIcon} name={'Dashboard'}>
