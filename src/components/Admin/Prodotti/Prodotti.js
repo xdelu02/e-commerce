@@ -22,7 +22,7 @@ function Prodotti() {
 
 	useEffect(() => {
 		load();
-	});
+	}, []);
 
 	return (
 		<div styleName='container'>
