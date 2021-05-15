@@ -11,7 +11,7 @@ function MenuLi(props) {
 	};
 
 	return (
-		<li onClick={changeMenu} styleName={localStorage.getItem('menu') == props.id ? 'active' : 'non-active'}>
+		<li onClick={changeMenu} styleName={localStorage.getItem('menu') === props.id ? 'active' : 'non-active'}>
 			<img src={props.img} />
 			{props.name}
 		</li>

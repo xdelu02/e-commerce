@@ -6,7 +6,7 @@ import del from '../../../assets/icons/delete-red.png';
 
 export default function ProdCart(props) {
 	const cartRedux = useSelector((state) => state.cart);
-	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+	const cart = props.cart;
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -39,7 +39,7 @@ export default function ProdCart(props) {
 			return null;
 		});
 		setQta(c[0].quantita);
-	},[]);
+	},[props.id, cart]);
 
 	return (
 		<div id={props.id}>
