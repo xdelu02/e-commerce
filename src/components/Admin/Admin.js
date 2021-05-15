@@ -37,7 +37,7 @@ function Admin() {
 		<div styleName='container'>
 			{localStorage.getItem('menu') ? '' : setVar}
 			<ul styleName='side-menu'>
-				<img src={Logo} styleName='logo' />
+				<img src={Logo} styleName='logo' alt='' />
 				<MenuLi id={0} img={DashboardIcon} name={'Dashboard'}>
 					<Link to={'/admin'} />
 				</MenuLi>
