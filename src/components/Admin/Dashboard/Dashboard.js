@@ -68,26 +68,6 @@ function Dashboard() {
 
 	return (
 		<main>
-			{}
-			<div styleName='welcome-text'>
-				<h3>
-					<span>Benvenuto,</span> admin
-				</h3>
-			</div>
-			<div styleName='box-container'>
-				<div styleName='box orders-box'>
-					<img src={profitIcon} styleName='box-icon' alt='' />
-					<div>
-						<h4>23789</h4>Ordini
-					</div>
-				</div>
-				<div styleName='box profit-box'>
-					<img src={ordersIcon} styleName='box-icon' alt='' />
-					<div>
-						<h4>&euro; 12890,89</h4> Ricavo
-					</div>
-				</div>
-			</div>
 			<Chart options={options} series={series} type='line' width='500' />
 		</main>
 	);

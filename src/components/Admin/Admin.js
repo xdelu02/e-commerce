@@ -1,74 +1,85 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
-import styles from './Admin.module.scss';
-import Products from './Prodotti/Prodotti';
-import Dashboard from './Dashboard/Dashboard';
-import Admins from './Admins/Admins';
-import Orders from './Ordini/Ordini';
-import Logo from '../../assets/logo/fram4.png';
-import DashboardIcon from '../../assets/icons/dashboard.png';
-import ProductsIcon from '../../assets/icons/products.png';
-import OrdersIcon from '../../assets/icons/orders.png';
-import AdminIcon from '../../assets/icons/admin.png';
-import MenuLi from './MenuLi';
-import ModifyProduct from './Prodotti/ModifyProduct';
+import React, { useState } from "react";
+import SimpleBar from 'simplebar-react';
+import { useLocation } from "react-router-dom";
+import { CSSTransition } from 'react-transition-group';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartPie, faCog, faHandHoldingUsd, faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Nav, Badge, Image, Button, Navbar } from '@themesberg/react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Routes } from "../../routes";
+import Logo from "../../assets/logo/logo.png";
+import ProfilePicture from "../../assets/img/team/profile-picture-3.jpg";
 
-function Admin() {
-	const [isChecked, setChecked] = useState(true);
+export default function Admin() {
+  const location = useLocation();
+  const { pathname } = location;
+  const [show, setShow] = useState(false);
+  const showClass = show ? "show" : "";
 
-	const setVar = () => {
-		localStorage.setItem('menu', 0);
-		localStorage.setItem('isChecked', true);
-	};
+  const onCollapse = () => setShow(!show);
 
-	const isOpen = () => {
-		let e = document.getElementById('container-admin-gen-0101');
-		if (isChecked) {
-			e.style.width = '100vw';
-			setChecked(false);
-		} else {
-			e.style.width = '90vw';
-			setChecked(true);
-		}
-	};
+  const NavItem = (props) => {
+    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
+    const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
+    const navItemClassName = link === pathname ? "active" : "";
+    const linkProps = external ? { href: link } : { as: Link, to: link };
 
-	return (
-		<div styleName='container'>
-			{localStorage.getItem('menu') ? '' : setVar}
-			<ul styleName='side-menu'>
-				<img src={Logo} styleName='logo' alt='' />
-				<MenuLi id={0} img={DashboardIcon} name={'Dashboard'}>
-					<Link to={'/admin'} />
-				</MenuLi>
+    return (
+      <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
+        <Nav.Link {...linkProps} target={target} className={classNames}>
+          <span>
+            {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
+            {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
-				<MenuLi id={1} img={OrdersIcon} name={'Ordini'}>
-					<Link to={'/admin/ordini'} />
-				</MenuLi>
+            <span className="sidebar-text">{title}</span>
+          </span>
+          {badgeText ? (
+            <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
+          ) : null}
+        </Nav.Link>
+      </Nav.Item>
+    );
+  };
 
-				<MenuLi id={2} img={ProductsIcon} name={'Prodotti'}>
-					<Link to={'/admin/prodotti'} />
-				</MenuLi>
-
-				<MenuLi id={3} img={AdminIcon} name={'Admin'}>
-					<Link to={'/admin/admins'} />
-				</MenuLi>
-			</ul>
-			<input type='checkbox' id='side-menu-btn' styleName='side-menu-btn' defaultChecked />
-			<label htmlFor='side-menu-btn' styleName='lbl-for-side-btn' onClick={isOpen}></label>
-			<div styleName='main-content' id='container-admin-gen-0101'>
-				<Router>
-					<Switch>
-						<Route path='/admin' exact component={Dashboard} />
-						<Route path='/admin/prodotti' exact component={Products} />
-						<Route path='/admin/prodotti/:id' exact component={ModifyProduct} />
-						<Route path='/admin/ordini' exact component={Orders} />
-						<Route path='/admin/admins' exact component={Admins} />
-					</Switch>
-				</Router>
-			</div>
-		</div>
-	);
-}
-
-export default CSSModules(Admin, styles, { allowMultiple: true });
+  return (
+    <>
+      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
+        <Navbar.Brand className="me-lg-5" as={Link} to={Routes.DashboardOverview.path}>
+          <Image src={Logo} className="navbar-brand-light" />
+        </Navbar.Brand>
+        <Navbar.Toggle as={Button} aria-controls="main-navbar" onClick={onCollapse}>
+          <span className="navbar-toggler-icon" />
+        </Navbar.Toggle>
+      </Navbar>
+      <CSSTransition timeout={300} in={show} classNames="sidebar-transition">
+        <SimpleBar className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
+          <div className="sidebar-inner px-4 pt-3">
+            <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
+              <div className="d-flex align-items-center">
+                <div className="user-avatar lg-avatar me-4">
+                  <Image src={ProfilePicture} className="card-img-top rounded-circle border-white" />
+                </div>
+                <div className="d-block">
+                  <h6>Ciao, Admin</h6>
+                  <Button as={Link} variant="secondary" size="xs" to={Routes.Signin.path} className="text-dark">
+                    <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Sign Out
+                  </Button>
+                </div>
+              </div>
+              <Nav.Link className="collapse-close d-md-none" onClick={onCollapse}>
+                <FontAwesomeIcon icon={faTimes} />
+              </Nav.Link>
+            </div>
+            <Nav className="flex-column pt-3 pt-md-0">
+              <NavItem title="" link={Routes.Presentation.path} image={Logo} />
+              <NavItem title="Dashboard" link={Routes.DashboardOverview.path} icon={faChartPie} />
+              <NavItem title="Prodotti" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
+              <NavItem title="Ordini" icon={faCog} link={Routes.Settings.path} />
+              <NavItem title="Admin" link="https://demo.themesberg.com/volt-pro-react/#/plugins/charts" icon={faChartPie} />
+            </Nav>
+          </div>
+        </SimpleBar>
+      </CSSTransition>
+    </>
+  );
+};
