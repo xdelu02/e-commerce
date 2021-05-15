@@ -6,8 +6,6 @@ import styles from './Login.module.scss';
 import wave from '../../assets/icons/wave.png';
 import bg from '../../assets/icons/bg.svg';
 import logo from '../../assets/logo/logo.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
 	const { login } = useAuth();
@@ -55,7 +53,7 @@ function Login() {
 						<h2>Welcome</h2>
 						<div styleName='input-div one'>
 							<div styleName='i'>
-								<FontAwesomeIcon icon={faUser} />
+							
 							</div>
 							<div>
 								<h5>Username</h5>
@@ -64,7 +62,7 @@ function Login() {
 						</div>
 						<div styleName='input-div pass'>
 							<div styleName='i'>
-								<FontAwesomeIcon icon={faLock} />
+								
 							</div>
 							<div>
 								<h5>Password</h5>
