@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules';
 import styles from './Dashboard.module.scss';
 import ordersIcon from '../../../assets/icons/piggy-bank.png';
 import profitIcon from '../../../assets/icons/check-list.png';
-import temp from '../../../assets/icons/chart.png';
+import Chart from 'react-apexcharts';
 
 function Dashboard() {
 	/*
@@ -51,9 +51,24 @@ function Dashboard() {
 		getOrdini();
 	}, []);
 	*/
+	const options = {
+		chart: {
+			id: 'basic-bar'
+		},
+		xaxis: {
+			categories: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007]
+		}
+	};
+	const series = [
+		{
+			name: 'series-1',
+			data: [30, 40, 45, 50, 49, 60, 70, 91]
+		}
+	];
 
 	return (
 		<main>
+			{}
 			<div styleName='welcome-text'>
 				<h3>
 					<span>Benvenuto,</span> admin
@@ -67,13 +82,13 @@ function Dashboard() {
 					</div>
 				</div>
 				<div styleName='box profit-box'>
-					<img src={ordersIcon} styleName='box-icon' alt=''/>
+					<img src={ordersIcon} styleName='box-icon' alt='' />
 					<div>
 						<h4>&euro; 12890,89</h4> Ricavo
 					</div>
 				</div>
 			</div>
-			<img src={temp} style={{ width: '35rem' }} alt=''/>
+			<Chart options={options} series={series} type='line' width='500' />
 		</main>
 	);
 }

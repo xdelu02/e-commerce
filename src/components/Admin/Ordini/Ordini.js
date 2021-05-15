@@ -28,7 +28,7 @@ function Ordini() {
 
 	return (
 		<>
-			<p styleName="test">Ordini</p>
+			<p styleName='test'>Ordini</p>
 			<table>
 				<thead>
 					<tr>
@@ -42,6 +42,7 @@ function Ordini() {
 					<OrdiniAdmin key={i} idOrdine={e.idOrdine} idCliente={e.idCliente} indirizzo={e.indirizzo} codice={e.codice} />
 				))}
 			</table>
+			<button className='btn btn-primary'>gg</button>
 		</>
 	);
 }
