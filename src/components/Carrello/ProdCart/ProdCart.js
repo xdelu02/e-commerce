@@ -39,7 +39,7 @@ export default function ProdCart(props) {
 			return null;
 		});
 		setQta(c[0].quantita);
-	});
+	},[]);
 
 	return (
 		<div id={props.id}>
