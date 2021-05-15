@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import CSSModules from 'react-css-modules';
 import { useHistory } from 'react-router';
-import Sent from '../../../assets/icons/sent.png';
 import styles from './Dashboard.module.scss';
 import ordersIcon from '../../../assets/icons/piggy-bank.png';
 import profitIcon from '../../../assets/icons/check-list.png';
 import temp from '../../../assets/icons/chart.png';
 
 function Dashboard() {
-	const saluti = ['Ciao', 'Benvenuto', 'Bentornato', 'Salve', 'Buongiorno'];
 	const [nOrdini, setnOrdini] = useState(0);
 	const [admin, setAdmin] = useState({
 		email: 'admin@admin.admin'

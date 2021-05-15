@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function ProdAdmin({ idProdotto, nome, quantita, prezzo }) {
 	return (
 		<Link styleName='product-card' to={'/admin/prodotti/' + idProdotto}>
-			<img src={'http://ecommerce.ideeinbit.it/img/' + nome + '.png'} />
+			<img src={'http://ecommerce.ideeinbit.it/img/' + nome + '.png'} alt='' />
 			<h4>{nome}</h4>
 			<p styleName='desc'>Quantita</p>
 			<p>{quantita}</p>
