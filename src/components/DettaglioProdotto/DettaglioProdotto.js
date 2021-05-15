@@ -12,9 +12,10 @@ function DettaglioProdotto(props) {
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory('/shop');
+	let id = props.match.params.id;
 
 	useEffect(() => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + props.match.params.id)
+		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -28,11 +29,10 @@ function DettaglioProdotto(props) {
 					setQtaMAX(Math.floor(result.quantita === '1' ? 1 : result.quantita / 2 > 10 ? 10 : result.quantita / 2));
 				},
 				(error) => {
-					console.log(error);
 					history.push('/');
 				}
 			);
-	}, []);
+	}, [id, history]);
 
 	const handleChange = async (e) => {
 		setQta(parseInt(e.target.value));
