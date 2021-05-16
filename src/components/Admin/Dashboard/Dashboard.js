@@ -7,7 +7,7 @@ import { trafficShares, totalOrders } from '../../../data/charts';
 export default function Dashboard() {
 	return (
 		<>
-			<Row className='justify-content-md-center mt-4'>
+			<Row className='justify-content-md-center mt-3'>
 				<Col xs={12} className='mb-4 d-none d-sm-block'>
 					<SalesValueWidget title='Vendite' value='10,567' percentage={10.57} />
 				</Col>

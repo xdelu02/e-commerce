@@ -10,11 +10,12 @@ export default function Admin() {
 	return (
 		<>
 			<Sidebar />
+
 			<main className='content'>
 				<Router>
 					<Switch>
 						<Route path='/admin/' exact component={Dashboard} />
-						<Route path='/admin/prodotti' exact component={Products} />
+						<Route path='/admin/prodotti' component={Products} />
 						<Route path='/admin/ordini' exact component={Orders} />
 						<Route path='/admin/admins' exact component={Admins} />
 					</Switch>

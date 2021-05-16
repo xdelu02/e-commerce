@@ -16,26 +16,26 @@ export default function SidebarAdmin() {
 	const showClass = show ? 'show' : '';
 
 	const onCollapse = () => setShow(!show);
-
 	const NavItem = (props) => {
-		const { title, link, external, target, icon, image, badgeText, badgeBg = 'secondary', badgeColor = 'primary' } = props;
+		const { title, link, icon, image, badgeText, badgeBg = 'secondary', badgeColor = 'primary' } = props;
 		const classNames = badgeText ? 'd-flex justify-content-start align-items-center justify-content-between' : '';
 		const navItemClassName = link === pathname ? 'active' : '';
-		const linkProps = external ? { href: link } : { as: Link, to: link };
+		const linkProps = { href: link };
 
 		return (
 			<Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
-				<Nav.Link {...linkProps} target={target} className={classNames}>
+				<Nav.Link {...linkProps} className={classNames} >
 					<span>
 						{icon ? (
 							<span className='sidebar-icon'>
-								<FontAwesomeIcon icon={icon} />{' '}
+								<FontAwesomeIcon icon={icon} />
 							</span>
 						) : null}
 						{image ? <Image src={image} width={40} height={40} className='sidebar-icon svg-icon' /> : null}
 
 						<span className='sidebar-text'>{title}</span>
 					</span>
+
 					{badgeText ? (
 						<Badge pill bg={badgeBg} text={badgeColor} className='badge-md notification-count ms-2'>
 							{badgeText}
@@ -77,15 +77,14 @@ export default function SidebarAdmin() {
 						</div>
 						<Nav className='flex-column pt-3 pt-md-0'>
 							<NavItem title='' link={''} image={Logo} />
-							<NavItem title='Dashboard' link={'/admin'} icon={faChartPie} />
-							<NavItem title='Prodotti' icon={faHandHoldingUsd} />
-							<NavItem title='Ordini' icon={faCog} link={""} />
+							<NavItem title='Dashboard' link='/admin' icon={faChartPie} />
+							<NavItem title='Prodotti' link='/admin/prodotti' icon={faHandHoldingUsd} />
+							<NavItem title='Ordini' link='/admin/ordini' icon={faCog} />
 							<NavItem title='Admin' link='/admin/admins' icon={faChartPie} />
 						</Nav>
 					</div>
 				</SimpleBar>
 			</CSSTransition>
-
 		</>
 	);
 }

@@ -38,6 +38,10 @@ function App() {
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' exact component={Admin} />
+				<Route path='/admin/prodotti' component={Admin} />
+				<Route path='/admin/prodotti/:id' exact component={Admin} />
+				<Route path='/admin/ordini' component={Admin} />
+				<Route path='/admin/admins' component={Admin} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />
