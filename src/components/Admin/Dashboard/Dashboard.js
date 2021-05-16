@@ -1,8 +1,8 @@
 import React from 'react';
 import { faCashRegister, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from '@themesberg/react-bootstrap';
-import { CounterWidget, CircleChartWidget, BarChartWidget, SalesValueWidget, SalesValueWidgetPhone } from '../../Widgets/Widgets';
-import { trafficShares, totalOrders } from '../../../data/charts';
+import { CounterWidget, CircleChartWidget, SalesValueWidget, SalesValueWidgetPhone } from '../../Widgets/Widgets';
+import { trafficShares } from '../../../data/charts';
 
 export default function Dashboard() {
 	return (

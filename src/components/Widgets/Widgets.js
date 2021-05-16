@@ -325,8 +325,8 @@ export const SalesValueWidget = (props) => {
           </small>
         </div>
         <div className="d-flex ms-auto">
-          <Button variant="secondary" size="sm" className="me-2">Month</Button>
-          <Button variant="primary" size="sm" className="me-3">Week</Button>
+          <Button variant="secondary" size="sm" className="me-2">Mese</Button>
+          <Button variant="primary" size="sm" className="me-3">Settimana</Button>
         </div>
       </Card.Header>
       <Card.Body className="p-2">

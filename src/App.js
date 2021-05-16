@@ -13,25 +13,29 @@ import Admin from './components/Admin/Admin';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
-	const Main = withRouter(({ location }) => {
-		return (
-			<>
-				{location.pathname !== '/login' &&
-					location.pathname !== '/signup' &&
-					location.pathname !== '/admin' &&
-					location.pathname !== '/admin/' &&
-					location.pathname !== '/admin/prodotti' &&
-					location.pathname !== '/admin/ordini' &&
-					location.pathname !== '/admin/admins' &&
-					location.pathname !== '/admin/dashboard' &&
-					location.pathname !== '/404' && <Nav />}
-			</>
-		);
+	const RenderNavBar = withRouter(({ location }) => {
+		let a = '/admin';
+
+		switch (location.pathname) {
+			case '/login':
+			case '/signup':
+			case a:
+			case a + '/':
+			case a + '/prodotti':
+			case a + '/prodotti/':
+			case a + '/ordini':
+			case a + '/admins':
+				return null;
+			case a + '/prodotti/' + parseInt(location.pathname.replace( /^\D+/g, ''), 10):
+				return null;
+			default:
+				return <Nav />;
+		}
 	});
 
 	return (
 		<Router>
-			<Main />
+			<RenderNavBar />
 			<Switch>
 				<Route path='/' exact component={Home} />
 				<Route path='/shop' exact component={Shop} />
