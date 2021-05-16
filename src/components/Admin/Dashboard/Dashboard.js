@@ -23,21 +23,7 @@ export default function Dashboard() {
 				</Col>
 
 				<Col xs={12} sm={6} xl={4} className='mb-4'>
-					<CircleChartWidget title='Traffic Share' data={trafficShares} />
-				</Col>
-			</Row>
-
-			<Row>
-				<Col xs={12} xl={12} className='mb-4'>
-					<Row>
-						<Col xs={12} xl={4}>
-							<Row>
-								<Col xs={12} className='mb-4'>
-									<BarChartWidget title='Total orders' value={452} percentage={18.2} data={totalOrders} />
-								</Col>
-							</Row>
-						</Col>
-					</Row>
+					<CircleChartWidget title='Ordini' data={trafficShares} />
 				</Col>
 			</Row>
 		</>
