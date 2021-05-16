@@ -16,15 +16,15 @@ function App() {
 	const Main = withRouter(({ location }) => {
 		return (
 			<>
-				{	location.pathname !== '/login' &&
+				{location.pathname !== '/login' &&
 					location.pathname !== '/signup' &&
 					location.pathname !== '/admin' &&
 					location.pathname !== '/admin/' &&
 					location.pathname !== '/admin/prodotti' &&
 					location.pathname !== '/admin/ordini' &&
 					location.pathname !== '/admin/admins' &&
-					location.pathname !== '/404' && <Nav />
-				}
+					location.pathname !== '/admin/dashboard' &&
+					location.pathname !== '/404' && <Nav />}
 			</>
 		);
 	});
@@ -38,10 +38,6 @@ function App() {
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' exact component={Admin} />
-				<Route path='/admin/prodotti' component={Admin} />
-				<Route path='/admin/prodotti/:id' exact component={Admin} />
-				<Route path='/admin/ordini' component={Admin} />
-				<Route path='/admin/admins' component={Admin} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />

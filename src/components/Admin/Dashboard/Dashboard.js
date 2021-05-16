@@ -1,76 +1,75 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './Dashboard.module.scss';
-import ordersIcon from '../../../assets/icons/piggy-bank.png';
-import profitIcon from '../../../assets/icons/check-list.png';
-import Chart from 'react-apexcharts';
 
-function Dashboard() {
-	/*
-	const [nOrdini, setnOrdini] = useState(0);
-	const [admin, setAdmin] = useState({
-		email: 'admin@admin.admin'
-	});
-	const history = useHistory();
+import React from "react";
+import { faCashRegister, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row } from '@themesberg/react-bootstrap';
+import { CounterWidget, CircleChartWidget, BarChartWidget, SalesValueWidget, SalesValueWidgetPhone } from "../../Widgets/Widgets";
+import { trafficShares, totalOrders } from "../../../data/charts";
 
-	const getCredentials = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/amministratori/?email=' + admin.email)
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (typeof result.records === 'undefined' || result.records === null) {
-						history.push('/404');
-						window.location.href = '/404';
-					}
-					setAdmin(result.records[0]);
-				},
-				(error) => {
-					console.log(error);
-					history.push('/404');
-				}
-			);
-	};
-	const getOrdini = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/ordini/')
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (result.message !== 'No Ordini found.') {
-						setnOrdini(result.records.length);
-					}
-				},
-				(error) => {
-					console.log(error);
-					history.push('/404');
-				}
-			);
-	};
+export default function Dashboard () {
+  return (
+    <>
+      <Row className="justify-content-md-center">
+        <Col xs={12} className="mb-4 d-none d-sm-block">
+          <SalesValueWidget
+            title="Sales Value"
+            value="10,567"
+            percentage={10.57}
+          />
+        </Col>
+        <Col xs={12} className="mb-4 d-sm-none">
+          <SalesValueWidgetPhone
+            title="Sales Value"
+            value="10,567"
+            percentage={10.57}
+          />
+        </Col>
+        <Col xs={12} sm={6} xl={4} className="mb-4">
+          <CounterWidget
+            category="Customers"
+            title="345k"
+            period="Feb 1 - Apr 1"
+            percentage={18.2}
+            icon={faChartLine}
+            iconColor="shape-primary"
+          />
+        </Col>
 
-	useEffect(() => {
-		getCredentials();
-		getOrdini();
-	}, []);
-	*/
-	const options = {
-		chart: {
-			id: 'basic-bar'
-		},
-		xaxis: {
-			categories: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007]
-		}
-	};
-	const series = [
-		{
-			name: 'series-1',
-			data: [30, 40, 45, 50, 49, 60, 70, 91]
-		}
-	];
+        <Col xs={12} sm={6} xl={4} className="mb-4">
+          <CounterWidget
+            category="Revenue"
+            title="$43,594"
+            period="Feb 1 - Apr 1"
+            percentage={28.4}
+            icon={faCashRegister}
+            iconColor="shape-tertiary"
+          />
+        </Col>
 
-	return (
-		<main>
-			<Chart options={options} series={series} type='line' width='500' />
-		</main>
-	);
-}
+        <Col xs={12} sm={6} xl={4} className="mb-4">
+          <CircleChartWidget
+            title="Traffic Share"
+            data={trafficShares} />
+        </Col>
+      </Row>
 
-export default CSSModules(Dashboard, styles, { allowMultiple: true });
+      <Row>
+        <Col xs={12} xl={12} className="mb-4">
+          <Row>
+            <Col xs={12} xl={4}>
+              <Row>
+                <Col xs={12} className="mb-4">
+                  <BarChartWidget
+                    title="Total orders"
+                    value={452}
+                    percentage={18.2}
+                    data={totalOrders} />
+                </Col>
+
+              </Row>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </>
+  );
+};
