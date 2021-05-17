@@ -3,22 +3,26 @@ import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
 
-function calcTot() {
-	//QUA METTI LA FUNZIONE PER CALCOLARE IL TOTALE
-	// tot è una ref
-	console.log("ciao");
-}
+
 
 function Carrello() {
-	const tot = useRef(1);
+	const tot = useRef(0);
 	//const cart = useSelector((state) => state.cart);
 	const cart = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')) : [];
 	const { getCurrentUserEmail } = useAuth();
 
+	const getPrezzo = async (id) => {
+		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id);
+		return response.json();
+	};
 
-	useEffect(() => {
-		calcTot();
-	},[]);
+	function calcTot() {
+		cart.forEach((element) => {
+			getPrezzo(element.idProdotto).then((data) => {
+				tot.current = parseFloat(tot.current ? tot.current : 0) + data.prezzo * element.quantita;
+			});
+		});
+	}
 
 	const fetchProd = async ({ id }, { signal }) => {
 		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id, { signal });
@@ -37,6 +41,10 @@ function Carrello() {
 	const handleOnClick = () => {
 		console.log('ciao');
 	};
+	
+	useEffect(() => {
+		calcTot();
+	}, []);
 
 	return (
 		<>
