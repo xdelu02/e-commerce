@@ -3,12 +3,10 @@ import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
 
-
-
 function Carrello() {
 	const tot = useRef(0);
 	//const cart = useSelector((state) => state.cart);
-	const cart = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')) : [];
+	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const { getCurrentUserEmail } = useAuth();
 
 	const getPrezzo = async (id) => {
@@ -35,13 +33,13 @@ function Carrello() {
 		if (error) {
 			console.log(error.message);
 		}
-		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart}/> : null;
+		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} /> : null;
 	};
 
 	const handleOnClick = () => {
-		console.log('ciao');
+		window.location.href = '/checkout';
 	};
-	
+
 	useEffect(() => {
 		calcTot();
 	}, []);
