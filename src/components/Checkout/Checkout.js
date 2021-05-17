@@ -21,7 +21,7 @@ const Checkout = () => {
 					});
 				},
 				onApprove: async (data, actions) => {
-					const order = await actions.order.capture();
+					await actions.order.capture();
 					setDone(true);
 				},
 				onError: (err) => {
