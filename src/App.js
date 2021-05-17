@@ -11,6 +11,7 @@ import Login from './components/Login/Login';
 import Account from './components/Account/Account';
 import Admin from './components/Admin/Admin';
 import NotFound from './components/NotFound/NotFound';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
 	const RenderNavBar = withRouter(({ location }) => {
@@ -42,6 +43,7 @@ function App() {
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
+				<Route path='/checkout' component={Checkout} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />
