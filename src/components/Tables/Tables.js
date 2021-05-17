@@ -1,8 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp, faEdit, faEllipsisH, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Nav, Card, Button, Table, Dropdown, Pagination, ButtonGroup } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row, Card, Button, Table } from '@themesberg/react-bootstrap';
 import { pageVisits, adminUsers } from '../../data/tables';
 
 export const PageVisitsTable = () => {
