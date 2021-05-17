@@ -7,7 +7,6 @@ import { faChartPie, faCog, faHandHoldingUsd, faSignOutAlt, faTimes } from '@for
 import { Nav, Badge, Image, Button, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo/logo.png';
-import ProfilePicture from '../../assets/img/team/profile-picture-3.jpg';
 
 export default function SidebarAdmin() {
 	const location = useLocation();
@@ -60,10 +59,7 @@ export default function SidebarAdmin() {
 				<SimpleBar className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
 					<div className='sidebar-inner px-4 pt-3'>
 						<div className='user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4'>
-							<div className='d-flex align-items-center'>
-								<div className='user-avatar lg-avatar me-4'>
-									<Image src={ProfilePicture} className='card-img-top rounded-circle border-white' />
-								</div>
+							<div className='d-flex align-items-center ms-3'>
 								<div className='d-block'>
 									<h6>Ciao, Admin</h6>
 									<Button as={Link} variant='secondary' size='xs' to={''} className='text-dark'>
