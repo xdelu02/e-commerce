@@ -20,8 +20,10 @@ function App() {
 		switch (location.pathname) {
 			case '/login':
 			case '/signup':
+			case '/404':
 			case a:
 			case a + '/':
+			case a + '/404':
 			case a + '/prodotti':
 			case a + '/prodotti/':
 			case a + '/prodotti/add':
