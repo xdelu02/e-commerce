@@ -1,5 +1,14 @@
 $mainColor: #007cc3;
 
 .product-card {
-	width: 17rem;
+
+	height: 30rem;
+	max-height: 30rem;
+
+	img {
+		width: 100%;
+		height: 15rem;
+		max-height: 15rem;
+		object-fit: scale-down;
+	}
 }
