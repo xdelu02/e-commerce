@@ -24,6 +24,8 @@ function App() {
 			case a + '/':
 			case a + '/prodotti':
 			case a + '/prodotti/':
+			case a + '/prodotti/add':
+			case a + '/prodotti/add/':
 			case a + '/ordini':
 			case a + '/admins':
 				return null;
@@ -43,7 +45,7 @@ function App() {
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
-				<Route path='/checkout' component={Checkout} />
+				<Route path='/checkout' exact component={Checkout} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />

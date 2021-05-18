@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Col, Row, Card, Form, Button, Image } from '@themesberg/react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 
-export default function ModifyProduct(props) {
+export default function AddProduct(props) {
 	const [nome, setNome] = useState('');
 	const [descS, setDescS] = useState('');
 	const [descL, setDescL] = useState('');
@@ -11,7 +11,6 @@ export default function ModifyProduct(props) {
 	const [prezzo, setPrezzo] = useState('');
 	const [qta, setQta] = useState(0);
 	const history = useHistory('/admin/prodotti');
-	let id = props.match.params.id;
 
 	const handleNome = (e) => {
 		setNome(e.target.value);
@@ -34,12 +33,11 @@ export default function ModifyProduct(props) {
 
 	const sendProductData = () => {
 		fetch('http://ecommerce.ideeinbit.it/api/prodotti/', {
-			method: 'PATCH',
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				idProdotto: parseInt(id),
 				nome: nome,
 				descS: descS,
 				descL: descL,
@@ -54,55 +52,12 @@ export default function ModifyProduct(props) {
 			});
 	};
 
-	const deleteProduct = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/', {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				idProdotto: parseInt(id)
-			})
-		})
-			.then((response) => response.json())
-			.then(() => {
-				history.push('/admin/prodotti');
-			});
-	};
-
-	useEffect(() => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id)
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (!(typeof result.records === 'undefined' || result.records === null)) {
-						history.push('/404');
-					}
-					setNome(result.nome);
-					setDescS(result.descS);
-					setDescL(result.descL);
-					setPrezzo(result.prezzo);
-					setCategoria(result.idCategoria);
-					setQta(result.quantita);
-				},
-				(error) => {
-					history.push('/admin/prodotti');
-				}
-			);
-	}, [id, history]);
-
 	return (
 		<Card border='light' className='bg-white shadow-xs mb-4 mt-3'>
 			<Card.Body>
-				<h5 className='mb-4'>Informazioni prodotto</h5>
+				<h5 className='mb-4'>Aggiungi prodotto</h5>
 				<Form>
 					<Row>
-						<Col md={2} className='mb-3'>
-							<Form.Group>
-								<Form.Label>ID</Form.Label>
-								<Form.Control required type='text' value={id} readOnly />
-							</Form.Group>
-						</Col>
 						<Col md={4} className='mb-3'>
 							<Form.Group>
 								<Form.Label>Nome prodotto</Form.Label>
@@ -152,22 +107,11 @@ export default function ModifyProduct(props) {
 							</Form.Group>
 						</Col>
 					</Row>
-					<Row>
-						<Col sm={2}>
-							<div className='mt-4'>
-								<Button variant='primary' onClick={sendProductData}>
-									Salva
-								</Button>
-							</div>
-						</Col>
-						<Col sm={2}>
-							<div className='mt-4'>
-								<Button variant='secondary' onClick={deleteProduct}>
-									Elimina
-								</Button>
-							</div>
-						</Col>
-					</Row>
+					<div className='mt-4'>
+						<Button variant='primary' onClick={sendProductData}>
+							Aggiungi
+						</Button>
+					</div>
 				</Form>
 			</Card.Body>
 		</Card>
