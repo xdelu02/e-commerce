@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import { addToCart } from '../../actions';
 import { useHistory } from 'react-router';
@@ -7,6 +7,7 @@ import CSSModules from 'react-css-modules';
 import styles from './DettaglioProdotto.module.scss';
 
 function DettaglioProdotto(props) {
+	const cart = useSelector((state) => state.cart);
 	const [prodotto, setProdotto] = useState({ nome: 'logo' });
 	const [qtaMAX, setQtaMAX] = useState(1);
 	const [qta, setQta] = useState(1);
@@ -64,15 +65,16 @@ function DettaglioProdotto(props) {
 
 					<button
 						className='btn btn--block'
-						onClick={() =>
+						onClick={() => {
 							dispatch(
 								addToCart({
 									idProdotto: prodotto.idProdotto,
 									quantita: qta,
 									prezzo: prodotto.prezzo
 								})
-							)
-						}
+							);
+							localStorage.setItem('cart', JSON.stringify(cart));
+						}}
 					>
 						ADD TO CART
 					</button>
