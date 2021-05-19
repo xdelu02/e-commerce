@@ -8,15 +8,14 @@ const load = (key, setProdotti) => {
 		.then((res) => res.json())
 		.then(
 			(result) => {
-				if (result.message !== 'No Prodotti found.') {
+				if (result.message !== 'No matching Prodotti found.') {
 					setProdotti(result.records);
-				}
-				else {
+				} else {
 					setProdotti([]);
 				}
 			},
 			(error) => {
-				console.log(error);
+				setProdotti([]);
 			}
 		);
 };
