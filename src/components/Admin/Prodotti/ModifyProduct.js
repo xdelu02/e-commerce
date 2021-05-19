@@ -153,14 +153,14 @@ export default function ModifyProduct(props) {
 						</Col>
 					</Row>
 					<Row>
-						<Col sm={2}>
+						<Col sm={1}>
 							<div className='mt-4'>
 								<Button variant='primary' onClick={sendProductData}>
 									Salva
 								</Button>
 							</div>
 						</Col>
-						<Col sm={2}>
+						<Col sm={1}>
 							<div className='mt-4'>
 								<Button variant='secondary' onClick={deleteProduct}>
 									Elimina

@@ -4,16 +4,7 @@ import styles from './OrdiniAdmin.module.scss';
 
 function OrdiniAdmin({ idOrdine, idCliente, indirizzo, codice }) {
 	return (
-		<table styleName="test">
-			<tbody>
-				<tr>
-					<th>{idOrdine}</th>
-					<th>{idCliente}</th>
-					<th>{indirizzo}</th>
-					<th>{codice}</th>
-				</tr>
-			</tbody>
-		</table>
+		<></>
 	);
 }
 

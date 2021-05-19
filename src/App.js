@@ -31,7 +31,7 @@ function App() {
 			case a + '/ordini':
 			case a + '/admins':
 				return null;
-			case a + '/prodotti/' + parseInt(location.pathname.replace( /^\D+/g, ''), 10):
+			case a + '/prodotti/' + parseInt(location.pathname.replace(/^\D+/g, ''), 10):
 				return null;
 			default:
 				return <Nav />;

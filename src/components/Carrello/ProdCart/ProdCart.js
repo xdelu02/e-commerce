@@ -32,14 +32,13 @@ export default function ProdCart(props) {
 	};
 
 	useEffect(() => {
-		const c = cart.filter((val) => {
-			if (val.idProdotto === props.id) {
-				return val.quantita;
+		cart.map((e) => {
+			if (e.idProdotto === props.id) {
+				setQta(e.quantita);
+				return;
 			}
-			return null;
 		});
-		setQta(c[0].quantita);
-	},[props.id, cart]);
+	}, [props.id, cart]);
 
 	return (
 		<div id={props.id}>
