@@ -1,8 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 function Checkout () {
+	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const [done, setDone] = useState(false);
 	const paypal = useRef();
+
+	const tot = () => {
+		let tot = 0;
+		cart.forEach((element) => {
+			tot = parseFloat(tot) + element.prezzo * element.quantita;
+		});
+		return tot;
+	};
 
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem('cart')).length === 0) {
@@ -17,7 +26,7 @@ function Checkout () {
 							{
 								description: 'cool looking table',
 								amount: {
-									value: 650.0
+									value: tot()
 								}
 							}
 						]
