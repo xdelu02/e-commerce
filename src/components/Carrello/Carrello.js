@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
@@ -24,12 +24,12 @@ function Carrello() {
 		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} /> : null;
 	};
 
-	const Tot = ({cart}) => {
-		const tot = useRef(0);
+	const tot = () => {
+		let tot = 0;
 		cart.forEach((element) => {
-			tot.current = parseFloat(tot.current ? tot.current : 0) + element.prezzo * element.quantita;
+			tot = parseFloat(tot) + element.prezzo * element.quantita;
 		});
-		return <p>Spesa totale: {tot.current} €</p>;
+		return tot;
 	}
 
 	const handleOnClick = () => {
@@ -45,7 +45,7 @@ function Carrello() {
 				))}
 			</div>
 			<div htmlFor='pagamento'>
-				<Tot cart={cart}></Tot>
+				<p>Spesa totale: {tot()} €</p>
 				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
 			</div>
 		</>
