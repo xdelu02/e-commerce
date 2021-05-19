@@ -13,7 +13,8 @@ function Prodotto(props) {
 		dispatch(
 			addToCart({
 				idProdotto: props.id,
-				quantita: 1
+				quantita: 1,
+				prezzo: props.prezzo
 			})
 		);
 		localStorage.setItem('cart', JSON.stringify(cart));

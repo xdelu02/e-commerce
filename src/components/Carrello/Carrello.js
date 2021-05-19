@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
@@ -7,22 +7,10 @@ import { useHistory } from 'react-router';
 function Carrello() {
 	const tot = useRef(0);
 	//const cart = useSelector((state) => state.cart);
+	//const [tot, setTot] = useState(0);
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const history = useHistory('/carrello');
 	const { getCurrentUserEmail } = useAuth();
-
-	const getPrezzo = async (id) => {
-		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id);
-		return response.json();
-	};
-
-	function calcTot() {
-		cart.forEach((element) => {
-			getPrezzo(element.idProdotto).then((data) => {
-				tot.current = parseFloat(tot.current ? tot.current : 0) + data.prezzo * element.quantita;
-			});
-		});
-	}
 
 	const fetchProd = async ({ id }, { signal }) => {
 		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id, { signal });
@@ -38,13 +26,17 @@ function Carrello() {
 		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} /> : null;
 	};
 
+	const Tot = ({cart}) => {
+		const tot = useRef(0);
+		cart.forEach((element) => {
+			tot.current = parseFloat(tot.current ? tot.current : 0) + element.prezzo * element.quantita;
+		});
+		return <p>Spesa totale: {tot.current} €</p>;
+	}
+
 	const handleOnClick = () => {
 		history.push('/checkout');
 	};
-
-	useEffect(() => {
-		calcTot();
-	}, []);
 
 	return (
 		<>
@@ -55,7 +47,7 @@ function Carrello() {
 				))}
 			</div>
 			<div htmlFor='pagamento'>
-				<p>Spesa tot: {tot.current} €</p>
+				<Tot cart={cart}></Tot>
 				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
 			</div>
 		</>

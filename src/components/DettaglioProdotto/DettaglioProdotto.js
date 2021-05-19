@@ -68,7 +68,8 @@ function DettaglioProdotto(props) {
 							dispatch(
 								addToCart({
 									idProdotto: prodotto.idProdotto,
-									quantita: qta
+									quantita: qta,
+									prezzo: prodotto.prezzo
 								})
 							)
 						}
