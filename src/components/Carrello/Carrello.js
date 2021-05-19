@@ -30,12 +30,12 @@ function Carrello() {
 	return (
 		<>
 			<h1>CARRELLO</h1>
-			<div htmlFor='prodotti'>
+			<div>
 				{cart.map((e, i) => (
 					<Prodotto id={e.idProdotto} key={i} />
 				))}
 			</div>
-			<div htmlFor='pagamento'>
+			<div>
 				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo , 0).toFixed(2) : Number(0).toFixed(2)} €</p>
 				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
 			</div>
