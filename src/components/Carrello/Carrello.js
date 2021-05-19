@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router';
 
 function Carrello() {
-	//const cart = useSelector((state) => state.cart);
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const history = useHistory('/carrello');
 	const { getCurrentUserEmail } = useAuth();
@@ -24,14 +23,6 @@ function Carrello() {
 		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} /> : null;
 	};
 
-	const tot = () => {
-		let tot = 0;
-		cart.forEach((element) => {
-			tot = parseFloat(tot) + element.prezzo * element.quantita;
-		});
-		return tot;
-	}
-
 	const handleOnClick = () => {
 		history.push('/checkout');
 	};
@@ -45,7 +36,7 @@ function Carrello() {
 				))}
 			</div>
 			<div htmlFor='pagamento'>
-				<p>Spesa totale: {tot()} €</p>
+				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo , 0).toFixed(2) : Number(0).toFixed(2)} €</p>
 				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
 			</div>
 		</>
