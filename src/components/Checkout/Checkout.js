@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router';
 
 function Checkout () {
 	const [done, setDone] = useState(false);
-	const history = useHistory('/checkout');
 	const paypal = useRef();
 
 	useEffect(() => {

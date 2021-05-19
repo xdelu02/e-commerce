@@ -5,9 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router';
 
 function Carrello() {
-	const tot = useRef(0);
 	//const cart = useSelector((state) => state.cart);
-	//const [tot, setTot] = useState(0);
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const history = useHistory('/carrello');
 	const { getCurrentUserEmail } = useAuth();

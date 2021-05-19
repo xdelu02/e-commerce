@@ -32,7 +32,7 @@ export default function ProdCart(props) {
 	};
 
 	useEffect(() => {
-		cart.map((e) => {
+		cart.forEach((e) => {
 			if (e.idProdotto === props.id) {
 				setQta(e.quantita);
 				return;
