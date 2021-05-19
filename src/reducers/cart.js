@@ -16,6 +16,7 @@ const cartReducer = (state = [], action) => {
 			state.forEach(function (element, index, object) {
 				if (element.idProdotto === action.prodotto.idProdotto) {
 					object.splice(index, 1);
+					return state;
 				}
 			});
 			return state;

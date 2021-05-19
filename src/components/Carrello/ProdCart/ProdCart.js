@@ -21,7 +21,7 @@ export default function ProdCart(props) {
 		history.push('/carrello');
 	};
 
-	const handleChange = async (e) => {
+	const updateProd = async (e) => {
 		setQta(parseInt(e.target.value));
 		dispatch(
 			updateToCart({
@@ -48,12 +48,14 @@ export default function ProdCart(props) {
 			<p className='prezzo'>{props.prezzo + '€'}</p>
 			<p id={props.id}>Quantita: {qta}</p>
 			<div className='custom-select m'>
-				<select id={props.id} onChange={handleChange}>
-					{Array.from(new Array(qta), (x, i) => i + 1).map((n) => (
-						<option value={n} key={n}>
-							{n}
-						</option>
-					))}
+				<select id={props.id} onChange={updateProd} value={qta}>
+					{Array.from(new Array(qta), (x, i) => i + 1)
+						.reverse()
+						.map((n) => (
+							<option value={n} key={n}>
+								{n}
+							</option>
+						))}
 				</select>
 			</div>
 			<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px' }} />
