@@ -30,6 +30,7 @@ export default function ProdCart(props) {
 			})
 		);
 		localStorage.setItem('cart', JSON.stringify(cartRedux));
+		history.push('/carrello');
 	};
 
 	useEffect(() => {
