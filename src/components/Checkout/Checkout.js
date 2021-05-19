@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router';
 
-const Checkout = () => {
+function Checkout () {
 	const [done, setDone] = useState(false);
+	const history = useHistory('/checkout');
 	const paypal = useRef();
 
 	useEffect(() => {
+		if (JSON.parse(localStorage.getItem('cart')).length === 0) {
+			window.location.href = '/shop';
+		}
 		window.paypal
 			.Buttons({
 				createOrder: (data, actions, err) => {
