@@ -29,6 +29,8 @@ export default function ProdCart(props) {
 				quantita: parseInt(e.target.value)
 			})
 		);
+		localStorage.setItem('cart', JSON.stringify(cartRedux));
+		history.push('/carrello');
 	};
 
 	useEffect(() => {
