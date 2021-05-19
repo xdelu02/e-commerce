@@ -1,36 +1,50 @@
 import React, { useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faEnvelope, faUnlockAlt, faCalendarAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
+import { Link } from 'react-router-dom';
+import BgImage from '../../assets/img/illustrations/signin.svg';
+import moment from 'moment-timezone';
+import Datetime from 'react-datetime';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
+import CSSModules from 'react-css-modules';
+import styles from './Signup.module.scss';
 
-export default function Signup() {
+function Signup (){
+	const [birthday, setBirthday] = useState('2008-7-04');
 	const { signup } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
+	const [name, setName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
 
-	async function handleSubmit(user) {
-		if (user.password !== user.passwordConfirmation) {
+	async function handleSubmit() {
+		if (password !== confirmPassword) {
 			return setError('Passwords do not match');
 		}
 
 		try {
 			setError('');
 			setLoading(true);
-			await signup(user.email, user.password);
+			await signup(email, password);
 			fetch('http://ecommerce.ideeinbit.it/api/clienti/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					email: user.email,
-					nome: user.name,
-					cognome: user.lastName,
-					dataN: user.birthDate
+					email: email,
+					nome: name,
+					cognome: lastName,
+					dataN: birthday
 				})
 			}).then((res) => {
-				console.log(res.json());
 				history.push('/');
 			});
 		} catch {
@@ -41,43 +55,124 @@ export default function Signup() {
 		setLoading(false);
 	}
 
+	async function nameHandler(e) {
+		setName(e.target.value);
+	}
+
+	async function lastNameHandler(e) {
+		setLastName(e.target.value);
+	}
+
+	async function emailHandler(e) {
+		setEmail(e.target.value);
+	}
+
+	async function passwordHandler(e) {
+		setPassword(e.target.value);
+	}
+
+	async function confirmPasswordHandler(e) {
+		setConfirmPassword(e.target.value);
+	}
+
 	return (
-		<div>
-			<h1>Sign Up</h1>
-			<Formik
-				initialValues={{
-					name: '',
-					lastName: '',
-					birthDate: '',
-					email: '',
-					password: '',
-					passwordConfirmation: ''
-				}}
-				onSubmit={async (values) => {
-					handleSubmit(values);
-				}}
-			>
-				<Form>
-					<label htmlFor='name'>Name</label>
-					<Field id='name' name='name' placeholder='e.g Piero' />
+		<main styleName="main">
+			<section className='d-flex align-items-center my-5 mt-lg-2 mb-lg-5'>
+				<Container>
+					<p className='text-center'>
+						<Card.Link as={Link} to={'/'} className='text-gray-700'>
+							<FontAwesomeIcon icon={faAngleLeft} className='me-2' /> Torna alla home
+						</Card.Link>
+					</p>
+					<Row className='justify-content-center form-bg-image'>
+						<Col xs={12} className='d-flex align-items-center justify-content-center'>
+							<div className='mb-4 mb-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500'>
+								<div className='text-center text-md-center mb-4 mt-md-0'>
+									<h3 className='mb-0'>Crea un account</h3>
+								</div>
+								<Form className='mt-4' onSubmit={handleSubmit}>
+									<Form.Group id='nome' className='mb-4'>
+										<Form.Label>Inserisci nome</Form.Label>
+										<InputGroup onChange={nameHandler}>
+											<InputGroup.Text>
+												<FontAwesomeIcon icon={faUser} />
+											</InputGroup.Text>
+											<Form.Control autoFocus required type='text' placeholder='Mario' />
+										</InputGroup>
+									</Form.Group>
 
-					<label htmlFor='lastName'>Last name</label>
-					<Field id='lastName' name='lastName' placeholder='e.g Joe' />
+									<Form.Group id='nome' className='mb-4'>
+										<Form.Label>Inserisci cognome</Form.Label>
+										<InputGroup onChange={lastNameHandler}>
+											<InputGroup.Text>
+												<FontAwesomeIcon icon={faUser} />
+											</InputGroup.Text>
+											<Form.Control autoFocus required type='text' placeholder='Rossi' />
+										</InputGroup>
+									</Form.Group>
 
-					<label htmlFor='birthDate'>Birth date</label>
-					<Field id='birthDate' name='birthDate' placeholder='01/01/2000' />
+									<Form.Group id='email' className='mb-4'>
+										<Form.Label>Inserisci mail</Form.Label>
+										<InputGroup onChange={emailHandler}>
+											<InputGroup.Text>
+												<FontAwesomeIcon icon={faEnvelope} />
+											</InputGroup.Text>
+											<Form.Control autoFocus required type='email' placeholder='esempio@dominio.com' />
+										</InputGroup>
+									</Form.Group>
+									<Form.Group id='password' className='mb-4'>
+										<Form.Label>Inserisci Password</Form.Label>
+										<InputGroup onChange={passwordHandler}>
+											<InputGroup.Text>
+												<FontAwesomeIcon icon={faUnlockAlt} />
+											</InputGroup.Text>
+											<Form.Control required type='password' placeholder='Password' />
+										</InputGroup>
+									</Form.Group>
+									<Form.Group id='confirmPassword' className='mb-4'>
+										<Form.Label>Conferma Password</Form.Label>
+										<InputGroup onChange={confirmPasswordHandler}>
+											<InputGroup.Text>
+												<FontAwesomeIcon icon={faUnlockAlt} />
+											</InputGroup.Text>
+											<Form.Control required type='password' placeholder='Conferma Password' />
+										</InputGroup>
+									</Form.Group>
+									<FormCheck type='checkbox' className='d-flex mb-4'>
+										<FormCheck.Input required id='terms' className='me-2' />
+										<FormCheck.Label htmlFor='terms'>
+											Accetto i <Card.Link>termini e le condizioni</Card.Link>
+										</FormCheck.Label>
+									</FormCheck>
 
-					<label htmlFor='lastName'>Email</label>
-					<Field id='email' name='email' placeholder='jane@acme.com' type='email' />
-					<label htmlFor='password'>password</label>
-					<Field id='password' name='password' type='password' />
-					<label htmlFor='passwordConfirmation'>Password Confirmation</label>
-					<Field id='passwordConfirmation' name='passwordConfirmation' type='password' />
-					<button disabled={loading} type='submit'>
-						Submit
-					</button>
-				</Form>
-			</Formik>
-		</div>
+									<Button variant='primary' type='submit' className='w-100' disabled={loading}>
+										Registrati
+									</Button>
+								</Form>
+
+								<div className='d-flex justify-content-center mt-1'>
+									<span className='fw-normal'>or</span>
+								</div>
+								<div className='d-flex justify-content-center mt-2'>
+									<Button variant='outline-light' className='btn-icon-only btn-pill text-facebook me-2'>
+										<FontAwesomeIcon icon={faGoogle} />
+									</Button>
+								</div>
+								<div className='d-flex justify-content-center align-items-center mt-2'>
+									<span className='fw-normal'>
+										Hai già un'account?
+										<Card.Link as={Link} to={'/login'} className='fw-bold'>
+											{` Accedi `}
+										</Card.Link>
+									</span>
+								</div>
+							</div>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+		</main>
 	);
-}
+};
+
+export default CSSModules(Signup, styles, { allowMultiple: true });
