@@ -26,9 +26,9 @@
 			extract($row);
 
 			$item = array(
+				"idOrdine" => $idOrdine,
 				"idCliente" => $idCliente,
-				"idProdotto" => $idProdotto,
-				"quantita" => $quantita
+				"codice" => $codice
 			);
 
 			array_push($arr["records"], $item);

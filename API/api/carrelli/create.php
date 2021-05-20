@@ -8,26 +8,22 @@
 
 	// get database connection & obj
 	include_once '../includes/db.inc.php';
-	include_once '../objects/cartello.php';
+	include_once '../objects/carrello.php';
 
 	// set database connection & obj
 	$database = new Database();
 	$db = $database->getConnection();
-	$obj = new Cartello($db);
+	$obj = new Carrello($db);
 
 	// get posted data
 	$data = json_decode(file_get_contents("php://input"));
 
 	// make sure data is not empty
 	if(
-		!empty($data->idCliente) &&
-		!empty($data->idProdotto) &&
-		!empty($data->quantita)
+		!empty($data->idCliente)
 	) {
 		// set obj property values
 		$obj->idCliente = $data->idCliente;
-		$obj->idProdotto = $data->idProdotto;
-		$obj->quantita = $data->quantita;
 
 		// create the obj
 		if($obj->create()) {

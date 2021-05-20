@@ -55,7 +55,7 @@ CREATE TABLE Pagamenti (
 CREATE TABLE Ordini(
 	idOrdine int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	idCliente VARCHAR(255) NOT NULL,
-	indirizzo LONGTEXT NOT NULL,
+	indirizzo LONGTEXT,
 	codice LONGTEXT NOT NULL,
 	idPagamento int
 );

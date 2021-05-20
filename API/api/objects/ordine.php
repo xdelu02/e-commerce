@@ -111,7 +111,7 @@
 			$query = "INSERT INTO
 						" . $this->table_name . "
 					SET
-                        idCliente=:idCliente, indirizzo=:indirizzo, codice=:codice";
+						idCliente=:idCliente, indirizzo=:indirizzo, codice=:codice";
 
 			$stmt = $this->conn->prepare($query);
 		

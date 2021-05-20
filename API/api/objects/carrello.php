@@ -2,12 +2,14 @@
 	class Carrello {
 		// connessione al db e nome tabella
 		private $conn;
-		private $table_name = "Carrelli";
+		private $table_name = "Ordini";
 
 		// proprietà
+		public $idOrdine;
 		public $idCliente;
-		public $idProdotto;
-		public $quantita;
+		public $indirizzo;
+		public $codice;
+		public $idPagamento;
 
 		// costruttore
 		public function __construct($db){
@@ -18,7 +20,7 @@
 		function read() {
 			// select all query
 			$query = "SELECT
-						idCliente, idProdotto, quantita
+						idOrdine, idCliente, indirizzo, codice
 					FROM
 						" . $this->table_name;
 		
@@ -32,30 +34,12 @@
 		function readEmail() {
 			// query to read single record
 			$query = "SELECT
-						idCliente, idProdotto, quantita
+						idOrdine, idCliente, codice
 					FROM
-						" . $this->table_name . " a
+						" . $this->table_name . "
 					WHERE
-						a.idCliente = ?";
-
-			$stmt = $this->conn->prepare( $query );
-			$stmt->bindParam(1, $this->idCliente);
-
-			$stmt->execute();
-
-			return $stmt;
-		}
-
-		// read tot
-		function readTot() {
-			// query to innest prodotti and carrelli
-			$query = "SELECT
-						Carrelli.quantita as quantita, Prodotti.prezzo as prezzo
-					FROM
-						Carrelli INNER JOIN Prodotti
-					ON Carrelli.idProdotto = Prodotti.idProdotto
-					WHERE
-						Carrelli.idCliente = ?";
+						idCliente = ? AND
+						idPagamento IS NULL";
 
 			$stmt = $this->conn->prepare( $query );
 			$stmt->bindParam(1, $this->idCliente);
@@ -67,23 +51,33 @@
 
 		// create
 		function create() {
+			// query for code
+			$s = $this->read();
+			$cli = "";
+			$ind = "";
+			$id = "";
+			while ($r = $s->fetch(PDO::FETCH_ASSOC)) {
+				$cli = $r['idCliente'];
+				$ind = $r['indirizzo'];
+				$id = $r['codice'];
+			}
+			$this->codice = hash("crc32b","ord:".$cli.$ind.$id);
+
 			// query insert
 			$query = "INSERT INTO
 						" . $this->table_name . "
 					SET
-						idCliente=:idCliente, idProdotto=:idProdotto, quantita=:quantita";
+						idCliente=:idCliente, codice=:codice";
 
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
 			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
-			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
-			$this->quantita=htmlspecialchars(strip_tags($this->quantita));
+			$this->codice=htmlspecialchars(strip_tags($this->codice));
 		
 			// bind params
 			$stmt->bindParam(":idCliente", $this->idCliente);
-			$stmt->bindParam(":idProdotto", $this->idProdotto);
-			$stmt->bindParam(":quantita", $this->quantita);
+			$stmt->bindParam(":codice", $this->codice);
 
 			if($stmt->execute())
 				return true;
@@ -94,18 +88,16 @@
 		// delete
 		function delete() {
 			// delete query
-			$query = "DELETE FROM " . $this->table_name . " WHERE idCliente = ? AND idProdotto = ?";
+			$query = "DELETE FROM " . $this->table_name . " WHERE idOrdine = ?";
 		
 			// prepare query
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
-			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
+			$this->idOrdine=htmlspecialchars(strip_tags($this->idOrdine));
 		
 			// bind id
-			$stmt->bindParam(1, $this->idCliente);
-			$stmt->bindParam(2, $this->idProdotto);
+			$stmt->bindParam(1, $this->idOrdine);
 		
 			if($stmt->execute())
 				return true;
@@ -119,22 +111,22 @@
 			$query = "UPDATE
 						" . $this->table_name . "
 					SET
-						quantita=:quantita
+						idPagemento=:idPagemento
+						indirizzo=:indirizzo
 					WHERE
-						idAdmin=:idAdmin AND
-						idProdotto=:idProdotto";
+						codice=:codice";
 
 			$stmt = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idCliente=htmlspecialchars(strip_tags($this->idCliente));
-			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
-			$this->quantita=htmlspecialchars(strip_tags($this->quantita));
+			$this->idPagemento=htmlspecialchars(strip_tags($this->idPagemento));
+			$this->codice=htmlspecialchars(strip_tags($this->codice));
+			$this->indirizzo=htmlspecialchars(strip_tags($this->indirizzo));
 		
 			// bind params
-			$stmt->bindParam(":idCliente", $this->idCliente);
-			$stmt->bindParam(":idProdotto", $this->idProdotto);
-			$stmt->bindParam(":quantita", $this->quantita);
+			$stmt->bindParam(":idPagemento", $this->idPagemento);
+			$stmt->bindParam(":codice", $this->codice);
+			$stmt->bindParam(":indirizzo", $this->indirizzo);
 		
 			if($stmt->execute())
 				return true;
