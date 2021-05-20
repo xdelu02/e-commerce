@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router
 import { AuthProvider } from './contexts/AuthContext';
 import Shop from './components/Shop/Shop';
 import DettaglioProdotto from './components/DettaglioProdotto/DettaglioProdotto';
-import Nav from './components/Nav/Nav';
+import NavigationBarShop from './components/Nav/NavigationBarShop';
 import Home from './components/Home/Home';
 import Carrello from './components/Carrello/Carrello';
 import Signup from './components/Signup/Signup';
@@ -34,7 +34,7 @@ function App() {
 			case a + '/prodotti/' + parseInt(location.pathname.replace(/^\D+/g, ''), 10):
 				return null;
 			default:
-				return <Nav />;
+				return <NavigationBarShop />;
 		}
 	});
 

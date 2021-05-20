@@ -6,7 +6,7 @@ import shoppingCart from '../../assets/icons/shopping-cart.png';
 import accountIcon from '../../assets/icons/account.png';
 import logo from '../../assets/logo/logo.png';
 
-function Nav() {
+function NavigationBarShop() {
 	return (
 		<header styleName="header">
 			<Link to={'/shop'}>
@@ -47,4 +47,4 @@ function Nav() {
 	);
 }
 
-export default CSSModules(Nav, styles, { allowMultiple: true });
+export default CSSModules(NavigationBarShop, styles, { allowMultiple: true });
