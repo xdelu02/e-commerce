@@ -2,7 +2,7 @@
 	class Carrello {
 		// connessione al db e nome tabella
 		private $conn;
-		private $table_name = "carrelli";
+		private $table_name = "Carrelli";
 
 		// proprietà
 		public $idCliente;
@@ -50,12 +50,12 @@
 		function readTot() {
 			// query to innest prodotti and carrelli
 			$query = "SELECT
-						a.quantita, prodotti.prezzo
+						Carrelli.quantita as quantita, Prodotti.prezzo as prezzo
 					FROM
-						" . $this->table_name . " a IINER JOIN prodotti
-						ON a.idProdotto = prodotti.idProdotto
+						Carrelli INNER JOIN Prodotti
+					ON Carrelli.idProdotto = Prodotti.idProdotto
 					WHERE
-						a.idCliente = ?";
+						Carrelli.idCliente = ?";
 
 			$stmt = $this->conn->prepare( $query );
 			$stmt->bindParam(1, $this->idCliente);

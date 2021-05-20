@@ -17,7 +17,7 @@
 
 	// set ID property of record to read
 	$obj->idCliente = isset($_GET['email']) ? $_GET['email'] : die(); 
-	$stmt = $obj->readEmail();
+	$stmt = $obj->readTot();
 	$num = $stmt->rowCount();
 
 	if($num > 0) {
