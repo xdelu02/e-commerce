@@ -2,48 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from './Nav.module.scss';
-import shoppingCart from '../../assets/icons/shopping-cart.png';
-import accountIcon from '../../assets/icons/account.png';
-import logo from '../../assets/logo/logo.png';
+import ShoppingCart from '../../assets/icons/shopping-cart.png';
+import Logo from '../../assets/logo/logo.png';
+import { Navbar, Nav, Image } from '@themesberg/react-bootstrap';
 
 function NavigationBarShop() {
 	return (
-		<header styleName="header">
-			<Link to={'/shop'}>
-				<img styleName='logo' src={logo} alt='' />
-			</Link>
-			<input type='checkbox' styleName='nav-toggle' />
-			<nav styleName='nav'>
-				<ul>
-					<li>
-						<Link to={'/'}>Home</Link>
-					</li>
-
-					<li>
-						<Link to={'/shop'}>Shop</Link>
-					</li>
-
-					<li>
-						<Link to={'/shop'}>Contact</Link>
-					</li>
-
-					<li>
-						<Link to={'/shop'}>About</Link>
-					</li>
-				</ul>
-			</nav>
-			<Link to={'/carrello'}>
-				<img src={shoppingCart} styleName='shopping-cart' alt='' />
-			</Link>
-
-			<Link to={'/account'}>
-				<img src={accountIcon} styleName='account-icon' alt='' />
-			</Link>
-
-			<label htmlFor='nav-toggle' styleName='nav-toggle-label'>
-				<span></span>
-			</label>
-		</header>
+		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' sticky='top' styleName="navbar">
+			<Nav.Link href='/' className='ms-4'>
+				<img src={Logo} alt='Logo' styleName="logo"/>
+			</Nav.Link>
+			<Navbar.Toggle aria-controls='responsive-navbar-nav' className='me-4' styleName="toggler"/>
+			<Navbar.Collapse id='responsive-navbar-nav'>
+				<Nav.Link href='/'>Home</Nav.Link>
+				<Nav.Link href='/shop'>Shop</Nav.Link>
+				<Nav.Link href='/shop'>Account</Nav.Link>
+				<Nav.Link href='/shop'>About</Nav.Link>
+			</Navbar.Collapse>
+			<Nav.Link href='/carrello' className='ms-auto'>
+				<img src={ShoppingCart} styleName='cart' />
+			</Nav.Link>
+		</Navbar>
 	);
 }
 
