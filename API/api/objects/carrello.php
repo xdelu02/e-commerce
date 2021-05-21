@@ -10,6 +10,7 @@
 		public $indirizzo;
 		public $codice;
 		public $idPagamento;
+		public $importo;
 
 		// costruttore
 		public function __construct($db){
@@ -107,28 +108,59 @@
 
 		// update
 		function update() {
+			// query for code
+			$stmt1 = $this->read();
+			$cli = "";
+			$ind = "";
+			$id = "";
+			while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+				$cli = $row1['idCliente'];
+				$ind = $row1['indirizzo'];
+				$id = $row1['codice'];
+			}
+			$this->idPagamento = hash("crc32b","pag:".$cli.$ind.$id);
+
+			//generate payment
+			$q = "INSERT INTO Pagamenti VALUES (?, ?)";
+			// prepare query
+			$stmt2 = $this->conn->prepare($q);
+			// sanitize
+			$this->idPagamento=htmlspecialchars(strip_tags($this->idPagamento));
+			$this->importo=htmlspecialchars(strip_tags($this->importo));
+			// bind id
+			$stmt2->bindParam(1, $this->idPagamento);
+			$stmt2->bindParam(2, $this->importo);
+			//exec
+			$stmt2->execute();
+
+			// query for code
+			$stmt3 = $this->readEmail();
+			while ($row2 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
+				$this->codice = $row2['codice'];
+			}
+
 			// update query
 			$query = "UPDATE
 						" . $this->table_name . "
 					SET
-						idPagemento=:idPagemento
+						idPagamento=:idPagamento,
 						indirizzo=:indirizzo
 					WHERE
 						codice=:codice";
 
-			$stmt = $this->conn->prepare($query);
+			$stmt4 = $this->conn->prepare($query);
 		
 			// sanitize
-			$this->idPagemento=htmlspecialchars(strip_tags($this->idPagemento));
+			$this->idPagamento=htmlspecialchars(strip_tags($this->idPagamento));
 			$this->codice=htmlspecialchars(strip_tags($this->codice));
 			$this->indirizzo=htmlspecialchars(strip_tags($this->indirizzo));
 		
 			// bind params
-			$stmt->bindParam(":idPagemento", $this->idPagemento);
-			$stmt->bindParam(":codice", $this->codice);
-			$stmt->bindParam(":indirizzo", $this->indirizzo);
+			$stmt4->bindParam(":idPagamento", $this->idPagamento);
+			$stmt4->bindParam(":codice", $this->codice);
+			$stmt4->bindParam(":indirizzo", $this->indirizzo);
 		
-			if($stmt->execute())
+			if($stmt4->execute())
 				return true;
 		
 			return false;

@@ -48,7 +48,7 @@ CREATE TABLE Amministratori(
 );
 
 CREATE TABLE Pagamenti (
-	idPagamento int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	idPagamento VARCHAR(45) PRIMARY KEY NOT NULL,
 	importo FLOAT NOT NULL
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE Ordini(
 	idCliente VARCHAR(255) NOT NULL,
 	indirizzo LONGTEXT,
 	codice LONGTEXT NOT NULL,
-	idPagamento int
+	idPagamento VARCHAR(45) UNIQUE
 );
 ALTER TABLE Ordini
 	ADD CONSTRAINT FK_Cliente

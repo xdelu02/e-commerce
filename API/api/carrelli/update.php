@@ -21,15 +21,15 @@
 	// make sure data is not empty
 	if(
 		!empty($data->idCliente) &&
-		!empty($data->idProdotto) &&
-		!empty($data->quantita)
+		!empty($data->indirizzo) &&
+		!empty($data->importo)
 	) {
 		// set ID property to be edited
 		$obj->idCliente = $data->idCliente;
-		$obj->idProdotto = $data->idProdotto;
 		
 		// set property values
-		$obj->quantita = $data->quantita;
+		$obj->indirizzo = $data->indirizzo;
+		$obj->importo = $data->importo;
 		
 		// update the obj
 		if($obj->update()) {

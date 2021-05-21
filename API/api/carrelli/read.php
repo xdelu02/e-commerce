@@ -4,14 +4,6 @@
 	header("Content-Type: application/json; charset=UTF-8");
 
 	//read one if needed
-	if(!empty($_GET['email']) && !empty($_GET['prodotto'])) {
-		include "./read_one.php";
-		exit();
-	}
-	if(!empty($_GET['email']) && !empty($_GET['tot'])) {
-		include "./read_tot.php";
-		exit();
-	}
 	if(!empty($_GET['email'])) {
 		include "./read_email.php";
 		exit();
