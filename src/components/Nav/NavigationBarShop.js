@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from './Nav.module.scss';
-import ShoppingCart from '../../assets/icons/shopping-cart.png';
+import ShoppingCart from '../../assets/icons/cart.png';
 import Logo from '../../assets/logo/logo.png';
-import { Navbar, Nav, Image } from '@themesberg/react-bootstrap';
+import { Navbar, Nav } from '@themesberg/react-bootstrap';
 
 function NavigationBarShop() {
 	return (
