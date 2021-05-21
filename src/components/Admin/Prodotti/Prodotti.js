@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 import styles from './Prodotti.module.scss';
 
 const load = (key, setProdotti) => {
-	fetch('http://localhost/api/prodotti/?key=' + key)
+	fetch('/api/prodotti/?key=' + key)
 		.then((res) => res.json())
 		.then(
 			(result) => {

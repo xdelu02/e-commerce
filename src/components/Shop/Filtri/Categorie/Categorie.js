@@ -12,7 +12,7 @@ class Categorie extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost/api/categorie/')
+		fetch('/api/categorie/')
 			.then((res) => res.json())
 			.then(
 				(result) => {

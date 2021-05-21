@@ -33,7 +33,7 @@ function Signup() {
 			setError('');
 			setLoading(true);
 			await signup(email, password);
-			fetch('http://localhost/api/clienti/', {
+			fetch('/api/clienti/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

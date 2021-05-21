@@ -44,7 +44,7 @@ export default function ProdCart(props) {
 
 	return (
 		<div id={props.id}>
-			<img src={'http://localhost/img/' + props.nome + '.png'} alt='prodotto' style={{ width: '75px', height: '75px', objectFit: 'cover' }} />
+			<img src={'/img/' + props.nome + '.png'} alt='prodotto' style={{ width: '75px', height: '75px', objectFit: 'cover' }} />
 			<p className='title'>{props.nome}</p>
 			<p className='descS'>{props.descS}</p>
 			<p className='prezzo'>{props.prezzo + '€'}</p>

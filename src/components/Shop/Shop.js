@@ -17,7 +17,7 @@ class Shop extends React.Component {
 	}
 
 	load() {
-		fetch('http://localhost/api/prodotti/?key=' + this.state.key)
+		fetch('/api/prodotti/?key=' + this.state.key)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -56,7 +56,7 @@ class Shop extends React.Component {
 								else return null;
 							})
 							.map((e, index) => (
-								<Prodotto id={e.idProdotto} path={'http://localhost/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
+								<Prodotto id={e.idProdotto} path={'/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
 							))}
 					</div>
 				</div>

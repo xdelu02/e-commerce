@@ -32,7 +32,7 @@ export default function AddProduct(props) {
 	};
 
 	const sendProductData = () => {
-		fetch('http://localhost/api/prodotti/', {
+		fetch('/api/prodotti/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

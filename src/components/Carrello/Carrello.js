@@ -10,7 +10,7 @@ function Carrello() {
 	const { getCurrentUserEmail } = useAuth();
 
 	const fetchProd = async ({ id }, { signal }) => {
-		const response = await fetch('http://localhost/api/prodotti/' + id, { signal });
+		const response = await fetch('/api/prodotti/' + id, { signal });
 		if (!response.ok) throw new Error(response.status);
 		return response.json();
 	};
