@@ -32,7 +32,7 @@ export default function AddProduct(props) {
 	};
 
 	const sendProductData = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/', {
+		fetch('http://localhost/api/prodotti/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

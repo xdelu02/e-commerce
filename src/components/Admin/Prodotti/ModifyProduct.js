@@ -33,7 +33,7 @@ export default function ModifyProduct(props) {
 	};
 
 	const sendProductData = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/', {
+		fetch('http://localhost/api/prodotti/', {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export default function ModifyProduct(props) {
 	};
 
 	const deleteProduct = () => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/', {
+		fetch('http://localhost/api/prodotti/', {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export default function ModifyProduct(props) {
 	};
 
 	useEffect(() => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id)
+		fetch('http://localhost/api/prodotti/' + id)
 			.then((res) => res.json())
 			.then(
 				(result) => {

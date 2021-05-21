@@ -10,7 +10,7 @@ function Carrello() {
 	const { getCurrentUserEmail } = useAuth();
 
 	const fetchProd = async ({ id }, { signal }) => {
-		const response = await fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id, { signal });
+		const response = await fetch('http://localhost/api/prodotti/' + id, { signal });
 		if (!response.ok) throw new Error(response.status);
 		return response.json();
 	};
@@ -36,7 +36,7 @@ function Carrello() {
 				))}
 			</div>
 			<div>
-				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo , 0).toFixed(2) : Number(0).toFixed(2)} €</p>
+				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)} €</p>
 				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
 			</div>
 		</>

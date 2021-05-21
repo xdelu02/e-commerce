@@ -14,7 +14,7 @@ export default function Dashboard() {
 				<Col xs={12} className='mb-4 d-sm-none'>
 					<SalesValueWidgetPhone title='Vendite' value='10,567' percentage={10.57} />
 				</Col>
-				<Col xs={12} sm={6} xl={4} className='mb-4'>
+				<Col xs={12} sm={6} xl={4} className='mb-4 pb-4'>
 					<CounterWidget category='Clienti' title='345k' period='Feb 1 - Apr 1' percentage={18.2} icon={faChartLine} iconColor='shape-primary' />
 				</Col>
 
@@ -22,9 +22,6 @@ export default function Dashboard() {
 					<CounterWidget category='Ricavi' title='43,594' period='Feb 1 - Apr 1' percentage={28.4} icon={faCashRegister} iconColor='shape-tertiary' />
 				</Col>
 
-				<Col xs={12} sm={6} xl={4} className='mb-4'>
-					<CircleChartWidget title='Ordini' data={trafficShares} />
-				</Col>
 			</Row>
 		</>
 	);

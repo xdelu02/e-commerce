@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from './Nav.module.scss';
 import ShoppingCart from '../../assets/icons/cart.png';
@@ -25,5 +24,4 @@ function NavigationBarShop() {
 		</Navbar>
 	);
 }
-
 export default CSSModules(NavigationBarShop, styles, { allowMultiple: true });

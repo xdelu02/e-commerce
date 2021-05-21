@@ -16,7 +16,7 @@ function DettaglioProdotto(props) {
 	let id = props.match.params.id;
 
 	useEffect(() => {
-		fetch('http://ecommerce.ideeinbit.it/api/prodotti/' + id)
+		fetch('http://localhost/api/prodotti/' + id)
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -45,7 +45,7 @@ function DettaglioProdotto(props) {
 				<h3>{prodotto.nome}</h3>
 			</div>
 			<div styleName='product-image'>
-				<img src={'http://ecommerce.ideeinbit.it/img/' + prodotto.nome + '.png'} alt='prodotto' />
+				<img src={'http://localhost/img/' + prodotto.nome + '.png'} alt='prodotto' />
 			</div>
 			<div styleName='product-buy'>
 				<div styleName='product-price'>

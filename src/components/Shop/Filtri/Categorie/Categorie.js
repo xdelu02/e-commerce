@@ -12,7 +12,7 @@ class Categorie extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://ecommerce.ideeinbit.it/api/categorie/')
+		fetch('http://localhost/api/categorie/')
 			.then((res) => res.json())
 			.then(
 				(result) => {

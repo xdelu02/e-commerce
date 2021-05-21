@@ -5,7 +5,7 @@ import styles from './Ordini.module.scss';
 import { Card, Table } from '@themesberg/react-bootstrap';
 
 const load = (setOrdini) => {
-	fetch('http://ecommerce.ideeinbit.it/api/ordini/')
+	fetch('http://localhost/api/ordini/')
 		.then((res) => res.json())
 		.then(
 			(result) => {

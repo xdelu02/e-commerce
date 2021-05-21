@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from './Signup.module.scss';
 
-function Signup (){
+function Signup() {
 	const [birthday, setBirthday] = useState('2008-7-04');
 	const { signup } = useAuth();
 	const [error, setError] = useState('');
@@ -33,7 +33,7 @@ function Signup (){
 			setError('');
 			setLoading(true);
 			await signup(email, password);
-			fetch('http://ecommerce.ideeinbit.it/api/clienti/', {
+			fetch('http://localhost/api/clienti/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ function Signup (){
 	}
 
 	return (
-		<main styleName="main">
+		<main styleName='main'>
 			<section className='d-flex align-items-center my-5 mt-lg-2 mb-lg-5'>
 				<Container>
 					<p className='text-center'>
@@ -173,6 +173,6 @@ function Signup (){
 			</section>
 		</main>
 	);
-};
+}
 
 export default CSSModules(Signup, styles, { allowMultiple: true });
