@@ -12,7 +12,7 @@ function NavigationBarShop() {
 			<Nav.Link href='/' className='ms-4 py-0'>
 				<img src={Logo} alt='Logo' styleName="logo"/>
 			</Nav.Link>
-			<Navbar.Toggle aria-controls='responsive-navbar-nav' className='me-4 py-0' styleName="toggler"/>
+			<Navbar.Toggle aria-controls='responsive-navbar-nav' className='me-4 py-1' styleName="toggler"/>
 			<Navbar.Collapse id='responsive-navbar-nav'>
 				<Nav.Link href='/' className="py-0">Home</Nav.Link>
 				<Nav.Link href='/shop' className="py-0">Shop</Nav.Link>
