@@ -1,17 +1,32 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Checkout () {
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const [done, setDone] = useState(false);
 	const paypal = useRef();
 
-	const tot = () => {
-		let tot = 0;
-		cart.forEach((element) => {
-			tot = parseFloat(tot) + element.prezzo * element.quantita;
+
+
+	const Success = () => {
+		const { getCurrentUserEmail } = useAuth();
+
+		useEffect(() => {
+			fetch('http://ecommerce.ideeinbit.it/api/carrelli/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					idCliente: getCurrentUserEmail,
+					indirizzo: 'INDIRIZZODAFARE',
+					importo: cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)
+				})
+			});
 		});
-		return tot;
-	};
+
+		return <div>Pagamento avvenuto con successo. Torna al negozio.</div>;
+	} 
 
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem('cart')).length === 0) {
@@ -26,7 +41,7 @@ function Checkout () {
 							{
 								description: 'cool looking table',
 								amount: {
-									value: tot()
+									value: cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)
 								}
 							}
 						]
@@ -41,9 +56,9 @@ function Checkout () {
 				}
 			})
 			.render(paypal.current);
-	}, []);
+	}, [cart]);
 
-	return <div>{done ? <div>Pagamento avvenuto con successo</div> : <div ref={paypal}></div>}</div>;
+	return <div>{done ? <Success /> : <div ref={paypal}></div>}</div>;
 };
 
 export default Checkout;
