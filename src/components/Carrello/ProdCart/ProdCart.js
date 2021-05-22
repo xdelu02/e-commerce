@@ -9,6 +9,7 @@ import styles from './Prod.module.scss';
 function ProdCart(props) {
 	const cartRedux = useSelector((state) => state.cart);
 	const cart = props.cart;
+	const [borderClass, setBorderClass] = useState('border');
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -35,6 +36,10 @@ function ProdCart(props) {
 		history.push('/carrello');
 	};
 
+	function getClass() {
+		return 'd-flex align-items-center justify-content-between border-bottom border-light pb-3';
+	}
+
 	useEffect(() => {
 		cart.forEach((e) => {
 			if (e.idProdotto === props.id) {
@@ -44,15 +49,19 @@ function ProdCart(props) {
 		});
 	}, [props.id, cart]);
 
+	const returnAll = () => {
+		
+	}
+
 	return (
-		<div id={props.id} className={`d-flex align-items-center justify-content-between border-bottom border-light pb-3`}>
+		<div id={props.id} className={'d-flex align-items-center justify-content-between border-bottom border-light pb-3'}>
 			<img src={'/img/' + props.nome + '.png'} alt='prodotto' styleName='prodImage' />
-			<p >{props.nome}</p>
-			<p >{props.prezzo + '€'}</p>
+			<p>{props.nome}</p>
+			<p>{props.prezzo + '€'}</p>
 			<p id={props.id}>Quantita: {qta}</p>
-			<div className="d-flex justify-content-center">
+			<div className='d-flex justify-content-center'>
 				<button>-</button>
-				<input type="number" onChange={updateProd} value="0"/>
+				<input type='number' onChange={updateProd} value='0' />
 				<button>+</button>
 			</div>
 			<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px' }} />

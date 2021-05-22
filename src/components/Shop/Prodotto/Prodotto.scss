@@ -1,65 +1,62 @@
-$mainColor: #007CC3;
+/* Card Styles */
 
-.product-wrapper {
-	width: 15rem;
-	height: 25rem;
-	background: white;
+.card-sl {
 	border-radius: 8px;
-	text-decoration: none;
-	color: black;
-	box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-image img {
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 8px 8px 0px 0;
+}
+
+.card-action {
+	position: relative;
+	float: right;
+	margin-top: -25px;
+	margin-right: 20px;
+	z-index: 2;
+	color: #e26d5c;
+	background: #fff;
+	border-radius: 100%;
+	padding: 15px;
+	font-size: 15px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.prezzo-prodotto {
+	font-weight: bold;
+}
+
+.card-heading {
+	font-size: 18px;
+	font-weight: bold;
+	background: #fff;
+	padding: 10px 15px;
+}
+
+.card-text {
+	padding: 10px 15px;
+	background: #fff;
+	font-size: 14px;
+	color: #636262;
+}
+
+.card-button {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-
-	&:hover {
-		box-shadow: 0 0 11px rgb(33 33 33 / 20%);
-	}
-}
-
-.product-wrapper > *:not(button, img) {
-	margin-left: 1rem;
-}
-
-.product-image {
+	justify-content: center;
+	padding: .3rem 0;
+	position: absolute;
+	bottom: 0px;
 	width: 100%;
-	height: 14rem;
-	max-height: 14rem;
-	object-fit: scale-down;
-	background: white;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-}
-
-.title {
-	font-weight: 500;
-}
-
-.descS {
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-}
-
-.price {
-	font-weight: 500;
-}
-
-.prod-btn {
-	width: 100%;
-	outline: none;
-	border: none;
-	border-radius: 0px 0px 6px 6px;
-	background-image: linear-gradient(to right, scale-color($mainColor, $lightness: -10%), $mainColor, scale-color($mainColor, $lightness: +10%));
-	background-size: 200%;
+	background-color: #1f487e;
 	color: #fff;
-	text-transform: uppercase;
-	padding: 6px;
-	cursor: pointer;
-	transition: 0.5s;
-}
-.prod-btn:hover {
-	background-position: right;
+	border-radius: 0 0 8px 8px;
 }
 
+.card-button:hover {
+	text-decoration: none;
+	background-color: #1d3461;
+	color: #fff;
+}

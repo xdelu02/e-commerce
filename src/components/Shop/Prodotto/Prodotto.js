@@ -1,3 +1,4 @@
+import { Button, Col } from '@themesberg/react-bootstrap';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -21,15 +22,20 @@ function Prodotto(props) {
 	};
 
 	return (
-		<Link className='product-wrapper' to={'/shop/' + props.id}>
-			<img src={props.path} alt='prodotto' className='product-image' />
-			<p className='title'>{props.titolo}</p>
-			<p className='descS'>{props.descS}</p>
-			<p className='price'>{props.prezzo} €</p>
-			<button type='button' className='prod-btn' onClick={handleOnClick}>
-				ADD TO CART
-			</button>
-		</Link>
+		<div className="col-lg-2 col-md-2 d-flex pb-3">
+			<Link className='card card-block' to={'/shop/' + props.id}>
+				<div className='card-image'>
+					<img src={props.path} alt='prodotto' className='"card-img-top' />
+				</div>
+				<div className='card-heading'>{props.titolo}</div>
+				<div className='card-text descrizione-prodotto'>{props.descS}</div>
+				<h3 className='card-text prezzo-prodotto'>{props.prezzo} €</h3>
+
+				<button type='button' className='card-button bottone-card' onClick={handleOnClick}>
+					Aggiungi al carrello
+				</button>
+			</Link>
+		</div>
 	);
 }
 

@@ -1,10 +1,15 @@
 HOME                (FERI)
     Carosello
+    API per prendere immagini casuali
+
+METTERE PRODOTTI NEL DATABASE (Desc corta max 20 parole)
 
 CARRELLO
     Grafica
+    FIXARE LOGICAA
 
 CHECKOUT (FERI)
+    FARE TUTTO
 
 ADMIN
 
