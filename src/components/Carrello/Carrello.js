@@ -3,6 +3,7 @@ import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router';
+import { Card, Button, Container } from '@themesberg/react-bootstrap';
 
 function Carrello() {
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
@@ -28,18 +29,23 @@ function Carrello() {
 	};
 
 	return (
-		<>
-			<h1>CARRELLO</h1>
+		<Container>
+			<h3 className='mt-5'>Carrello</h3>
 			<div>
-				{cart.map((e, i) => (
-					<Prodotto id={e.idProdotto} key={i} />
-				))}
+				<Card border='light' className='shadow-sm'>
+					<Card.Body>
+						{cart.map((e, i) => (
+							<Prodotto id={e.idProdotto} key={i} />
+						))}
+					</Card.Body>
+				</Card>
 			</div>
+
 			<div>
 				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)} €</p>
-				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <button onClick={handleOnClick}>compra</button> : <a href='/login'>Esegui il login</a>}
+				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <Button onClick={handleOnClick}>Procedi al pagamento</Button> : <Button href='/login'>Esegui il login</Button>}
 			</div>
-		</>
+		</Container>
 	);
 }
 

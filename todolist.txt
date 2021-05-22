@@ -1,0 +1,28 @@
+HOME                (FERI)
+    Carosello
+
+CARRELLO
+    Grafica
+
+CHECKOUT (FERI)
+
+ADMIN
+
+    CATALOGO
+        Migliorare Grafica card
+
+    ORDINI
+        Sostituire tabella con datalist
+
+    AGGIUNGI PRODOTTI
+        Mettere dropzone
+        Mettere bottone per aggiungere prodotto
+
+    MODIFICA PRODOTTI
+        Settare dropzone con immagine presa dal db
+
+IMPLEMENTARE PAGINAZIONE
+
+NAVBAR DA Migliorare 
+
+404

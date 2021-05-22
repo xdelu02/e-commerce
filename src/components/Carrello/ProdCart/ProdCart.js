@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { removeToCart, updateToCart } from '../../../actions';
 import del from '../../../assets/icons/delete-red.png';
+import CSSModules from 'react-css-modules';
+import styles from './Prod.module.scss';
 
-export default function ProdCart(props) {
+function ProdCart(props) {
 	const cartRedux = useSelector((state) => state.cart);
 	const cart = props.cart;
 	const [qta, setQta] = useState(1);
@@ -43,24 +45,25 @@ export default function ProdCart(props) {
 	}, [props.id, cart]);
 
 	return (
-		<div id={props.id}>
-			<img src={'/img/' + props.nome + '.png'} alt='prodotto' style={{ width: '75px', height: '75px', objectFit: 'cover' }} />
-			<p className='title'>{props.nome}</p>
-			<p className='descS'>{props.descS}</p>
-			<p className='prezzo'>{props.prezzo + '€'}</p>
+		<div id={props.id} className={`d-flex align-items-center justify-content-between border-bottom border-light pb-3`}>
+			<img src={'/img/' + props.nome + '.png'} alt='prodotto' styleName='prodImage' />
+			<p >{props.nome}</p>
+			<p >{props.prezzo + '€'}</p>
 			<p id={props.id}>Quantita: {qta}</p>
-			<div className='custom-select m'>
-				<select id={props.id} onChange={updateProd} value={qta}>
-					{Array.from(new Array(qta), (x, i) => i + 1)
-						.reverse()
-						.map((n) => (
-							<option value={n} key={n}>
-								{n}
-							</option>
-						))}
-				</select>
+			<div className="d-flex justify-content-center">
+				<button>-</button>
+				<input type="number" onChange={updateProd} value="0"/>
+				<button>+</button>
 			</div>
 			<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px' }} />
 		</div>
 	);
 }
+
+export default CSSModules(ProdCart, styles, { allowMultiple: true });
+
+/*
+  pb - 3
+  py - 3
+  pt-3
+*/
