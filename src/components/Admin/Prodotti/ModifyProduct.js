@@ -100,6 +100,10 @@ function ModifyProduct(props) {
 		dropZoneClass === 'hide' ? setDropZoneClass('') : setDropZoneClass('hide');
 	};
 
+	const reRender = () => {
+		window.location.reload();
+	}
+
 	const Dropzone = () => {
 		const { getRootProps, getInputProps } = useDropzone({
 			accept: 'image/*',
@@ -119,6 +123,7 @@ function ModifyProduct(props) {
 
 			return (
 				<Col xl={6} className='dropzone-preview'>
+					<button styleName="delete-btn" onClick={reRender}>x</button>
 					<Image src={preview} className='dropzone-image' />
 					<Card.Text className='dropzone-filename'>{path}</Card.Text>
 				</Col>
