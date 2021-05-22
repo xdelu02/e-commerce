@@ -2,3 +2,15 @@
     position: absolute !important;
     left: -9999px !important;
 }
+
+.btn-immagine {
+   font-size: .7rem !important;
+   padding: .5rem !important;
+   margin-top: .5rem;
+   max-width: 7rem !important;
+}
+
+.image-dropzone-admin {
+    height: 10rem;
+    object-fit: cover;
+}

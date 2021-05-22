@@ -102,7 +102,7 @@ function ModifyProduct(props) {
 
 	const reRender = () => {
 		window.location.reload();
-	}
+	};
 
 	const Dropzone = () => {
 		const { getRootProps, getInputProps } = useDropzone({
@@ -122,11 +122,16 @@ function ModifyProduct(props) {
 			const { path, preview } = props;
 
 			return (
-				<Col xl={6} className='dropzone-preview'>
-					<button styleName="delete-btn" onClick={reRender}>x</button>
-					<Image src={preview} className='dropzone-image' />
-					<Card.Text className='dropzone-filename'>{path}</Card.Text>
-				</Col>
+				<>
+					<Col xl={6} className='dropzone-preview d-flex justify-content-center'>
+						<Image src={preview} className='image-dropzone-admin' />
+					</Col>
+					<Row className='d-flex justify-content-center align-items-center'>
+						<Button onClick={reRender} className='btn-immagine'>
+							Cambia immagine
+						</Button>
+					</Row>
+				</>
 			);
 		};
 
