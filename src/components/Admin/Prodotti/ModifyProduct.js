@@ -4,6 +4,7 @@ import { Col, Row, Card, Form, Button, Image } from '@themesberg/react-bootstrap
 import { useDropzone } from 'react-dropzone';
 import CSSModules from 'react-css-modules';
 import styles from './ModifyProduct.module.scss';
+import './general.scss';
 
 function ModifyProduct(props) {
 	const [nome, setNome] = useState('');
@@ -12,6 +13,8 @@ function ModifyProduct(props) {
 	const [categoria, setCategoria] = useState('');
 	const [prezzo, setPrezzo] = useState('');
 	const [qta, setQta] = useState(0);
+	const [files, setFiles] = useState([]);
+	const [dropZoneClass, setDropZoneClass] = useState('');
 	const history = useHistory('/admin/prodotti');
 	let id = props.match.params.id;
 
@@ -93,24 +96,29 @@ function ModifyProduct(props) {
 			);
 	}, [id, history]);
 
+	const handleImage = () => {
+		dropZoneClass === 'hide' ? setDropZoneClass('') : setDropZoneClass('hide');
+	};
+
 	const Dropzone = () => {
-		const [files, setFiles] = React.useState([]);
 		const { getRootProps, getInputProps } = useDropzone({
 			accept: 'image/*',
-			onDrop: (files) =>
+			onDrop: (files) => {
 				setFiles(
 					files.map((file) => ({
 						...file,
 						preview: URL.createObjectURL(file)
 					}))
-				)
+				);
+				handleImage();
+			}
 		});
 
 		const DropzoneFile = (props) => {
 			const { path, preview } = props;
 
 			return (
-				<Col xs={3} className='dropzone-preview'>
+				<Col xl={6} className='dropzone-preview'>
 					<Image src={preview} className='dropzone-image' />
 					<Card.Text className='dropzone-filename'>{path}</Card.Text>
 				</Col>
@@ -119,13 +127,13 @@ function ModifyProduct(props) {
 
 		return (
 			<>
-				<Form {...getRootProps({ className: 'dropzone rounded d-flex align-items-center justify-content-center mb-4 mt-4' })}>
+				<Form {...getRootProps({ className: `dropzone rounded d-flex align-items-center justify-content-center mb-4 mt-4 ${dropZoneClass}` })}>
 					<Form.Control {...getInputProps()} />
 					<div className='dz-default dz-message text-center'>
 						<p className='dz-button mb-0'>Carica l'immagine</p>
 					</div>
 				</Form>
-				<Row className='dropzone-files'>
+				<Row className='dropzone-files d-flex align-items-center justify-content-center'>
 					{files.map((file) => (
 						<DropzoneFile key={file.path} {...file} />
 					))}
@@ -198,7 +206,7 @@ function ModifyProduct(props) {
 								</Col>
 							</Row>
 
-							<Row className='d-flex justify-content-center' styleName="btn-wrapper">
+							<Row className='d-flex justify-content-center' styleName='btn-wrapper'>
 								<Button variant='primary' onClick={sendProductData}>
 									Salva
 								</Button>
