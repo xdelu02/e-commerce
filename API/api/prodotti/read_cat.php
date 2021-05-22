@@ -32,7 +32,8 @@
 				"descL" => $descL,
 				"prezzo" => $prezzo,
 				"quantita" => $quantita,
-				"idCategoria" => $idCategoria
+				"idCategoria" => $idCategoria,
+				"path" => $path
 			);
 
 			array_push($arr["records"], $item);

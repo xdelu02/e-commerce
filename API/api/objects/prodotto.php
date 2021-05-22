@@ -12,6 +12,7 @@
 		public $prezzo;
 		public $quantita;
 		public $idCategoria;
+		public $path;
 
 		// costruttore
 		public function __construct($db){
@@ -22,9 +23,17 @@
 		function read() {
 			// select all query
 			$query = "SELECT
-						idProdotto, nome, descS, descL, prezzo, quantita, idCategoria
+						p.idProdotto as idProdotto,
+						p.nome as nome,
+						p.descS as descS,
+						p.descL as descL,
+						p.prezzo as prezzo,
+						p.quantita as quantita,
+						p.idCategoria as idCategoria,
+						i.path as path
 					FROM
-						" . $this->table_name . "
+						" . $this->table_name . " as p INNER JOIN Immagini as i
+						ON p.idProdotto = i.idProdotto
 					ORDER BY nome";
 		
 			$stmt = $this->conn->prepare($query);
@@ -37,11 +46,19 @@
 		function readOne() {
 			// query to read single record
 			$query = "SELECT
-						idProdotto, nome, descS, descL, prezzo, quantita, idCategoria
+						p.idProdotto as idProdotto,
+						p.nome as nome,
+						p.descS as descS,
+						p.descL as descL,
+						p.prezzo as prezzo,
+						p.quantita as quantita,
+						p.idCategoria as idCategoria,
+						i.path as path
 					FROM
-						" . $this->table_name . " a
+						" . $this->table_name . " as p INNER JOIN Immagini as i
+						ON p.idProdotto = i.idProdotto
 					WHERE
-						a.idProdotto = ?
+						p.idProdotto = ?
 					LIMIT
 						1";
 
@@ -57,6 +74,7 @@
 				$this->prezzo = $row['prezzo'];
 				$this->quantita = $row['quantita'];
 				$this->idCategoria = $row['idCategoria'];
+				$this->path = $row['path'];
 				
 				break;
 			}
@@ -66,11 +84,19 @@
 		function readCat() {
 			// query to read single record
 			$query = "SELECT
-						idProdotto, nome, descS, descL, prezzo, quantita, idCategoria
+						p.idProdotto as idProdotto,
+						p.nome as nome,
+						p.descS as descS,
+						p.descL as descL,
+						p.prezzo as prezzo,
+						p.quantita as quantita,
+						p.idCategoria as idCategoria,
+						i.path as path
 					FROM
-						" . $this->table_name . " a
+						" . $this->table_name . " as p INNER JOIN Immagini as i
+						ON p.idProdotto = i.idProdotto
 					WHERE
-						a.idCategoria = ?";
+						p.idCategoria = ?";
 						
 			// prepare query
 			$stmt = $this->conn->prepare($query);
@@ -120,15 +146,22 @@
 
 		// delete
 		function delete() {
-			// delete query
-			$query = "DELETE FROM " . $this->table_name . " WHERE idProdotto = ?";
-		
+			// delete img query
+			$query1 = "DELETE FROM Immagini WHERE idProdotto = ?";
 			// prepare query
-			$stmt = $this->conn->prepare($query);
-		
+			$stmt1 = $this->conn->prepare($query1);
 			// sanitize
 			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
-		
+			// bind id
+			$stmt1->bindParam(1, $this->idProdotto);
+			$stmt1->execute();
+
+			// delete query
+			$query = "DELETE FROM " . $this->table_name . " WHERE idProdotto = ?";
+			// prepare query
+			$stmt = $this->conn->prepare($query);
+			// sanitize
+			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
 			// bind id
 			$stmt->bindParam(1, $this->idProdotto);
 		

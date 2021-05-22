@@ -29,7 +29,8 @@
 			"descL" => $obj->descL,
 			"prezzo" => $obj->prezzo,
 			"quantita" => $obj->quantita,
-			"idCategoria" => $obj->idCategoria
+			"idCategoria" => $obj->idCategoria,
+			"path" => $obj->path
 		);
 
 		// set response code - 200 OK
