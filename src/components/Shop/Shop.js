@@ -1,6 +1,8 @@
-import { Container } from '@themesberg/react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import Prodotto from './Prodotto/Prodotto';
+import { Form, InputGroup } from '@themesberg/react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function load(setProdotti, chunk, key) {
 	fetch('/api/prodotti/?key=' + key)
@@ -37,17 +39,17 @@ function Shop() {
 	const [prodotti, setProdotti] = useState([]);
 	const [key, setKey] = useState('');
 
-	const searchProd = (event) => {
+	const searchProd = async (event) => {
 		setKey(event.target.value);
-		load();
+		load(setProdotti, chunk, key);
 	};
 
 	const GridShop = ({ data }) => {
 		console.log(data);
 		return (
-			<div className="mt-5 w-100">
+			<div className='mt-5 w-100'>
 				{data.map((row, i) => (
-					<RowProdotti data={row} key={i}/>
+					<RowProdotti data={row} key={i} />
 				))}
 			</div>
 		);
@@ -55,7 +57,7 @@ function Shop() {
 
 	const RowProdotti = ({ data }) => {
 		return (
-			<div className="row equal d-flex justify-content-center">
+			<div className='row equal d-flex justify-content-center'>
 				{data.map((cell, i) => (
 					<Cell data={cell} key={i} />
 				))}
@@ -73,6 +75,17 @@ function Shop() {
 
 	return (
 		<main className='shop-container'>
+			<Form>
+				<Form.Group className='mb-3'>
+					<Form.Label>Icon Left</Form.Label>
+					<InputGroup onChange={searchProd}>
+						<InputGroup.Text>
+							<FontAwesomeIcon icon={faSearch} />
+						</InputGroup.Text>
+						<Form.Control type='text' placeholder='Search' />
+					</InputGroup>
+				</Form.Group>
+			</Form>
 			<GridShop data={prodotti}></GridShop>
 		</main>
 	);
