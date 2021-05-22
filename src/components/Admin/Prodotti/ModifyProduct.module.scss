@@ -1,30 +1,44 @@
-$minColWidth: 15rem;
-$gridGap: 2rem;
-
-.grid-wrap {
-	padding: $gridGap;
+.wrapper {
+	gap: 5rem;
 }
 
-.grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax($minColWidth, 1fr));
-	grid-gap: 2rem;
+.dropzone.dropzone {
+	max-width: 20rem;
+}
 
-	& + .grid {
-		margin-top: $gridGap;
+.btn-wrapper {
+	gap: 2rem;
+	button {
+		max-width: 10rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.id {
+		margin-top: 0rem;
 	}
 
-	span {
-		border: 2px dashed currentcolor;
-		border-radius: 4px;
-		min-height: 15vh;
-		padding: 1rem;
-		color: #0178d4;
-		font-size: 3rem;
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+	.wrapper {
+		button {
+			width: 8rem;
+		}
 	}
 
+	.btn-wrapper {
+		gap: 0.5rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.btn-wrapper {
+		max-width: 26rem !important;
+		margin-left: 0px !important;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.dropzone.dropzone {
+		max-width: 100%;
+		width: 100%;
+	}
 }

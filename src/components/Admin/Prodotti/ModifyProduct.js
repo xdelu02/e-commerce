@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Col, Row, Card, Form, Button, Image } from '@themesberg/react-bootstrap';
 import { useDropzone } from 'react-dropzone';
+import CSSModules from 'react-css-modules';
+import styles from './ModifyProduct.module.scss';
 
-export default function ModifyProduct(props) {
+function ModifyProduct(props) {
 	const [nome, setNome] = useState('');
 	const [descS, setDescS] = useState('');
 	const [descL, setDescL] = useState('');
@@ -91,85 +93,126 @@ export default function ModifyProduct(props) {
 			);
 	}, [id, history]);
 
+	const Dropzone = () => {
+		const [files, setFiles] = React.useState([]);
+		const { getRootProps, getInputProps } = useDropzone({
+			accept: 'image/*',
+			onDrop: (files) =>
+				setFiles(
+					files.map((file) => ({
+						...file,
+						preview: URL.createObjectURL(file)
+					}))
+				)
+		});
+
+		const DropzoneFile = (props) => {
+			const { path, preview } = props;
+
+			return (
+				<Col xs={3} className='dropzone-preview'>
+					<Image src={preview} className='dropzone-image' />
+					<Card.Text className='dropzone-filename'>{path}</Card.Text>
+				</Col>
+			);
+		};
+
+		return (
+			<>
+				<Form {...getRootProps({ className: 'dropzone rounded d-flex align-items-center justify-content-center mb-4 mt-4' })}>
+					<Form.Control {...getInputProps()} />
+					<div className='dz-default dz-message text-center'>
+						<p className='dz-button mb-0'>Carica l'immagine</p>
+					</div>
+				</Form>
+				<Row className='dropzone-files'>
+					{files.map((file) => (
+						<DropzoneFile key={file.path} {...file} />
+					))}
+				</Row>
+			</>
+		);
+	};
+
 	return (
 		<Card border='light' className='bg-white shadow-xs mb-4 mt-3'>
 			<Card.Body>
 				<h5 className='mb-4'>Informazioni prodotto</h5>
-				<Form>
-					<Row>
-						<Col md={2} className='mb-3'>
-							<Form.Group>
-								<Form.Label>ID</Form.Label>
-								<Form.Control required type='text' value={id} readOnly />
-							</Form.Group>
-						</Col>
-						<Col md={4} className='mb-3'>
-							<Form.Group>
-								<Form.Label>Nome prodotto</Form.Label>
-								<Form.Control required type='text' value={nome} onChange={handleNome} />
-							</Form.Group>
-						</Col>
-					</Row>
-					<Row>
-						<Col md={6} className='mb-3'>
-							<Form.Group>
-								<Form.Label>Descrizione corta</Form.Label>
-								<Form.Control required as='textarea' rows={3} value={descS} onChange={handleDescS} />
-							</Form.Group>
-						</Col>
-					</Row>
+				<Row styleName='wrapper'>
+					<Col sm={12} styleName='dropzone'>
+						<Dropzone></Dropzone>
+					</Col>
+					<Col xl={6}>
+						<Form>
+							<Row>
+								<Col md={3} className='mb-3'>
+									<Form.Group styleName='id'>
+										<Form.Label>ID</Form.Label>
+										<Form.Control required type='text' value={id} readOnly />
+									</Form.Group>
+								</Col>
+								<Col md={4} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Nome prodotto</Form.Label>
+										<Form.Control required type='text' value={nome} onChange={handleNome} />
+									</Form.Group>
+								</Col>
+							</Row>
+							<Row>
+								<Col md={10} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Descrizione corta</Form.Label>
+										<Form.Control required as='textarea' rows={3} value={descS} onChange={handleDescS} />
+									</Form.Group>
+								</Col>
+							</Row>
 
-					<Row>
-						<Col md={6} className='mb-3'>
-							<Form.Group>
-								<Form.Label>Descrizione lunga</Form.Label>
-								<Form.Control required as='textarea' rows={3} value={descL} onChange={handleDescL} />
-							</Form.Group>
-						</Col>
-					</Row>
+							<Row>
+								<Col md={10} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Descrizione lunga</Form.Label>
+										<Form.Control required as='textarea' rows={3} value={descL} onChange={handleDescL} />
+									</Form.Group>
+								</Col>
+							</Row>
 
-					<Row>
-						<Col sm={3}>
-							<Form.Group>
-								<Form.Label>Categoria</Form.Label>
-								<Form.Control required type='text' value={categoria} onChange={handleCategoria} />
-							</Form.Group>
-						</Col>
+							<Row>
+								<Col md={10} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Categoria</Form.Label>
+										<Form.Control required type='text' value={categoria} onChange={handleCategoria} />
+									</Form.Group>
+								</Col>
 
-						<Col sm={2} className='mb-3'>
-							<Form.Group>
-								<Form.Label>Prezzo</Form.Label>
-								<Form.Control required type='text' value={prezzo} onChange={handlePrezzo} />
-							</Form.Group>
-						</Col>
-					</Row>
+								<Col md={10} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Prezzo</Form.Label>
+										<Form.Control required type='text' value={prezzo} onChange={handlePrezzo} />
+									</Form.Group>
+								</Col>
+								<Col md={10} className='mb-3'>
+									<Form.Group>
+										<Form.Label>Quantità</Form.Label>
+										<Form.Control required type='number' value={qta} onChange={handleQta} />
+									</Form.Group>
+								</Col>
+							</Row>
 
-					<Row>
-						<Col sm={2}>
-							<Form.Group>
-								<Form.Label>Quantità</Form.Label>
-								<Form.Control required type='number' value={qta} onChange={handleQta} />
-							</Form.Group>
-						</Col>
-					</Row>
-					<Row>
-						<Col sm={1}>
-							<div className='mt-4'>
+							<Row className='d-flex justify-content-center' styleName="btn-wrapper">
 								<Button variant='primary' onClick={sendProductData}>
 									Salva
 								</Button>
-							</div>
-						</Col>
-						<Col sm={1}>
-							<div className='mt-4'>
+
 								<Button variant='secondary' onClick={deleteProduct}>
 									Elimina
 								</Button>
-							</div>
-						</Col>
-					</Row>
-				</Form>
+							</Row>
+						</Form>
+					</Col>
+				</Row>
 			</Card.Body>
 		</Card>
 	);
 }
+
+export default CSSModules(ModifyProduct, styles, { allowMultiple: true });
