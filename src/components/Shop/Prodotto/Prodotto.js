@@ -22,7 +22,7 @@ function Prodotto(props) {
 	};
 
 	return (
-		<div className="col-lg-4 col-md-2 d-flex pb-3">
+		<div className='col-lg-4 col-md-2 d-flex pb-3'>
 			<Link className='card card-block' to={'/shop/' + props.id}>
 				<div className='card-image'>
 					<img src={props.path} alt='prodotto' className='"card-img-top' />
@@ -31,7 +31,7 @@ function Prodotto(props) {
 				<div className='card-text descrizione-prodotto'>{props.descS}</div>
 				<h3 className='card-text prezzo-prodotto'>{props.prezzo} €</h3>
 
-				<button type='button' className='card-button bottone-card' onClick={handleOnClick}>
+				<button type='button' className='card-button bottone-card btn btn-primary' onClick={handleOnClick} style={{ borderTopLeftRadius: '0px', borderTopRigthRadius: '0px' }}>
 					Aggiungi al carrello
 				</button>
 			</Link>
