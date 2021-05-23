@@ -36,21 +36,27 @@ function Carrello() {
 			<div>
 				<Card border='light' className='shadow-sm'>
 					<Card.Body>
-						{cart.map((e, i) => (
-							<Prodotto id={e.idProdotto} key={i} />
-						))}
+						{cart.length ? (
+							cart.map((e, i) => <Prodotto id={e.idProdotto} key={i} />)
+						) : (
+							<Link to={'/shop'}>
+								<div className='text-center'>Vai al catalogo</div>
+							</Link>
+						)}
 					</Card.Body>
 				</Card>
 			</div>
 
 			<div>
-				<Row>
+				<Row style={{ marginTop: '0.5rem' }}>
 					<Col>
-						<Link to={'/shop'}>
-							<p>
-								<img src={arrow} style={{ width: '20px', height: '20px'}}></img>Torna al catalogo
-							</p>
-						</Link>
+						{cart.length ? (
+							<Link to={'/shop'}>
+								<p>
+									<img src={arrow} style={{ width: '20px', height: '20px' }}></img>Torna al catalogo
+								</p>
+							</Link>
+						) : null}
 					</Col>
 					<Col>
 						<p className='text-end'>
