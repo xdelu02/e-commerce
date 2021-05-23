@@ -32,7 +32,7 @@
 		function readOne() {
 			// query to read single record
 			$query = "SELECT
-                        idImmagine, idProdotto, path
+						idImmagine, idProdotto, path
 					FROM
 						" . $this->table_name . " i
 					WHERE
@@ -68,6 +68,26 @@
 			$stmt->execute();
 		
 			return $stmt;
+		}
+
+		// read rand
+		function readRand() {
+			// query to read single record
+			$query = "SELECT
+						idImmagine, idProdotto, path
+					FROM
+						Immagini
+					ORDER BY RAND()
+					LIMIT 1";
+
+			$stmt = $this->conn->prepare($query);
+			$stmt->execute();
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+			// set values to object properties
+			$this->idImmagine = $row['idImmagine'];
+			$this->idProdotto = $row['idProdotto'];
+			$this->path = $row['path'];
 		}
 
 		// create
