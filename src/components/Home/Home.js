@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Home.module.scss';
 import { Link, useHistory } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+import { Carousel } from '@themesberg/react-bootstrap';
 
 function Home() {
 	const history = useHistory('/');
@@ -30,15 +30,15 @@ function Home() {
 
 	return (
 		<div styleName='container'>
-			<Carousel nextIcon={<span className='glyphicon glyphicon-glass'></span>} prevIcon={<span className='glyphicon glyphicon-glass'></span>}>
-				<Carousel.Item>
+			<Carousel controls={false}>
+				<Carousel.Item autoPlay={true} interval={2000} controls={false} indicators={false}>
 					<img className='d-block w-100' src={'/img/' + a.path} alt='First slide' onClick={() => history.push('/shop/' + a.idProdotto)} />
 					<Carousel.Caption style={{ background: '#ffffff66' }}>
 						<h3>{a.nome}</h3>
 						<p>{a.descS}</p>
 					</Carousel.Caption>
 				</Carousel.Item>
-				<Carousel.Item>
+				<Carousel.Item autoPlay={true} interval={2000} controls={false} indicators={false}>
 					<Link to={'shop' + b.idProdotto}>
 						<img className='d-block w-100' src={'/img/' + b.path} alt='Second slide' onClick={() => history.push('/shop/' + b.idProdotto)} />
 					</Link>
@@ -47,7 +47,7 @@ function Home() {
 						<p>{a.descS}</p>
 					</Carousel.Caption>
 				</Carousel.Item>
-				<Carousel.Item>
+				<Carousel.Item autoPlay={true} interval={2000} controls={false} indicators={false}>
 					<Link to={'shop' + c.idProdotto}>
 						<img className='d-block w-100' src={'/img/' + c.path} alt='Third slide' onClick={() => history.push('/shop/' + c.idProdotto)} />
 					</Link>
