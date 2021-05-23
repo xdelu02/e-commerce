@@ -18,3 +18,10 @@ export function updateToCart(prod) {
 		prodotto: prod
 	};
 }
+
+export function addifnotToCart(prod) {
+	return {
+		type: 'addifnot',
+		prodotto: prod
+	};
+}

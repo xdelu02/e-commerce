@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { removeToCart, updateToCart } from '../../../actions';
+import { addifnotToCart, removeToCart, updateToCart } from '../../../actions';
 import del from '../../../assets/icons/delete-red.png';
 import CSSModules from 'react-css-modules';
 import styles from './Prod.module.scss';
@@ -29,7 +29,36 @@ function ProdCart(props) {
 		dispatch(
 			updateToCart({
 				idProdotto: e.target.id,
-				quantita: parseInt(e.target.value)
+				quantita: parseInt(e.target.value),
+				prezzo: props.prezzo
+			})
+		);
+		localStorage.setItem('cart', JSON.stringify(cartRedux));
+		history.push('/carrello');
+	};
+
+	const decrease = async (e) => {
+		if (qta > 1) {
+			setQta(parseInt(qta - 1));
+			dispatch(
+				updateToCart({
+					idProdotto: e.target.id,
+					quantita: parseInt(qta - 1),
+					prezzo: props.prezzo
+				})
+			);
+			localStorage.setItem('cart', JSON.stringify(cartRedux));
+			history.push('/carrello');
+		}
+	};
+
+	const increase = async (e) => {
+		setQta(parseInt(qta + 1));
+		dispatch(
+			updateToCart({
+				idProdotto: e.target.id,
+				quantita: parseInt(qta + 1),
+				prezzo: props.prezzo
 			})
 		);
 		localStorage.setItem('cart', JSON.stringify(cartRedux));
@@ -44,25 +73,31 @@ function ProdCart(props) {
 		cart.forEach((e) => {
 			if (e.idProdotto === props.id) {
 				setQta(e.quantita);
+				dispatch(
+					addifnotToCart({
+						idProdotto: props.id,
+						quantita: parseInt(e.quantita),
+						prezzo: props.prezzo
+					})
+				);
 				return;
 			}
 		});
 	}, [props.id, cart]);
-
-	const returnAll = () => {
-		
-	}
 
 	return (
 		<div id={props.id} className={'d-flex align-items-center justify-content-between border-bottom border-light pb-3'}>
 			<img src={'/img/' + props.nome + '.png'} alt='prodotto' styleName='prodImage' />
 			<p>{props.nome}</p>
 			<p>{props.prezzo + '€'}</p>
-			<p id={props.id}>Quantita: {qta}</p>
 			<div className='d-flex justify-content-center'>
-				<button>-</button>
-				<input type='number' onChange={updateProd} value='0' />
-				<button>+</button>
+				<button id={props.id} onClick={decrease} >
+					-
+				</button>
+				<input id={props.id} type='number' onChange={updateProd} value={qta} min='1' max={qta} disabled />
+				<button id={props.id} onClick={increase}>
+					+
+				</button>
 			</div>
 			<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px' }} />
 		</div>

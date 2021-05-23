@@ -30,6 +30,17 @@ const cartReducer = (state = [], action) => {
 			});
 			return state;
 
+		case 'addifnot':
+			let b = true;
+			state.forEach((element) => {
+				if (element.idProdotto === action.prodotto.idProdotto) {
+					b = false;
+					return;
+				}
+			});
+			if (b) state.push(action.prodotto);
+			return state;
+
 		default:
 			return state;
 	}
