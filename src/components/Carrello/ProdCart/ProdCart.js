@@ -99,11 +99,11 @@ function ProdCart(props) {
 			</Col>
 			<Col>
 				<div className='d-flex justify-content-center'>
-					<button id={props.id} onClick={decrease}>
+					<button id={props.id} onClick={decrease} className='btn btn-primary btn-sm' style={{ borderTopRightRadius: '0px', borderBottomRightRadius: '0px' }}>
 						-
 					</button>
 					<input id={props.id} type='number' onChange={updateProd} value={qta} min='1' max={qta} disabled />
-					<button id={props.id} onClick={increase}>
+					<button id={props.id} onClick={increase} className='btn btn-primary btn-sm' style={{ borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px' }}>
 						+
 					</button>
 				</div>
