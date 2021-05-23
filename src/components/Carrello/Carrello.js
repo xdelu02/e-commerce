@@ -3,7 +3,9 @@ import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router';
-import { Card, Button, Container } from '@themesberg/react-bootstrap';
+import { Card, Button, Container, Row, Col } from '@themesberg/react-bootstrap';
+import { Link } from 'react-router-dom';
+import arrow from '../../assets/icons/left-arrow.png';
 
 function Carrello() {
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
@@ -42,8 +44,29 @@ function Carrello() {
 			</div>
 
 			<div>
-				<p>Spesa totale: {cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)} €</p>
-				{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? <Button onClick={handleOnClick}>Procedi al pagamento</Button> : <Button href='/login'>Esegui il login</Button>}
+				<Row>
+					<Col>
+						<Link to={'/shop'}>
+							<p>
+								<img src={arrow} style={{ width: '20px', height: '20px'}}></img>Torna al catalogo
+							</p>
+						</Link>
+					</Col>
+					<Col>
+						<p className='text-end'>
+							Totale: <b style={{ color: '#262b40' }}>{cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)} €</b>
+						</p>
+					</Col>
+				</Row>
+				<Row>
+					<div className='text-end'>
+						{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? (
+							<Button onClick={handleOnClick}>Procedi al pagamento</Button>
+						) : (
+							<Button href='/login'>Esegui il login</Button>
+						)}
+					</div>
+				</Row>
 			</div>
 		</Container>
 	);
