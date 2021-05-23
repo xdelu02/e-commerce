@@ -111,6 +111,42 @@
 			
 			return $stmt;
 		}
+		
+		// read rand
+		function readRand() {
+			// query to read single record
+			$query = "SELECT
+						p.idProdotto as idProdotto,
+						p.nome as nome,
+						p.descS as descS,
+						p.descL as descL,
+						p.prezzo as prezzo,
+						p.quantita as quantita,
+						p.idCategoria as idCategoria,
+						i.path as path
+					FROM
+						" . $this->table_name . " as p INNER JOIN Immagini as i
+						ON p.idProdotto = i.idProdotto
+					ORDER BY RAND()
+					LIMIT
+						1";
+
+			$stmt = $this->conn->prepare( $query );
+
+			$stmt->execute();
+			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$this->idProdotto = $row['idProdotto'];
+				$this->nome = $row['nome'];
+				$this->descS = $row['descS'];
+				$this->descL = $row['descL'];
+				$this->prezzo = $row['prezzo'];
+				$this->quantita = $row['quantita'];
+				$this->idCategoria = $row['idCategoria'];
+				$this->path = $row['path'];
+				
+				break;
+			}
+		}
 
 		// create
 		function create() {

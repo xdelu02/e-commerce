@@ -16,6 +16,10 @@
 		include "./read_cat.php";
 		exit();
 	}
+	if(!empty($_GET['rand'])) {
+		include "./read_rand.php";
+		exit();
+	}
 
 	// get database connection & obj
 	include_once '../includes/db.inc.php';
