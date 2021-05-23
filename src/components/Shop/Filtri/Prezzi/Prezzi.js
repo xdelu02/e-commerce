@@ -1,25 +1,18 @@
 import React from 'react';
+import { Form } from '@themesberg/react-bootstrap';
 
 function Prezzi() {
 	return (
-		<div className='prezzi'>
-			<p className='title'>Multi Range</p>
-			<input type='radio' name='price' id='10' />
-			<label>10</label>
-			<br />
-			<input type='radio' name='price' id='10-100' />
-			<label>10-100</label>
-			<br />
-			<input type='radio' name='price' id='100-500' />
-			<label>100-500</label>
-			<br />
-			<input type='radio' name='price' id='500' />
-			<label>500</label>
-			<br />
-			<input type='radio' name='price' id='all' defaultChecked />
-			<label>All</label>
-			<br />
-		</div>
+		<Form>
+			<fieldset>
+				<h5>Range di prezzi</h5>
+				<Form.Check type='radio' label='10' defaultValue='10' name='price' id='price1' htmlFor='price1' />
+				<Form.Check type='radio' label='10-100' defaultValue='10-100' name='price' id='price2' htmlFor='price2' />
+				<Form.Check type='radio' label='100-500' defaultValue='100-500' name='price' id='price3' htmlFor='price3' />
+				<Form.Check type='radio' label='500' defaultValue='500' name='price' id='price4' htmlFor='price4' />
+				<Form.Check defaultChecked type='radio' label='Tutti' defaultValue='Tutti' name='price' id='price5' htmlFor='price5' />
+			</fieldset>
+		</Form>
 	);
 }
 

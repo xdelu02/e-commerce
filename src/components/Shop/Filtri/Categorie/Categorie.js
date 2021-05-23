@@ -1,5 +1,6 @@
 import React from 'react';
 import Categoria from './Categoria/Categoria';
+import { Form } from '@themesberg/react-bootstrap';
 
 class Categorie extends React.Component {
 	constructor(props) {
@@ -26,11 +27,13 @@ class Categorie extends React.Component {
 
 	render() {
 		return (
-			<div className='categorie'>
-				<p className='title'>Categorie</p>
-				{this.state.categorie.map((e, i) => (
-					<Categoria categoria={e.idCategoria} key={i} />
-				))}
+			<div className='categorie mt-4'>
+				<h5>Categorie</h5>
+				<Form>
+					{this.state.categorie.map((e, i) => (
+						<Categoria categoria={e.idCategoria} identificativo={i} key={i} />
+					))}
+				</Form>
 			</div>
 		);
 	}

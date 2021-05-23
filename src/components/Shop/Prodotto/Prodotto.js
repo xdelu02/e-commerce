@@ -22,7 +22,7 @@ function Prodotto(props) {
 	};
 
 	return (
-		<div className="col-lg-2 col-md-2 d-flex pb-3">
+		<div className="col-lg-4 col-md-2 d-flex pb-3">
 			<Link className='card card-block' to={'/shop/' + props.id}>
 				<div className='card-image'>
 					<img src={props.path} alt='prodotto' className='"card-img-top' />
