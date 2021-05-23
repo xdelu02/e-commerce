@@ -77,32 +77,32 @@ function Shop() {
 
 	return (
 		<>
-			<header class='py-3 mb-4 border-bottom'>
-				<div class='container-fluid d-grid gap-3 align-items-center' style={{ gridTemplateColumns: '1fr 2fr' }}>
+			<header className='py-3 mb-4 border-bottom'>
+				<div className='container-fluid d-grid gap-3 align-items-center' style={{ gridTemplateColumns: '1fr 2fr' }}>
 					<div>
-						<a href='#' class='d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none'>
-							<i class='bi bi-bootstrap fs-2 text-dark'></i>
+						<a href='#' className='d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none'>
+							<i className='bi bi-bootstrap fs-2 text-dark'></i>
 						</a>
 					</div>
-					<div class='d-flex align-items-center'>
-						<form class='w-100 me-3'>
-							<input type='search' class='form-control' placeholder='Search...' />
+					<div className='d-flex align-items-center'>
+						<form className='w-100 me-3'>
+							<input type='search' className='form-control' placeholder='Search...' />
 						</form>
 					</div>
 				</div>
 			</header>
-			<main class='container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto'>
-				<div class='row flex-grow-sm-1 flex-grow-0'>
-					<div class='col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3'>
-						<div class='bg-light border rounded-3 p-1 h-100'>
-							<h6 class='d-none d-sm-block text-muted'>Filtra i prodotti</h6>
-							<ul class='nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate'>
+			<main className='container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto'>
+				<div className='row flex-grow-sm-1 flex-grow-0'>
+					<div className='col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3'>
+						<div className='bg-light border rounded-3 p-1 h-100'>
+							<h6 className='d-none d-sm-block text-muted'>Filtra i prodotti</h6>
+							<ul className='nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate'>
 								<Filter></Filter>
 							</ul>
 						</div>
 					</div>
-					<div class='col overflow-auto h-100'>
-						<div class='bg-light border rounded-3 p-3'>
+					<div className='col overflow-auto h-100'>
+						<div className='bg-light border rounded-3 p-3'>
 							<h2>Catalogo</h2>
 							<GridShop data={prodotti}></GridShop>
 						</div>
