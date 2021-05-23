@@ -87,11 +87,11 @@ function ProdCart(props) {
 
 	return (
 		<div id={props.id} className={'d-flex align-items-center justify-content-between border-bottom border-light pb-3'}>
-			<img src={'/img/' + props.nome + '.png'} alt='prodotto' styleName='prodImage' />
+			<img src={'/img/' + props.path} alt={props.nome} styleName='prodImage' />
 			<p>{props.nome}</p>
 			<p>{props.prezzo + '€'}</p>
 			<div className='d-flex justify-content-center'>
-				<button id={props.id} onClick={decrease} >
+				<button id={props.id} onClick={decrease}>
 					-
 				</button>
 				<input id={props.id} type='number' onChange={updateProd} value={qta} min='1' max={qta} disabled />
