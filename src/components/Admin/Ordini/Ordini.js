@@ -25,7 +25,7 @@ function Ordini() {
 
 	useEffect(() => {
 		load(setOrdini);
-	}, [load, setOrdini]);
+	}, [setOrdini]);
 
 	const TableRow = (props) => {
 		const { idOrdine, idCliente, indirizzo, codice } = props;

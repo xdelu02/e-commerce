@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Prodotto from './Prodotto/Prodotto';
-import { Accordion, Form, InputGroup } from '@themesberg/react-bootstrap';
+import { Form, InputGroup } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Shop.scss';
@@ -72,10 +72,6 @@ function Shop() {
 		return <Prodotto id={data.idProdotto} path={'/img/' + data.path} prezzo={data.prezzo} titolo={data.nome} descS={data.descS} />;
 	};
 
-	const filterBgScreen = () => {
-		return '';
-	};
-
 	useEffect(() => {
 		load(setProdotti, chunk, key);
 	}, [key]);
@@ -85,9 +81,9 @@ function Shop() {
 			<header className='py-3 mb-4 border-bottom'>
 				<div className='container-fluid d-grid gap-3 align-items-center' style={{ gridTemplateColumns: '1fr 2fr' }}>
 					<div>
-						<a href='#' className='d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none'>
-							<i className='bi bi-bootstrap fs-2 text-dark'></i>
-						</a>
+						<div className='d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none'>
+							<i className='bi bi-bootstrap'></i>
+						</div>
 					</div>
 					<div className='d-flex align-items-center'>
 						<form className='w-100 me-3'>

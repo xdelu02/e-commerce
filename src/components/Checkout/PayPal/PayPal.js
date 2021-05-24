@@ -28,7 +28,7 @@ const PayPal = ({cart, setDone}) => {
 				}
 			})
 			.render(paypal.current);
-	}, [cart]);
+	}, [cart, setDone]);
 	return <div ref={paypal}></div>;
 };
 

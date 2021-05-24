@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faEnvelope, faUnlockAlt, faCalendarAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faEnvelope, faUnlockAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-import BgImage from '../../assets/img/illustrations/signin.svg';
-import moment from 'moment-timezone';
-import Datetime from 'react-datetime';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from './Signup.module.scss';
 
 function Signup() {
-	const [birthday, setBirthday] = useState('2008-7-04');
 	const { signup } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -42,7 +38,7 @@ function Signup() {
 					email: email,
 					nome: name,
 					cognome: lastName,
-					dataN: birthday
+					dataN: '2000-01-01'
 				})
 			}).then((res) => {
 				history.push('/');

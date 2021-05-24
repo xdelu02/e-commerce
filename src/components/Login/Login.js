@@ -4,7 +4,6 @@ import { faAngleLeft, faEnvelope, faUnlockAlt } from '@fortawesome/free-solid-sv
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Col, Row, Form, Card, Button, Container, InputGroup, Alert } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-import BgImage from '../../assets/img/illustrations/signin.svg';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 import CSSModules from 'react-css-modules';

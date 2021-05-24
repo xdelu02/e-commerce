@@ -19,7 +19,7 @@ function NavigationBarShop() {
 				<Nav.Link href='/shop' className="py-0">About</Nav.Link>
 			</Navbar.Collapse>
 			<Nav.Link href='/carrello' className='ms-auto py-0'>
-				<img src={ShoppingCart} styleName='cart' />
+				<img src={ShoppingCart} styleName='cart' alt=""/>
 			</Nav.Link>
 		</Navbar>
 	);

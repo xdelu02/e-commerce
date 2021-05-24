@@ -53,7 +53,7 @@ function Carrello() {
 						{cart.length ? (
 							<Link to={'/shop'}>
 								<p>
-									<img src={arrow} style={{ width: '20px', height: '20px' }}></img>Torna al catalogo
+									<img src={arrow} style={{ width: '20px', height: '20px' }} alt=""/>Torna al catalogo
 								</p>
 							</Link>
 						) : null}

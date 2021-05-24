@@ -10,7 +10,6 @@ import { Col } from '@themesberg/react-bootstrap';
 function ProdCart(props) {
 	const cartRedux = useSelector((state) => state.cart);
 	const cart = props.cart;
-	const [borderClass, setBorderClass] = useState('border');
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -66,10 +65,6 @@ function ProdCart(props) {
 		history.push('/carrello');
 	};
 
-	function getClass() {
-		return 'd-flex align-items-center justify-content-between border-bottom border-light pb-3';
-	}
-
 	useEffect(() => {
 		cart.forEach((e) => {
 			if (e.idProdotto === props.id) {
@@ -84,7 +79,7 @@ function ProdCart(props) {
 				return;
 			}
 		});
-	}, [props.id, cart]);
+	}, [props.id, cart, dispatch, props.prezzo]);
 
 	return (
 		<div id={props.id} className={'d-flex align-items-center justify-content-between border-bottom border-light pb-3'}>

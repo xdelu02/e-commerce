@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Col, Row } from '@themesberg/react-bootstrap';
-import { useAuth } from '../../contexts/AuthContext';
 import Datas from './Datas/Datas';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeAllToCart } from '../../actions';
