@@ -69,7 +69,7 @@ export default function AddProduct(props) {
 						<Col md={6} className='mb-3'>
 							<Form.Group>
 								<Form.Label>Descrizione corta</Form.Label>
-								<Form.Control required as='textarea' rows={3} value={descS} onChange={handleDescS} />
+								<Form.Control required as='textarea' rows={3} maxlength='20' value={descS} onChange={handleDescS} />
 							</Form.Group>
 						</Col>
 					</Row>
