@@ -55,6 +55,7 @@ function Checkout() {
 					if (data.message === 'Carrello was updated.') {
 						dispatch(removeAllToCart());
 						localStorage.setItem('cart', JSON.stringify(cartRedux));
+						history.push('/success');
 					} else {
 						history.push('/404');
 					}

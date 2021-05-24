@@ -1,4 +1,6 @@
 import React from 'react';
+import { Col, Row } from '@themesberg/react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Success = () => {
     return (
