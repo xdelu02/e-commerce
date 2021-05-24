@@ -96,18 +96,28 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 										</Col>
 									</Row>
 									<Row className='d-flex justify-content-center'>
-										<Button
-											variant='primary'
-											onClick={() => {
-												if (ind !== '' && numeroCivico !== '' && cap !== '' && citta !== '' && stato !== '') {
-													setCompileForm(false);
-												} else {
-													setToast(true);
-												}
-											}}
-										>
-											Salva
-										</Button>
+										{compileForm ? (
+											<Button
+												variant='primary'
+												onClick={() => {
+													if (ind !== '' && numeroCivico !== '' && cap !== '' && citta !== '' && stato !== '') {
+														setCompileForm(false);
+													} else {
+														setToast(true);
+													}
+												}}
+											>
+												Salva
+											</Button>
+										) : (
+											<Button
+												variant='primary'
+												onClick={() => {setCompileForm(true);
+												}}
+											>
+												Annulla
+											</Button>
+										)}
 									</Row>
 								</Form>
 							</Col>

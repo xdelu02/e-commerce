@@ -25,3 +25,9 @@ export function addifnotToCart(prod) {
 		prodotto: prod
 	};
 }
+
+export function removeAllToCart() {
+	return {
+		type: 'removeall'
+	};
+}

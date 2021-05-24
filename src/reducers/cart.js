@@ -41,6 +41,9 @@ const cartReducer = (state = [], action) => {
 			if (b) state.push(action.prodotto);
 			return state;
 
+		case 'removeall':
+			return [];
+
 		default:
 			return state;
 	}
