@@ -4,7 +4,7 @@ import Categorie from './Categorie/Categorie';
 
 function Filter() {
 	return (
-		<div>
+		<div className="filter-filter">
 			<Prezzi />
 			<Categorie />
 		</div>

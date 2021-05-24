@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Prodotto from './Prodotto/Prodotto';
-import { Form, InputGroup } from '@themesberg/react-bootstrap';
+import { Accordion, Form, InputGroup } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Shop.scss';
 import Filter from './Filtri/Filter';
+import AccordionComponent from '../Accordion/AccordionComponent';
 
 function load(setProdotti, chunk, key) {
 	fetch('/api/prodotti/?key=' + key)
@@ -71,6 +72,10 @@ function Shop() {
 		return <Prodotto id={data.idProdotto} path={'/img/' + data.path} prezzo={data.prezzo} titolo={data.nome} descS={data.descS} />;
 	};
 
+	const filterBgScreen = () => {
+		return '';
+	};
+
 	useEffect(() => {
 		load(setProdotti, chunk, key);
 	}, [key]);
@@ -86,24 +91,44 @@ function Shop() {
 					</div>
 					<div className='d-flex align-items-center'>
 						<form className='w-100 me-3'>
-							<input type='search' className='form-control' placeholder='Search...' onChange={searchProd} />
+							<InputGroup onChange={searchProd}>
+								<InputGroup.Text>
+									<FontAwesomeIcon icon={faSearch} />
+								</InputGroup.Text>
+								<Form.Control type='text' placeholder='Cerca un prodotto...' />
+							</InputGroup>
 						</form>
 					</div>
 				</div>
 			</header>
-			<main className='container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto'>
+			<main className='container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto '>
 				<div className='row flex-grow-sm-1 flex-grow-0'>
-					<div className='col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3'>
+					<div className='col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3 filter-products-shop '>
 						<div className='bg-light border rounded-3 p-1 h-100'>
-							<h6 className='d-none d-sm-block text-muted'>Filtra i prodotti</h6>
+							<h5 className='d-none d-sm-block text-bold mt-4'>Imposta filtri</h5>
+							<hr className='d-none d-sm-block text-muted' />
 							<ul className='nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate'>
 								<Filter></Filter>
 							</ul>
 						</div>
 					</div>
+
+					<AccordionComponent
+						className='filter-products-shop-sm mb-3'
+						defaultKey='panel-1'
+						data={[
+							{
+								id: 2,
+								eventKey: 'panel-2',
+								title: 'Imposta filtri',
+								description: <Filter></Filter>
+							}
+						]}
+					/>
+
 					<div className='col overflow-auto h-100'>
 						<div className='bg-light border rounded-3 p-3'>
-							<h2>Catalogo</h2>
+							<h3>Catalogo</h3>
 							<GridShop data={prodotti}></GridShop>
 						</div>
 					</div>
