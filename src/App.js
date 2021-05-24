@@ -12,6 +12,7 @@ import Account from './components/Account/Account';
 import Admin from './components/Admin/Admin';
 import NotFound from './components/NotFound/NotFound';
 import Checkout from './components/Checkout/Checkout';
+import Success from './components/Success/Success';
 
 function App() {
 	const RenderNavBar = withRouter(({ location }) => {
@@ -48,6 +49,7 @@ function App() {
 				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
 				<Route path='/checkout' exact component={Checkout} />
+				<Route path='/success' exact component={Success} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />
