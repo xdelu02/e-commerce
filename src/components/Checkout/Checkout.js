@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeAllToCart } from '../../actions';
 
 function Checkout() {
+	let isFirst = true;
 	const history = useHistory('/checkout');
 	const cartRedux = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
@@ -34,10 +35,11 @@ function Checkout() {
 		setStato(e.target.value);
 	};
 
-	class Success extends React.Component {
+	const Success = () => {
 		//const { getCurrentUserEmail } = useAuth();
 
-		componentDidMount() {
+		if (isFirst) {
+			isFirst = false;
 			fetch('/api/carrelli/', {
 				method: 'PATCH',
 				headers: {
@@ -55,31 +57,30 @@ function Checkout() {
 					if (data.message === 'Carrello was updated.') {
 						dispatch(removeAllToCart());
 						localStorage.setItem('cart', JSON.stringify(cartRedux));
-						history.push('/success');
-					} else {
+						window.location.href = '/success';
+					}
+					if (data.message === 'Unable to update carrello.') {
 						history.push('/404');
 					}
 				})
 				.catch(() => history.push('/404'));
 		}
 
-		render() {
-			return (
-				<div>
-					<Row>
-						<Col className='md-12 text-center'>Pagamento avvenuto con successo!</Col>
-					</Row>
-					<Row>
-						<Col className='md-12 text-center'>
-							<Link to='/shop' className='btn btn-primary text-center'>
-								Torna al catalogo
-							</Link>
-						</Col>
-					</Row>
-				</div>
-			);
-		}
-	}
+		return (
+			<div>
+				<Row>
+					<Col className='md-12 text-center'>Pagamento avvenuto con successo!</Col>
+				</Row>
+				<Row>
+					<Col className='md-12 text-center'>
+						<Link to='/shop' className='btn btn-primary text-center'>
+							Torna al catalogo
+						</Link>
+					</Col>
+				</Row>
+			</div>
+		);
+	};
 
 	useEffect(() => {
 		if (!JSON.parse(localStorage.getItem('cart')).length) {
