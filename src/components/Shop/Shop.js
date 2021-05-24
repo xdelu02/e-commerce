@@ -18,6 +18,7 @@ function load(setProdotti, chunk, key) {
 				}
 			},
 			(error) => {
+				setProdotti([]);
 				console.log(error);
 			}
 		);
@@ -47,7 +48,6 @@ function Shop() {
 	};
 
 	const GridShop = ({ data }) => {
-		console.log(data);
 		return (
 			<div className='mt-5 w-100'>
 				{data.map((row, i) => (
@@ -68,7 +68,7 @@ function Shop() {
 	};
 
 	const Cell = ({ data }) => {
-		return <Prodotto id={data.idProdotto} path={'/img/' + data.nome + '.png'} prezzo={data.prezzo} titolo={data.nome} descS={data.descS} />;
+		return <Prodotto id={data.idProdotto} path={'/img/' + data.path} prezzo={data.prezzo} titolo={data.nome} descS={data.descS} />;
 	};
 
 	useEffect(() => {
@@ -86,7 +86,7 @@ function Shop() {
 					</div>
 					<div className='d-flex align-items-center'>
 						<form className='w-100 me-3'>
-							<input type='search' className='form-control' placeholder='Search...' />
+							<input type='search' className='form-control' placeholder='Search...' onChange={searchProd} />
 						</form>
 					</div>
 				</div>

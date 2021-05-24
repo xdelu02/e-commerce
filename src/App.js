@@ -56,7 +56,7 @@ function App() {
 					<Route path='/signup' exact component={Signup} />
 					<Route path='/login' exact component={Login} />
 				</AuthProvider>
-				<Route component={NotFound} />
+				<Route path='' component={NotFound} />
 			</Switch>
 		</Router>
 	);
