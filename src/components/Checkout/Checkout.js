@@ -1,12 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import Datas from './Datas/Datas';
 
-function Checkout () {
+function Checkout() {
 	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const [done, setDone] = useState(false);
-	const paypal = useRef();
+	const [ind, setInd] = useState('');
+	const [numeroCivico, setNumeroCivico] = useState('');
+	const [cap, setCap] = useState('');
+	const [citta, setCitta] = useState('');
+	const [stato, setStato] = useState('Italia');
 
-
+	const handleInd = (e) => {
+		setInd(e.target.value);
+	};
+	const handleNCivico = (e) => {
+		setNumeroCivico(e.target.value);
+	};
+	const handleCap = (e) => {
+		setCap(e.target.value);
+	};
+	const handleCitta = (e) => {
+		setCitta(e.target.value);
+	};
+	const handleStato = (e) => {
+		setStato(e.target.value);
+	};
 
 	const Success = () => {
 		const { getCurrentUserEmail } = useAuth();
@@ -19,46 +38,43 @@ function Checkout () {
 				},
 				body: JSON.stringify({
 					idCliente: getCurrentUserEmail,
-					indirizzo: 'INDIRIZZODAFARE',
+					indirizzo: ind+' '+numeroCivico+', '+cap+', '+citta+', '+stato,
 					importo: cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)
 				})
 			});
 		});
 
 		return <div>Pagamento avvenuto con successo. Torna al negozio.</div>;
-	} 
+	};
 
 	useEffect(() => {
-		if (JSON.parse(localStorage.getItem('cart')).length === 0) {
+		if (!JSON.parse(localStorage.getItem('cart')).length) {
 			window.location.href = '/shop';
 		}
-		window.paypal
-			.Buttons({
-				createOrder: (data, actions, err) => {
-					return actions.order.create({
-						intent: 'CAPTURE',
-						purchase_units: [
-							{
-								description: 'cool looking table',
-								amount: {
-									value: cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)
-								}
-							}
-						]
-					});
-				},
-				onApprove: async (data, actions) => {
-					await actions.order.capture();
-					setDone(true);
-				},
-				onError: (err) => {
-					console.log(err);
-				}
-			})
-			.render(paypal.current);
-	}, [cart]);
+	}, []);
 
-	return <div>{done ? <Success /> : <div ref={paypal}></div>}</div>;
-};
+	return (
+		<div>
+			{done ? (
+				<Success />
+			) : (
+				<Datas
+					cart={cart}
+					setDone={setDone}
+					ind={ind}
+					numeroCivico={numeroCivico}
+					cap={cap}
+					citta={citta}
+					stato={stato}
+					handleInd={handleInd}
+					handleNCivico={handleNCivico}
+					handleCap={handleCap}
+					handleCitta={handleCitta}
+					handleStato={handleStato}
+				/>
+			)}
+		</div>
+	);
+}
 
 export default Checkout;
