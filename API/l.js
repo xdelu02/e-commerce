@@ -21,20 +21,35 @@
 //     });
 // });
 
-fetch("http://localhost/API/api/clienti/", {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        email: "djdjd@it.it",
-        nome: "Piero",
-        cognome: "Gianni",
-        dataN: "2000-01-01"
-    }),
+fetch('http://localhost/API/api/carrelli/', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({
+		idCliente: 'djdjd@it.it',
+		indirizzo: 'Via del filarete 17, 50143, Firenze, Italia',
+		importo: 170.50
+	})
+})
+	.then((res) => res.json())
+	.then((data) => {
+		console.log(data);
+	});
+/*
+fetch("http://localhost/API/api/carrelli/", {
+	method: "PATCH",
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: JSON.stringify({
+		idCliente: "djdjd@it.it",
+		indirizzo: "VIA VIALE",
+		importo: 200,
+	}),
 }).then((res) => {
-    console.log(res.json());
-});
+	console.log(res.json());
+});*/
 
 // http://localhost/API/api/prodotti/?idCategoria=[idCategoria]
 // http://localhost/API/api/prodotti/?key=[parola chiave]

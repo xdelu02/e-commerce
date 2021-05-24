@@ -108,6 +108,13 @@
 
 		// update
 		function update() {
+			$stmt = $this->readEmail();
+			$num = $stmt->rowCount();
+
+			if($num != 1) {
+				return false;
+			}
+			
 			// query for code
 			$stmt1 = $this->read();
 			$cli = "";
