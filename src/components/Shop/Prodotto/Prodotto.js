@@ -21,16 +21,16 @@ function Prodotto(props) {
 	};
 
 	return (
-		<Link className='card w-100 product-card' to={'/shop/' + props.id}>
+		<Link className='card w-100 product-card h-100' to={'/shop/' + props.id}>
 			<div className='card-thumbnail ratio ratio-1x1'>
-				<img src={props.path} alt='prodotto' className='img-fluid' style={{ objectFit: 'scale-down' }} />
+				<img src={props.path} alt='prodotto' className='img-fluid rounded-8' style={{ objectFit: 'scale-down' }} />
 			</div>
-			<h4 className='mt-2 text-primary ms-1'>{props.titolo}</h4>
-			<p className='ms-1'>{props.descS}</p>
-			<p className='ms-1 text-bold'>{props.prezzo} €</p>
-			<a href='#' className='btn btn-sm btn-primary float-right' onClick={handleOnClick}>
+			<h5 className='mt-2 text-dark ms-1'>{props.titolo}</h5>
+			<p className='ms-1 text-gray'>{props.descS}</p>
+			<p className='ms-1 font-monospace fw-bold'>{props.prezzo} €</p>
+			<button className='btn btn-sm btn-primary float-right py-2' onClick={handleOnClick}>
 				Aggiungi al carrello
-			</a>
+			</button>
 		</Link>
 	);
 }

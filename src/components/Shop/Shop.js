@@ -136,6 +136,7 @@ function Shop() {
 								.map((e, index) => (
 									<Prodotto id={e.idProdotto} path={'/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
 								))}
+								
 						</div>
 					</div>
 				</div>

@@ -1,8 +1,14 @@
 $mainColor: #007cc3;
 
 .product-card .card-thumbnail:hover {
-	transform: scale(.9);
+	transform: scale(0.9);
 }
 .product-card .card-thumbnail {
 	transition: 1s;
+}
+
+.product-card {
+	button {
+		margin-top: auto;
+	}
 }
