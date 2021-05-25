@@ -5,6 +5,7 @@ import { addToCart } from '../../actions';
 import { useHistory } from 'react-router';
 import CSSModules from 'react-css-modules';
 import styles from './DettaglioProdotto.module.scss';
+import { Button, Form } from '@themesberg/react-bootstrap';
 
 function DettaglioProdotto(props) {
 	const cart = useSelector((state) => state.cart);
@@ -14,6 +15,10 @@ function DettaglioProdotto(props) {
 	const dispatch = useDispatch();
 	const history = useHistory('/shop');
 	let id = props.match.params.id;
+	const [a, setA] = useState({ idProdotto: 0, path: 'logo-noname.png' });
+	const [b, setB] = useState({ idProdotto: 0, path: 'logo-noname.png' });
+	const [c, setC] = useState({ idProdotto: 0, path: 'logo-noname.png' });
+	const [d, setD] = useState({ idProdotto: 0, path: 'logo-noname.png' });
 
 	useEffect(() => {
 		fetch('/api/prodotti/' + id)
@@ -33,38 +38,65 @@ function DettaglioProdotto(props) {
 					history.push('/');
 				}
 			);
+		fetch('/api/prodotti/?rand=t')
+			.then((res) => res.json())
+			.then((data) => {
+				setA(data);
+			});
+		fetch('/api/prodotti/?rand=t')
+			.then((res) => res.json())
+			.then((data) => {
+				setB(data);
+			});
+		fetch('/api/prodotti/?rand=t')
+			.then((res) => res.json())
+			.then((data) => {
+				setC(data);
+			});
+		fetch('/api/prodotti/?rand=t')
+			.then((res) => res.json())
+			.then((data) => {
+				setD(data);
+			});
 	}, [id, history]);
 
 	const handleChange = async (e) => {
 		setQta(parseInt(e.target.value));
 	};
 
+	const goToDetailProduct = async (ide) => {
+		history.push('/shop/' + ide);
+	};
+
 	return (
-		<div styleName='wrapper'>
-			<div styleName='product-title'>
-				<h3>{prodotto.nome}</h3>
-			</div>
-			<div styleName='product-image'>
-				<img src={'/img/' + prodotto.nome + '.png'} alt='prodotto' />
-			</div>
-			<div styleName='product-buy'>
-				<div styleName='product-price'>
-					<h4>Prezzo:</h4>
-					<p>€ {prodotto.prezzo}</p>
+		<div className='container'>
+			<h1 className='my-4'>{prodotto.nome}</h1>
+
+			<div className='row'>
+				<div className='col-md-8'>
+					<img className='img-fluid' src={'/img/' + prodotto.nome + '.png'} alt='' />
 				</div>
 
-				<div styleName='product-option'>
-					<h4>Quantità:</h4>
-					<select onChange={handleChange}>
-						{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
-							<option value={n} key={n}>
-								{n}
-							</option>
-						))}
-					</select>
+				<div className='col-md-4'>
+					<h3 className='my-3'>Descrizione prodotto</h3>
+					<p>{ReactHtmlParser(prodotto.descL)}</p>
+					<p>
+						Prezzo: <span className='fw-bolder'>€ {prodotto.prezzo}</span>
+					</p>
 
-					<button
-						className='btn btn--block'
+					<Form.Group className='mb-3'>
+						<Form.Label>Quantità:</Form.Label>
+						<Form.Select onChange={handleChange} className='w-25'>
+							{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
+								<option value={n} key={n}>
+									{n}
+								</option>
+							))}
+						</Form.Select>
+					</Form.Group>
+
+					<Button
+						className='mt-4'
 						onClick={() => {
 							dispatch(
 								addToCart({
@@ -76,13 +108,28 @@ function DettaglioProdotto(props) {
 							localStorage.setItem('cart', JSON.stringify(cart));
 						}}
 					>
-						ADD TO CART
-					</button>
+						Aggiungi al carrello
+					</Button>
 				</div>
 			</div>
-			<div styleName='product-description'>
-				<h4>Descrizione</h4>
-				<p>{ReactHtmlParser(prodotto.descL)}</p>
+			<h3 className='my-4'>Potrebbero interessarti</h3>
+
+			<div className='row'>
+				<div className='col-md-3 col-sm-6 mb-4'>
+					<img className='img-fluid' styleName='height-max' src={'/img/' + a.path} alt='' onClick={() => history.push('/shop/' + a.idProdotto)} />
+				</div>
+
+				<div className='col-md-3 col-sm-6 mb-4'>
+					<img className='img-fluid' styleName='height-max' src={'/img/' + b.path} alt='' onClick={() => history.push('/shop/' + b.idProdotto)} />
+				</div>
+
+				<div className='col-md-3 col-sm-6 mb-4'>
+					<img className='img-fluid' styleName='height-max' src={'/img/' + c.path} alt='' onClick={() => history.push('/shop/' + c.idProdotto)} />
+				</div>
+
+				<div className='col-md-3 col-sm-6 mb-4'>
+					<img className='img-fluid' styleName='height-max' src={'/img/' + d.path} alt='' onClick={() => history.push('/shop/' + d.idProdotto)} />
+				</div>
 			</div>
 		</div>
 	);
