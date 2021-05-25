@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProdAdmin from './ProdAdmin';
 import CSSModules from 'react-css-modules';
 import styles from './Prodotti.module.scss';
-import { Button, Form, InputGroup } from '@themesberg/react-bootstrap';
+import { Form, InputGroup } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
