@@ -59,7 +59,7 @@ function Prodotti() {
 
 			<div styleName='auto-grid'>
 				{prodotti.map((e, i) => (
-					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} />
+					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} path={e.path} />
 				))}
 			</div>
 		</div>
