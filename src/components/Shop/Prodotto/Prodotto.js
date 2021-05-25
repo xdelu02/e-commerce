@@ -25,10 +25,10 @@ function Prodotto(props) {
 			<div className='card-thumbnail ratio ratio-1x1'>
 				<img src={props.path} alt='prodotto' className='img-fluid' style={{ objectFit: 'scale-down' }} />
 			</div>
-			<h4 className='mt-2 text-danger'>{props.titolo}</h4>
-			<p className='text-secondary'>{props.descS}</p>
-			<p className=''>{props.prezzo} €</p>
-			<a href='#' className='btn btn-sm btn-danger float-right' onClick={handleOnClick}>
+			<h4 className='mt-2 text-primary ms-1'>{props.titolo}</h4>
+			<p className='ms-1'>{props.descS}</p>
+			<p className='ms-1 text-bold'>{props.prezzo} €</p>
+			<a href='#' className='btn btn-sm btn-primary float-right' onClick={handleOnClick}>
 				Aggiungi al carrello
 			</a>
 		</Link>

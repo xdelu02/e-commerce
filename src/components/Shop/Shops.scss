@@ -4,7 +4,6 @@ $breakPointShopProdotti: 700px;
 	.filter-products-shop {
 		display: none !important;
 	}
-
 }
 
 @media screen and (min-width: $breakPointShopProdotti) {
@@ -18,3 +17,4 @@ $breakPointShopProdotti: 700px;
 .accordion-button:focus {
 	box-shadow: none !important;
 }
+
