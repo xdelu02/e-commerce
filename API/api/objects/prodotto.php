@@ -1,4 +1,5 @@
 <?php
+	include 'immagine.php';
 	class Prodotto {
 		// connessione al db e nome tabella
 		private $conn;
@@ -174,9 +175,31 @@
 			$stmt->bindParam(":quantita", $this->quantita);
 			$stmt->bindParam(":idCategoria", $this->idCategoria);
 
-			if($stmt->execute())
-				return true;
+			if(!$stmt->execute()) {
+				return false;
+			}
 			
+			$query2 = "SELECT
+						p.idProdotto as idProdotto
+					FROM
+						Prodotti as p
+					ORDER BY p.idProdotto DESC
+					LIMIT 1";
+			$stmt2 = $this->conn->prepare($query2);
+
+			$stmt2->execute();
+			$id = 0;
+			while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+				$id = $row['idProdotto'];
+			}
+
+			$img = new Immagine($this->conn);
+			$img->idProdotto = $id;
+			$img->path = $this->path;
+
+			if($img->create())
+				return true;
+
 			return false;
 		}
 

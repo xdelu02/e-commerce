@@ -25,7 +25,8 @@
 		!empty($data->descL) &&
 		!empty($data->prezzo) &&
 		!empty($data->quantita) &&
-		!empty($data->idCategoria)
+		!empty($data->idCategoria) &&
+		!empty($data->path)
 	) {
 		// set obj property values
 		$obj->nome = $data->nome;
@@ -34,6 +35,7 @@
 		$obj->prezzo = $data->prezzo;
 		$obj->quantita = $data->quantita;
 		$obj->idCategoria = $data->idCategoria;
+		$obj->path = $data->path;
 
 		// create the obj
 		if($obj->create()) {
