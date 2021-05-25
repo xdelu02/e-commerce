@@ -44,19 +44,17 @@ function Prodotti() {
 
 	return (
 		<div styleName='container'>
-			<div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4'>
-				<InputGroup onChange={searchProd}>
+			<div className='d-flex justify-content-between flex-nowrap flex-md-nowrap align-items-center py-4'>
+				<InputGroup onChange={searchProd} className="me-5">
 					<InputGroup.Text>
 						<FontAwesomeIcon icon={faSearch} />
 					</InputGroup.Text>
 					<Form.Control type='text' placeholder='Cerca un prodotto...' />
 				</InputGroup>
-				<Button variant='secondary' className='text-dark' onClick={handleAggiungi}>
-					<span className='icon icon-small ms-1'>
-						<FontAwesomeIcon icon={faPlus} className='me-2' />
-						<span>Aggiungi prodotto</span>
-					</span>
-				</Button>
+				<button className='btn text-dark bg-secondary' onClick={handleAggiungi}>
+					<FontAwesomeIcon icon={faPlus} />
+					Nuovo
+				</button>
 			</div>
 
 			<div styleName='auto-grid'>

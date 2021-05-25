@@ -26,5 +26,11 @@
 	max-width: 68rem;
 	margin: 1rem auto;
 	padding: 0 1rem;
-}
 
+	button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}
