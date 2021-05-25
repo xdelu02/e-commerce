@@ -9,17 +9,14 @@ function AddProduct() {
 	const [nome, setNome] = useState('');
 	const [descS, setDescS] = useState('');
 	const [descL, setDescL] = useState('');
-	const [id, setId] = useState('');
 	const [categoria, setCategoria] = useState('');
 	const [prezzo, setPrezzo] = useState('');
 	const [qta, setQta] = useState(0);
 	const [dropZoneClass, setDropZoneClass] = useState('');
 	const [files, setFiles] = useState([]);
+	const [filesNoPrew, setFilesNoPrew] = useState([]);
 	const history = useHistory('/admin/prodotti');
 
-	const handleId = (e) => {
-		setId(e.target.value);
-	};
 	const handleNome = (e) => {
 		setNome(e.target.value);
 	};
@@ -51,12 +48,27 @@ function AddProduct() {
 				descL: descL,
 				prezzo: parseFloat(prezzo),
 				quantita: parseInt(qta),
-				idCategoria: categoria
+				idCategoria: categoria,
+				path: files[0].path
 			})
 		})
 			.then((response) => response.json())
 			.then(() => {
-				history.push('/admin/prodotti');
+				const formData = new FormData();
+				formData.append('inpFile', filesNoPrew[0]);
+				fetch('/api/img/', {
+					method: 'POST',
+					body: formData
+				})
+					.then(() => window.location.href = '/admin/prodotti/')
+					.catch((err) => {
+						console.log(err);
+						history.push('/404');
+					});
+			})
+			.catch((err) => {
+				console.log(err);
+				history.push('/404');
 			});
 	};
 
@@ -78,6 +90,7 @@ function AddProduct() {
 						preview: URL.createObjectURL(file)
 					}))
 				);
+				setFilesNoPrew(files.map((file) => file));
 				handleImage();
 			}
 		});
@@ -126,13 +139,7 @@ function AddProduct() {
 					<Col xl={6}>
 						<Form>
 							<Row>
-								<Col md={3} className='mb-3'>
-									<Form.Group styleName='id'>
-										<Form.Label>ID</Form.Label>
-										<Form.Control required type='text' onChange={handleId} />
-									</Form.Group>
-								</Col>
-								<Col md={4} className='mb-3'>
+								<Col md={10} className='mb-3'>
 									<Form.Group>
 										<Form.Label>Nome prodotto</Form.Label>
 										<Form.Control required type='text' onChange={handleNome} />
@@ -143,7 +150,7 @@ function AddProduct() {
 								<Col md={10} className='mb-3'>
 									<Form.Group>
 										<Form.Label>Descrizione corta</Form.Label>
-										<Form.Control maxlength='20' required as='textarea' rows={3} onChange={handleDescS} />
+										<Form.Control maxLength='20' required as='textarea' rows={3} onChange={handleDescS} />
 									</Form.Group>
 								</Col>
 							</Row>
