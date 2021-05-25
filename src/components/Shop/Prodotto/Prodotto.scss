@@ -8,6 +8,10 @@ $mainColor: #007cc3;
 }
 
 .product-card {
+	img {
+		transform: translateY(1.1%);
+	}
+
 	button {
 		margin-top: auto;
 	}
