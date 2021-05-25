@@ -211,13 +211,21 @@
 		function search($keywords) {
 			// select all query
 			$query = "SELECT
-						idProdotto, nome, descS, descL, prezzo, quantita, idCategoria
+						p.idProdotto as idProdotto,
+						p.nome as nome,
+						p.descS as descS,
+						p.descL as descL,
+						p.prezzo as prezzo,
+						p.quantita as quantita,
+						p.idCategoria as idCategoria,
+						i.path as path
 					FROM
-						" . $this->table_name . " p
+						Prodotti as p INNER JOIN Immagini as i
+						ON p.idProdotto = i.idProdotto
 					WHERE
 						p.nome LIKE ? OR p.descS LIKE ? OR p.descL LIKE ? OR p.idCategoria LIKE ?
 					ORDER BY
-						p.idProdotto";
+						p.nome";
 		
 			// prepare query statement
 			$stmt = $this->conn->prepare($query);
