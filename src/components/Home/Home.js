@@ -45,7 +45,7 @@ function Home() {
 						</Link>
 						<Carousel.Caption style={{ background: '#ffffff66' }}>
 							<h3>{b.nome}</h3>
-							<p>{a.descS}</p>
+							<p>{b.descS}</p>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item autoPlay={true} interval={2000} controls={false} indicators={false}>
@@ -54,7 +54,7 @@ function Home() {
 						</Link>
 						<Carousel.Caption style={{ background: '#ffffff66' }}>
 							<h3>{c.nome}</h3>
-							<p>{a.descS}</p>
+							<p>{c.descS}</p>
 						</Carousel.Caption>
 					</Carousel.Item>
 				</Carousel>
