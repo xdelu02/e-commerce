@@ -1,62 +1,8 @@
-/* Card Styles */
+$mainColor: #007cc3;
 
-.card-sl {
-	border-radius: 8px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.product-card .card-thumbnail:hover {
+	transform: scale(.9);
 }
-
-.card-image img {
-	max-height: 100%;
-	max-width: 100%;
-	border-radius: 8px 8px 0px 0;
-}
-
-.card-action {
-	position: relative;
-	float: right;
-	margin-top: -25px;
-	margin-right: 20px;
-	z-index: 2;
-	color: #e26d5c;
-	background: #fff;
-	border-radius: 100%;
-	padding: 15px;
-	font-size: 15px;
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-}
-
-.prezzo-prodotto {
-	font-weight: bold;
-}
-
-.card-heading {
-	font-size: 18px;
-	font-weight: bold;
-	background: #fff;
-	padding: 10px 15px;
-}
-
-.card-text {
-	padding: 10px 15px;
-	background: #fff;
-	font-size: 14px;
-	color: #636262;
-}
-
-.card-button {
-	display: flex;
-	justify-content: center;
-	padding: .3rem 0;
-	position: absolute;
-	bottom: 0px;
-	width: 100%;
-	background-color: #1f487e;
-	color: #fff;
-	border-radius: 0 0 8px 8px;
-}
-
-.card-button:hover {
-	text-decoration: none;
-	background-color: #1d3461;
-	color: #fff;
+.product-card .card-thumbnail {
+	transition: 1s;
 }

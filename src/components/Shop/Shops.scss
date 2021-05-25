@@ -1,10 +1,13 @@
-@media screen and (max-width: 576px) {
+$breakPointShopProdotti: 700px;
+
+@media screen and (max-width: $breakPointShopProdotti) {
 	.filter-products-shop {
 		display: none !important;
 	}
+
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: $breakPointShopProdotti) {
 	.filter-products-shop-sm {
 		position: absolute;
 		left: -99999px !important;
@@ -14,12 +17,4 @@
 
 .accordion-button:focus {
 	box-shadow: none !important;
-}
-
-.border-gray-rem {
-	border: 0.0625rem solid rgba(46, 54, 80, 0.125) !important;
-}
-
-.filter-filter {
-	background-color: #f5f8fe;
 }

@@ -3,9 +3,11 @@ import Prodotto from './Prodotto/Prodotto';
 import { Form, InputGroup } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import './Shop.scss';
 import Filter from './Filtri/Filter';
 import AccordionComponent from '../Accordion/AccordionComponent';
+import './Shops.scss';
+import CSSModules from 'react-css-modules';
+import styles from './Shop.module.scss';
 
 function load(setProdotti, chunk, key) {
 	fetch('/api/prodotti/?key=' + key)
@@ -15,7 +17,7 @@ function load(setProdotti, chunk, key) {
 				if (result.message === 'No matching Prodotti found.') {
 					setProdotti([]);
 				} else {
-					setProdotti(chunk(result.records));
+					setProdotti(result.records);
 				}
 			},
 			(error) => {
@@ -26,7 +28,7 @@ function load(setProdotti, chunk, key) {
 }
 
 function chunk(arr) {
-	const size = 4;
+	const size = 3;
 	const chunkedArray = [];
 	for (let i = 0; i < arr.length; i++) {
 		const last = chunkedArray[chunkedArray.length - 1];
@@ -50,17 +52,17 @@ function Shop() {
 
 	const GridShop = ({ data }) => {
 		return (
-			<div className='mt-5 w-100'>
+			<>
 				{data.map((row, i) => (
 					<RowProdotti data={row} key={i} />
 				))}
-			</div>
+			</>
 		);
 	};
 
 	const RowProdotti = ({ data }) => {
 		return (
-			<div className='row equal d-flex justify-content-center'>
+			<div className='row'>
 				{data.map((cell, i) => (
 					<Cell data={cell} key={i} />
 				))}
@@ -122,10 +124,18 @@ function Shop() {
 						]}
 					/>
 
-					<div className='col overflow-auto h-100'>
-						<div className='bg-light border rounded-3 p-3'>
-							<h3>Catalogo</h3>
-							<GridShop data={prodotti}></GridShop>
+					<div className='col overflow-auto h-100 ms-md-5'>
+						<h3>Catalogo</h3>
+
+						<div styleName='auto-grid'>
+							{prodotti
+								.filter((val) => {
+									if (val.quantita > 0) return val;
+									else return null;
+								})
+								.map((e, index) => (
+									<Prodotto id={e.idProdotto} path={'/img/' + e.nome + '.png'} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
+								))}
 						</div>
 					</div>
 				</div>
@@ -134,4 +144,4 @@ function Shop() {
 	);
 }
 
-export default Shop;
+export default CSSModules(Shop, styles, { allowMultiple: true });

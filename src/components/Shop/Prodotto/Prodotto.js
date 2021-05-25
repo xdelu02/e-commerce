@@ -21,20 +21,17 @@ function Prodotto(props) {
 	};
 
 	return (
-		<div className='col-lg-4 col-md-2 d-flex pb-3'>
-			<Link className='card card-block' to={'/shop/' + props.id}>
-				<div className='card-image'>
-					<img src={props.path} alt='prodotto' className='"card-img-top' />
-				</div>
-				<div className='card-heading'>{props.titolo}</div>
-				<div className='card-text descrizione-prodotto'>{props.descS}</div>
-				<h3 className='card-text prezzo-prodotto'>{props.prezzo} €</h3>
-
-				<button type='button' className='card-button bottone-card btn btn-primary' onClick={handleOnClick} style={{ borderTopLeftRadius: '0px', borderTopRigthRadius: '0px' }}>
-					Aggiungi al carrello
-				</button>
-			</Link>
-		</div>
+		<Link className='card w-100 product-card' to={'/shop/' + props.id}>
+			<div className='card-thumbnail ratio ratio-1x1'>
+				<img src={props.path} alt='prodotto' className='img-fluid' style={{ objectFit: 'scale-down' }} />
+			</div>
+			<h4 className='mt-2 text-danger'>{props.titolo}</h4>
+			<p className='text-secondary'>{props.descS}</p>
+			<p className=''>{props.prezzo} €</p>
+			<a href='#' className='btn btn-sm btn-danger float-right' onClick={handleOnClick}>
+				Aggiungi al carrello
+			</a>
+		</Link>
 	);
 }
 
