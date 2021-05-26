@@ -17,7 +17,9 @@ class Categorie extends React.Component {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					this.setState({ categorie: result.records });
+					if (result.message !== 'No Categorie found.') {
+						this.setState({ categorie: result.records });
+					}
 				},
 				(error) => {
 					console.log(error);

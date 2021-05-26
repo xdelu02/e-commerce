@@ -14,14 +14,11 @@ function load(setProdotti, chunk, key) {
 		.then((res) => res.json())
 		.then(
 			(result) => {
-				if (result.message === 'No matching Prodotti found.') {
-					setProdotti([]);
-				} else {
+				if (result.message !== 'No Prodotti found.' && result.message !== 'No matching Prodotti found.') {
 					setProdotti(result.records);
 				}
 			},
 			(error) => {
-				setProdotti([]);
 				console.log(error);
 			}
 		);
@@ -129,14 +126,13 @@ function Shop() {
 
 						<div styleName='auto-grid'>
 							{prodotti
-								.filter((val) => {
-									if (val.quantita > 0) return val;
-									else return null;
-								})
-								.map((e, index) => (
-									<Prodotto id={e.idProdotto} path={'/img/' + e.path} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />
-								))}
-								
+								? prodotti
+										.filter((val) => {
+											if (val.quantita > 0) return val;
+											else return null;
+										})
+										.map((e, index) => <Prodotto id={e.idProdotto} path={'/img/' + e.path} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />)
+								: null}
 						</div>
 					</div>
 				</div>

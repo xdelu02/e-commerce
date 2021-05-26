@@ -3,8 +3,6 @@ import CSSModules from 'react-css-modules';
 import styles from './Home.module.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { Carousel, Col } from '@themesberg/react-bootstrap';
-import FooterShop from '../Footer/FooterShop';
-
 
 function Home() {
 	const history = useHistory('/');
@@ -60,14 +58,12 @@ function Home() {
 						</Carousel.Caption>
 					</Carousel.Item>
 				</Carousel>
-				<Col className='md-12 text-center'>
-					<Link to='/shop' className='text-center'>
-						Visita il catalogo
-					</Link>
-				</Col>
 			</div>
-
-			<FooterShop></FooterShop>
+			<Col className='md-12 text-center'>
+				<Link to='/shop' className='btn btn-primary text-center'>
+					Visita il catalogo
+				</Link>
+			</Col>
 		</>
 	);
 }

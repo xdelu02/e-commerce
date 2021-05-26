@@ -60,7 +60,7 @@ function AddProduct() {
 					method: 'POST',
 					body: formData
 				})
-					.then(() => window.location.href = '/admin/prodotti/')
+					.then(() => (window.location.href = '/admin/prodotti/'))
 					.catch((err) => {
 						console.log(err);
 						history.push('/404');

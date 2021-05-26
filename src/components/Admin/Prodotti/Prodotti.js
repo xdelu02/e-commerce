@@ -12,14 +12,12 @@ const load = (key, setProdotti) => {
 		.then((res) => res.json())
 		.then(
 			(result) => {
-				if (result.message !== 'No matching Prodotti found.') {
+				if (result.message !== 'No Prodotti found.' && result.message !== 'No matching Prodotti found.') {
 					setProdotti(result.records);
-				} else {
-					setProdotti([]);
 				}
 			},
 			(error) => {
-				setProdotti([]);
+				console.log(error);
 			}
 		);
 };
@@ -45,7 +43,7 @@ function Prodotti() {
 	return (
 		<div styleName='container'>
 			<div className='d-flex justify-content-between flex-nowrap flex-md-nowrap align-items-center py-4'>
-				<InputGroup onChange={searchProd} className="me-5">
+				<InputGroup onChange={searchProd} className='me-5'>
 					<InputGroup.Text>
 						<FontAwesomeIcon icon={faSearch} />
 					</InputGroup.Text>
@@ -58,9 +56,7 @@ function Prodotti() {
 			</div>
 
 			<div styleName='auto-grid'>
-				{prodotti.map((e, i) => (
-					<ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} path={e.path} />
-				))}
+				{prodotti.length ? prodotti.map((e, i) => <ProdAdmin key={i} idProdotto={e.idProdotto} nome={e.nome} quantita={e.quantita} prezzo={e.prezzo} path={e.path} />) : null}
 			</div>
 		</div>
 	);
