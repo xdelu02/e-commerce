@@ -74,7 +74,7 @@ function DettaglioProdotto(props) {
 
 			<div className='row'>
 				<div className='col-md-8'>
-					<img className='img-fluid' src={'/img/' + prodotto.nome + '.png'} alt='' />
+					<img className='img-fluid' src={'/img/' + prodotto.path} alt='' />
 				</div>
 
 				<div className='col-md-4'>
