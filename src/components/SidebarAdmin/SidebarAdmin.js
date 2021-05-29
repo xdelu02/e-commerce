@@ -3,7 +3,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie, faCog, faHandHoldingUsd, faSignOutAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faCog, faDog, faHandHoldingUsd, faList, faSignOutAlt, faTimes, faTshirt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Nav, Badge, Image, Button, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo/logo.png';
@@ -23,7 +23,7 @@ export default function SidebarAdmin() {
 
 		return (
 			<Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
-				<Nav.Link {...linkProps} className={classNames} >
+				<Nav.Link {...linkProps} className={classNames}>
 					<span>
 						{icon ? (
 							<span className='sidebar-icon'>
@@ -74,9 +74,10 @@ export default function SidebarAdmin() {
 						<Nav className='flex-column pt-3 pt-md-0'>
 							<NavItem title='' link={''} image={Logo} />
 							<NavItem title='Dashboard' link='/admin' icon={faChartPie} />
-							<NavItem title='Prodotti' link='/admin/prodotti' icon={faHandHoldingUsd} />
-							<NavItem title='Ordini' link='/admin/ordini' icon={faCog} />
-							<NavItem title='Admin' link='/admin/admins' icon={faChartPie} />
+							<NavItem title='Prodotti' link='/admin/prodotti' icon={faDog} />
+							<NavItem title='Categorie' link='/admin/ordini' icon={faList} />
+							<NavItem title='Ordini' link='/admin/ordini' icon={faHandHoldingUsd} />
+							<NavItem title='Admin' link='/admin/admins' icon={faUser} />
 						</Nav>
 					</div>
 				</SimpleBar>

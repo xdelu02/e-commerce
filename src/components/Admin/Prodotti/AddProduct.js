@@ -166,7 +166,7 @@ function AddProduct() {
 								<Col md={10} className='mb-3'>
 									<Form.Group>
 										<Form.Label>Descrizione corta</Form.Label>
-										<Form.Control maxLength='50' required as='textarea' rows={3} onChange={handleDescS} />
+										<Form.Control maxLength='50' required as='textarea' rows={2} onChange={handleDescS} />
 									</Form.Group>
 								</Col>
 							</Row>
@@ -193,24 +193,26 @@ function AddProduct() {
 										</Form.Select>
 									</Form.Group>
 								</Col>
-
-								<Col md={10} className='mb-3'>
+							</Row>
+							<div className='container'></div>
+							<div className='row'>
+								<div className='col input-sm'>
 									<Form.Group>
 										<Form.Label>Prezzo</Form.Label>
 										<Form.Control required type='text' onChange={handlePrezzo} />
 									</Form.Group>
-								</Col>
-								<Col md={10} className='mb-3'>
+								</div>
+								<div className='col input-sm '>
 									<Form.Group>
 										<Form.Label>Quantità</Form.Label>
 										<Form.Control required type='number' onChange={handleQta} />
 									</Form.Group>
-								</Col>
-							</Row>
+								</div>
+							</div>
 
-							<Row className='d-flex justify-content-center' styleName='btn-wrapper'>
+							<Row className='d-flex justify-content-start mt-3' styleName='btn-wrapper'>
 								<Button variant='primary' onClick={sendProductData}>
-									Salva
+									Aggiungi prodotto
 								</Button>
 							</Row>
 						</Form>
