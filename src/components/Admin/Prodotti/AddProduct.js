@@ -104,7 +104,7 @@ function AddProduct() {
 						<Image src={preview} className='image-dropzone-admin' />
 					</Col>
 					<Row className='d-flex justify-content-center align-items-center'>
-						<Button onClick={reRender} className='btn-immagine'>
+						<Button onClick={reRender} className='btn-immagine mt-3'>
 							Cambia immagine
 						</Button>
 					</Row>
