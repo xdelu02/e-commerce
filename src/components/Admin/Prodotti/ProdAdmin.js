@@ -10,10 +10,14 @@ function ProdAdmin({ idProdotto, nome, quantita, prezzo, path }) {
 			<div className='card-body'>
 				<h5 className='card-title'>{nome}</h5>
 				<div className='card-text'>
-					<p className='fw-bold'>Quantita</p>
-					<p>{quantita}</p>
-					<p>Prezzo</p>
-					<p>{prezzo} €</p>
+					<div>
+						<label className='fw-bolder'>Quantità: </label>
+						<label>&nbsp;{quantita}</label>
+					</div>
+					<div className='mt-3'>
+						<label className='fw-bolder'>Prezzo: </label>
+						<label>&nbsp;&euro;{prezzo}</label>
+					</div>
 				</div>
 			</div>
 		</Link>

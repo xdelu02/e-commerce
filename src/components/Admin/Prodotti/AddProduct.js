@@ -211,7 +211,7 @@ function AddProduct() {
 							</div>
 
 							<Row className='d-flex justify-content-start mt-3' styleName='btn-wrapper'>
-								<Button variant='primary' onClick={sendProductData}>
+								<Button variant='primary' className="ms-6" onClick={sendProductData}>
 									Aggiungi prodotto
 								</Button>
 							</Row>
