@@ -45,31 +45,23 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 										<Col md={6} className='mb-3'>
 											<Form.Group>
 												<Form.Label>Indirizzo</Form.Label>
-												{compileForm ? (
-													<Form.Control required type='text' value={ind} placeholder='Via del Filarete' onChange={handleInd} />
-												) : (
-													<Form.Control required type='text' value={ind} placeholder='Via del Filarete' readOnly />
-												)}
+												{compileForm ? <Form.Control required type='text' value={ind} onChange={handleInd} /> : <Form.Control required type='text' value={ind} readOnly />}
 											</Form.Group>
 										</Col>
 										<Col md={3} className='mb-3'>
 											<Form.Group>
 												<Form.Label>N. civico</Form.Label>
 												{compileForm ? (
-													<Form.Control required type='text' value={numeroCivico} placeholder='17' onChange={handleNCivico} />
+													<Form.Control required type='text' value={numeroCivico} onChange={handleNCivico} />
 												) : (
-													<Form.Control required type='text' value={numeroCivico} placeholder='17' readOnly />
+													<Form.Control required type='text' value={numeroCivico} readOnly />
 												)}
 											</Form.Group>
 										</Col>
 										<Col md={3} className='mb-3'>
 											<Form.Group>
 												<Form.Label>CAP</Form.Label>
-												{compileForm ? (
-													<Form.Control required type='text' value={cap} placeholder='50143' onChange={handleCap} />
-												) : (
-													<Form.Control required type='text' value={cap} placeholder='50143' readOnly />
-												)}
+												{compileForm ? <Form.Control required type='text' value={cap} onChange={handleCap} /> : <Form.Control required type='text' value={cap} readOnly />}
 											</Form.Group>
 										</Col>
 									</Row>
@@ -78,9 +70,9 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 											<Form.Group>
 												<Form.Label>Città</Form.Label>
 												{compileForm ? (
-													<Form.Control required type='text' value={citta} placeholder='Firenze' onChange={handleCitta} />
+													<Form.Control required type='text' value={citta} onChange={handleCitta} />
 												) : (
-													<Form.Control required type='text' value={citta} placeholder='Firenze' readOnly />
+													<Form.Control required type='text' value={citta} readOnly />
 												)}
 											</Form.Group>
 										</Col>
@@ -88,9 +80,9 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 											<Form.Group>
 												<Form.Label>Stato</Form.Label>
 												{compileForm ? (
-													<Form.Control required type='text' value={stato} placeholder='Italia' onChange={handleStato} readOnly />
+													<Form.Control required type='text' value={stato} onChange={handleStato} readOnly />
 												) : (
-													<Form.Control required type='text' value={stato} placeholder='Italia' readOnly />
+													<Form.Control required type='text' value={stato} readOnly />
 												)}
 											</Form.Group>
 										</Col>
@@ -107,15 +99,16 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 													}
 												}}
 											>
-												Salva
+												Conferma
 											</Button>
 										) : (
 											<Button
 												variant='primary'
-												onClick={() => {setCompileForm(true);
+												onClick={() => {
+													setCompileForm(true);
 												}}
 											>
-												Annulla
+												Modifica
 											</Button>
 										)}
 									</Row>

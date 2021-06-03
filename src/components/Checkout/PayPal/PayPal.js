@@ -29,7 +29,7 @@ const PayPal = ({cart, setDone}) => {
 			})
 			.render(paypal.current);
 	}, [cart, setDone]);
-	return <div ref={paypal}></div>;
+	return <div ref={paypal} style={{marginTop: '1rem'}}></div>;
 };
 
 export default PayPal;

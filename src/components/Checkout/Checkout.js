@@ -66,7 +66,7 @@ function Checkout() {
 		}
 
 		return (
-			<div>
+			<div style={{marginTop: '2rem'}}>
 				<Row>
 					<Col className='md-12 text-center'>Pagamento avvenuto con successo!</Col>
 				</Row>
