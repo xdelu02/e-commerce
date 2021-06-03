@@ -64,10 +64,6 @@ function DettaglioProdotto(props) {
 		setQta(parseInt(e.target.value));
 	};
 
-	const goToDetailProduct = async (ide) => {
-		history.push('/shop/' + ide);
-	};
-
 	return (
 		<div className='container'>
 			<h1 className='my-4'>{prodotto.nome}</h1>
