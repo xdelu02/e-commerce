@@ -32,7 +32,6 @@ CREATE TABLE Clienti(
 	email VARCHAR(255) PRIMARY KEY NOT NULL,
 	nome VARCHAR(25) NOT NULL,
 	cognome VARCHAR(25) NOT NULL,
-	password LONGTEXT NOT NULL,
 	dataN date NOT NULL
 );
 
