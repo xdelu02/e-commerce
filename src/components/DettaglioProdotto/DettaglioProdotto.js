@@ -15,10 +15,10 @@ function DettaglioProdotto(props) {
 	const dispatch = useDispatch();
 	const history = useHistory('/shop');
 	let id = props.match.params.id;
-	const [a, setA] = useState({ idProdotto: 0, path: 'logo-noname.png' });
-	const [b, setB] = useState({ idProdotto: 0, path: 'logo-noname.png' });
-	const [c, setC] = useState({ idProdotto: 0, path: 'logo-noname.png' });
-	const [d, setD] = useState({ idProdotto: 0, path: 'logo-noname.png' });
+	const [a, setA] = useState({ idProdotto: 0, path: 'ffffff.png' });
+	const [b, setB] = useState({ idProdotto: 0, path: 'ffffff.png' });
+	const [c, setC] = useState({ idProdotto: 0, path: 'ffffff.png' });
+	const [d, setD] = useState({ idProdotto: 0, path: 'ffffff.png' });
 
 	useEffect(() => {
 		fetch('/api/prodotti/' + id)
