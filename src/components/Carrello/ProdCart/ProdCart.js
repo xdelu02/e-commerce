@@ -12,7 +12,7 @@ function ProdCart(props) {
 	const cart = props.cart;
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const history = useHistory('/carrello');
 
 	const removeProd = (e) => {
 		dispatch(

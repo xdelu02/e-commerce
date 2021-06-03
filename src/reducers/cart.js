@@ -1,4 +1,4 @@
-const cartReducer = (state = [], action) => {
+const cartReducer = (state = (localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []), action) => {
 	switch (action.type) {
 		case 'add':
 			let bool = true;

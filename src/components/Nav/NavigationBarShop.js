@@ -6,8 +6,10 @@ import Logo from '../../assets/logo/logo.png';
 import { Navbar, Nav } from '@themesberg/react-bootstrap';
 
 function NavigationBarShop() {
+	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
 	return (
-		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' sticky='top' styleName='navbar'>
+		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' sticky='top' styleName='navbar' className='d-flex justify-content-center align-content-center'>
 			<Nav.Link href='/' className='ms-4 py-0'>
 				<img src={Logo} alt='Logo' styleName='logo' />
 			</Nav.Link>
@@ -26,7 +28,8 @@ function NavigationBarShop() {
 					Account
 				</Nav.Link>
 			</Navbar.Collapse>
-			<Nav.Link href='/carrello' className='ms-auto py-0'>
+			<Nav.Link href='/carrello' className='ms-auto d-flex justify-content-center align-content-center' styleName='link-cart'>
+				{cart.length ? <div styleName='counter-prod'>{cart.length > 9 ? '9+' : cart.length}</div> : null}
 				<img src={ShoppingCart} styleName='cart' alt='' />
 			</Nav.Link>
 		</Navbar>

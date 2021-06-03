@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { addToCart } from '../../../actions';
 import './Prodotto.scss';
 
 function Prodotto(props) {
 	const dispatch = useDispatch();
-	const cart = useSelector((state) => state.cart);
+	const cartRedux = useSelector((state) => state.cart);
+	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+	const history = useHistory('/shop');
 
 	const handleOnClick = (e) => {
 		e.preventDefault();
@@ -17,7 +19,8 @@ function Prodotto(props) {
 				prezzo: props.prezzo
 			})
 		);
-		localStorage.setItem('cart', JSON.stringify(cart));
+		localStorage.setItem('cart', JSON.stringify(cartRedux));
+		history.push('/shop');
 	};
 
 	return (
