@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEnvelope, faUnlockAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
+import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup, Alert } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
@@ -13,14 +13,15 @@ function Signup() {
 	const { signup } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
-	const history = useHistory();
+	const history = useHistory('/signup');
 	const [name, setName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
-	async function handleSubmit() {
+	async function handleSubmit(e) {
+		e.preventDefault();
 		if (password !== confirmPassword) {
 			return setError('Passwords do not match');
 		}
@@ -28,7 +29,6 @@ function Signup() {
 		try {
 			setError('');
 			setLoading(true);
-			await signup(email, password);
 			fetch('/api/clienti/', {
 				method: 'POST',
 				headers: {
@@ -41,11 +41,12 @@ function Signup() {
 					dataN: '2000-01-01'
 				})
 			}).then((res) => {
+				signup(email, password);
 				history.push('/');
 			});
+			
 		} catch {
 			setError('Failed to create an account');
-			console.log(error);
 		}
 
 		setLoading(false);
@@ -80,6 +81,7 @@ function Signup() {
 							<FontAwesomeIcon icon={faAngleLeft} className='me-2' /> Torna alla home
 						</Card.Link>
 					</p>
+					
 					<Row className='justify-content-center form-bg-image'>
 						<Col xs={12} className='d-flex align-items-center justify-content-center'>
 							<div className='mb-4 mb-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500'>
@@ -140,7 +142,7 @@ function Signup() {
 											Accetto i <Card.Link>termini e le condizioni</Card.Link>
 										</FormCheck.Label>
 									</FormCheck>
-
+									<div>{error && <Alert variant='danger'>{error}</Alert>}</div>
 									<Button variant='primary' type='submit' className='w-100' disabled={loading}>
 										Registrati
 									</Button>
