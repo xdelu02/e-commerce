@@ -24,7 +24,7 @@ function NavigationBarShop() {
 				<Nav.Link href='/shop' className='py-0'>
 					About
 				</Nav.Link>
-				<Nav.Link href='/login' className='py-0'>
+				<Nav.Link href='/account' className='py-0'>
 					Account
 				</Nav.Link>
 			</Navbar.Collapse>
