@@ -59,7 +59,7 @@ function Shop() {
 			<header className='py-3 mb-4 border-bottom'>
 				<div className='container-fluid d-grid'>
 					<div className='row flex-grow-sm-1 flex-grow-0 w-100'>
-						<form className='ms-auto searchbar-shop'>
+						<form className='ms-auto searchbar-shop w-50'>
 							<InputGroup onChange={searchProd}>
 								<InputGroup.Text>
 									<FontAwesomeIcon icon={faSearch} />

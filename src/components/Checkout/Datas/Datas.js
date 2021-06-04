@@ -4,6 +4,8 @@ import { useAsync } from 'react-async';
 import Toast from 'react-bootstrap/Toast';
 import ProdCheckout from '../Prod/ProdCheckout';
 import PayPal from '../PayPal/PayPal';
+import CSSModules from 'react-css-modules';
+import styles from './Datas.module.scss';
 
 const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd, handleNCivico, handleCap, handleCitta, handleStato }) => {
 	const [compileForm, setCompileForm] = useState(true);
@@ -31,14 +33,11 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 				<Card border='light' className='shadow-sm'>
 					<Card.Body>
 						<Row>
-							{compileForm ? (
+							{!compileForm ? (
 								<Col xl={6}>
-									{cart.map((e, i) => (
-										<Prodotto id={e.idProdotto} key={i} />
-									))}
+									<PayPal cart={cart} setDone={setDone} />
 								</Col>
 							) : null}
-
 							<Col xl={6}>
 								<Form>
 									<Row>
@@ -114,9 +113,16 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 									</Row>
 								</Form>
 							</Col>
-							{!compileForm ? (
-								<Col xl={6}>
-									<PayPal cart={cart} setDone={setDone} />
+							{compileForm ? (
+								<Col xl={6} className='mt-3'>
+									<div styleName='scrollable-cart'>
+										{cart.map((e, i) => (
+											<Prodotto id={e.idProdotto} key={i} />
+										))}
+									</div>
+									<p className='text-end'>
+										Totale: <b style={{ color: '#262b40' }}>{cart.length ? cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0).toFixed(2) : Number(0).toFixed(2)} €</b>
+									</p>
 								</Col>
 							) : null}
 						</Row>
@@ -142,4 +148,4 @@ const Datas = ({ cart, setDone, ind, numeroCivico, cap, citta, stato, handleInd,
 	);
 };
 
-export default Datas;
+export default CSSModules(Datas, styles, { allowMultiple: true });

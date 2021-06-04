@@ -1,0 +1,27 @@
+html {
+	--scrollbarBG: #ffffff;
+	--thumbBG: #90a4ae;
+}
+.scrollable-cart::-webkit-scrollbar {
+	width: 11px;
+	height: .1px;
+}
+.scrollable-cart {
+	scrollbar-width: thin;
+	scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.scrollable-cart::-webkit-scrollbar-track {
+	background: var(--scrollbarBG);
+}
+.scrollable-cart::-webkit-scrollbar-thumb {
+	background-color: var(--thumbBG);
+	border-radius: 6px;
+	border: 3px solid var(--scrollbarBG);
+}
+.scrollable-cart {
+	height: 14rem;
+	padding: 1rem;
+	background: white;
+	overflow: auto;
+	scrollbar-width: thin;
+}

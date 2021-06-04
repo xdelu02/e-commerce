@@ -36,13 +36,15 @@ function Carrello() {
 			<div>
 				<Card border='light' className='shadow-sm'>
 					<Card.Body>
-						{cart.length ? (
-							cart.map((e, i) => <Prodotto id={e.idProdotto} key={i} />)
-						) : (
-							<Link to={'/shop'}>
-								<div className='text-center'>Vai al catalogo</div>
-							</Link>
-						)}
+						<div>
+							{cart.length ? (
+								cart.map((e, i) => <Prodotto id={e.idProdotto} key={i} />)
+							) : (
+								<Link to={'/shop'}>
+									<div className='text-center'>Il tuo carrello risulta vuoto.</div>
+								</Link>
+							)}
+						</div>
 					</Card.Body>
 				</Card>
 			</div>
@@ -53,7 +55,8 @@ function Carrello() {
 						{cart.length ? (
 							<Link to={'/shop'}>
 								<p>
-									<img src={arrow} style={{ width: '20px', height: '20px' }} alt=""/>Torna al catalogo
+									<img src={arrow} style={{ width: '20px', height: '20px' }} alt='' />
+									Torna al catalogo
 								</p>
 							</Link>
 						) : null}
@@ -67,7 +70,13 @@ function Carrello() {
 				<Row>
 					<div className='text-end'>
 						{getCurrentUserEmail() !== null && getCurrentUserEmail() !== '' ? (
-							<Button onClick={handleOnClick}>Procedi al pagamento</Button>
+							cart.length ? (
+								<Button onClick={handleOnClick}>Procedi al pagamento</Button>
+							) : (
+								<Link to={'/shop'}>
+									<div className='text-center'>Vai al catalogo</div>
+								</Link>
+							)
 						) : (
 							<Button href='/login'>Esegui il login</Button>
 						)}
