@@ -19,6 +19,10 @@ export function AuthProvider({ children }) {
 		return auth.signInWithEmailAndPassword(email, password);
 	}
 
+	function logout() {
+		return auth.signOut();
+	}
+
 	function getCurrentUserEmail() {
 		try {
 			return auth.currentUser.email;
@@ -40,7 +44,8 @@ export function AuthProvider({ children }) {
 		currentUser,
 		login,
 		signup,
-		getCurrentUserEmail
+		getCurrentUserEmail,
+		logout
 	};
 
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
