@@ -8,6 +8,7 @@ import AccordionComponent from '../Accordion/AccordionComponent';
 import './Shops.scss';
 import CSSModules from 'react-css-modules';
 import styles from './Shop.module.scss';
+import NotifyAddToCart from '../NotifyAddToCart/NotifyAddToCart';
 
 function load(setProdotti, key) {
 	fetch('/api/prodotti/?key=' + key)
@@ -26,8 +27,11 @@ function load(setProdotti, key) {
 
 function Shop() {
 	const [prodotti, setProdotti] = useState([]);
+	const [prodotto, setProdotto] = useState({nome: 'nome', descS: 'Tiragraffi castello', prezzo: 120, path: 'logo-noname.png'});
 	const [categorie, setCategorie] = useState([]);
 	const [key, setKey] = useState('');
+	const [toast, setToast] = useState(false);
+	const toggleToast = () => setToast(!toast);
 
 	const searchProd = async (event) => {
 		setKey(event.target.value);
@@ -56,6 +60,7 @@ function Shop() {
 
 	return (
 		<>
+			<NotifyAddToCart nome={'KAKO'} toast={toast} toggleToast={toggleToast} prodotto={prodotto}></NotifyAddToCart>
 			<header className='py-3 mb-4 border-bottom'>
 				<div className='container-fluid d-grid'>
 					<div className='row flex-grow-sm-1 flex-grow-0 w-100'>
@@ -114,7 +119,18 @@ function Shop() {
 												}
 											} else return null;
 										})
-										.map((e, index) => <Prodotto id={e.idProdotto} path={'/img/' + e.path} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />)
+										.map((e, index) => (
+											<Prodotto
+												id={e.idProdotto}
+												path={'/img/' + e.path}
+												prezzo={e.prezzo}
+												titolo={e.nome}
+												descS={e.descS}
+												setProdotto={setProdotto}
+												toggleToast={toggleToast}
+												key={index}
+											/>
+										))
 								: null}
 						</div>
 					</div>

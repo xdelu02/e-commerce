@@ -19,6 +19,8 @@ function Prodotto(props) {
 				prezzo: props.prezzo
 			})
 		);
+		props.toggleToast();
+		props.setProdotto({ nome: props.titolo, descS: props.descS, prezzo: props.prezzo, path: props.path });
 		localStorage.setItem('cart', JSON.stringify(cartRedux));
 		history.push('/shop');
 	};
