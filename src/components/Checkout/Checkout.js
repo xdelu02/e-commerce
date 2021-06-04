@@ -4,8 +4,10 @@ import { Col, Row } from '@themesberg/react-bootstrap';
 import Datas from './Datas/Datas';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeAllToCart } from '../../actions';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Checkout() {
+	const { getCurrentUserEmail } = useAuth();
 	let isFirst = true;
 	const history = useHistory('/checkout');
 	const cartRedux = useSelector((state) => state.cart);
@@ -35,7 +37,7 @@ function Checkout() {
 	};
 
 	const Success = () => {
-		//const { getCurrentUserEmail } = useAuth();
+		const { getCurrentUserEmail } = useAuth();
 
 		if (isFirst) {
 			isFirst = false;
@@ -45,7 +47,7 @@ function Checkout() {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					idCliente: 'djdjd@it.it', //getCurrentUserEmail,
+					idCliente: getCurrentUserEmail,
 					indirizzo: ind + ' ' + numeroCivico + ', ' + cap + ', ' + citta + ', ' + stato,
 					importo: cart.length ? parseFloat(cart.reduce((acc, item) => acc + item.quantita * item.prezzo, 0)).toFixed(2) : Number(0).toFixed(2)
 				})
@@ -66,7 +68,7 @@ function Checkout() {
 		}
 
 		return (
-			<div style={{marginTop: '2rem'}}>
+			<div style={{ marginTop: '2rem' }}>
 				<Row>
 					<Col className='md-12 text-center'>Pagamento avvenuto con successo!</Col>
 				</Row>
@@ -82,7 +84,7 @@ function Checkout() {
 	};
 
 	useEffect(() => {
-		if (!JSON.parse(localStorage.getItem('cart')).length) {
+		if (!(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []).length || !(getCurrentUserEmail() !== null && getCurrentUserEmail() !== '')) {
 			window.location.href = '/shop';
 		}
 	}, []);
