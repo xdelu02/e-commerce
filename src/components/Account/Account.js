@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Account() {
@@ -7,7 +8,7 @@ export default function Account() {
 	return (
 		<div>
 			<h1>ACCOUNT</h1>
-			{getCurrentUserEmail ? (
+			{!(getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') ? (
 				<>
 					<p>
 						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam corrupti deserunt quod architecto, quasi perferendis mollitia maiores odio eveniet molestiae! Reprehenderit
@@ -35,8 +36,12 @@ export default function Account() {
 						quidem perferendis dolor in minus autem quas aperiam velit!
 					</p>
 					<div className='d-flex flex-row justify-content-evenly p-2 bd-highlight'>
-						<button className='btn btn-primary'>Login</button>
-						<button className='btn btn-secondary'>Signup</button>
+						<Link to={'/login'} className='btn btn-primary'>
+							Login
+						</Link>
+						<Link to={'/signup'} className='btn btn-secondary'>
+							Signup
+						</Link>
 					</div>
 				</>
 			) : (
