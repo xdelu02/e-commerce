@@ -46,13 +46,13 @@ function App() {
 				<Route path='/' exact component={Home} />
 				<Route path='/shop' exact component={Shop} />
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
-				<Route path='/account' exact component={Account} />
 				<Route path='/admin' component={Admin} />
-				<Route path='/checkout' exact component={Checkout} />
 				<Route path='/success' exact component={Success} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
 					<Route path='/carrello' exact component={Carrello} />
+					<Route path='/checkout' exact component={Checkout} />
+					<Route path='/account' exact component={Account} />
 					<Route path='/signup' exact component={Signup} />
 					<Route path='/login' exact component={Login} />
 				</AuthProvider>
