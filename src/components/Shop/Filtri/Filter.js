@@ -2,11 +2,11 @@ import React from 'react';
 import Prezzi from './Prezzi/Prezzi';
 import Categorie from './Categorie/Categorie';
 
-function Filter() {
+function Filter({ handleCategorie }) {
 	return (
-		<div className="filter-filter">
+		<div className='filter-filter'>
 			<Prezzi />
-			<Categorie />
+			<Categorie handleCategorie={handleCategorie} />
 		</div>
 	);
 }

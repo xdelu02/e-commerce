@@ -26,11 +26,28 @@ function load(setProdotti, key) {
 
 function Shop() {
 	const [prodotti, setProdotti] = useState([]);
+	const [categorie, setCategorie] = useState([]);
 	const [key, setKey] = useState('');
 
 	const searchProd = async (event) => {
 		setKey(event.target.value);
-		load(setProdotti , key);
+		load(setProdotti, key);
+	};
+
+	const handleCategorie = (cat) => {
+		let tmp = categorie;
+		let add = true;
+		tmp.forEach((c, i) => {
+			if (c === cat) {
+				tmp.splice(i, 1);
+				add = false;
+			}
+		});
+		if (add) {
+			tmp.push(cat);
+		}
+		setCategorie(tmp);
+		load(setProdotti, key);
 	};
 
 	useEffect(() => {
@@ -60,7 +77,7 @@ function Shop() {
 							<h5 className='d-none d-sm-block text-bold mt-4'>Imposta filtri</h5>
 							<hr className='d-none d-sm-block text-muted' />
 							<ul className='nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate'>
-								<Filter></Filter>
+								<Filter handleCategorie={handleCategorie}></Filter>
 							</ul>
 						</div>
 					</div>
@@ -73,7 +90,7 @@ function Shop() {
 								id: 2,
 								eventKey: 'panel-2',
 								title: 'Imposta filtri',
-								description: <Filter></Filter>
+								description: <Filter handleCategorie={handleCategorie}></Filter>
 							}
 						]}
 					/>
@@ -85,8 +102,17 @@ function Shop() {
 							{prodotti
 								? prodotti
 										.filter((val) => {
-											if (val.quantita > 0) return val;
-											else return null;
+											if (val.quantita > 0) {
+												if (categorie.length) {
+													return categorie.find((c) => {
+														return c === val.idCategoria;
+													})
+														? val
+														: null;
+												} else {
+													return val;
+												}
+											} else return null;
 										})
 										.map((e, index) => <Prodotto id={e.idProdotto} path={'/img/' + e.path} prezzo={e.prezzo} titolo={e.nome} descS={e.descS} key={index} />)
 								: null}

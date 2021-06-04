@@ -10,6 +10,7 @@ class Categorie extends React.Component {
 			isLoaded: false,
 			categorie: []
 		};
+		this.handleCategorie = (cat) => {props.handleCategorie(cat)};
 	}
 
 	componentDidMount() {
@@ -29,11 +30,11 @@ class Categorie extends React.Component {
 
 	render() {
 		return (
-			<div className='categorie mt-4'>
+			<div className='categorie mt-4 ms-1'>
 				<h5>Categorie</h5>
 				<Form>
 					{this.state.categorie.map((e, i) => (
-						<Categoria categoria={e.idCategoria} identificativo={i} key={i} />
+						<Categoria categoria={e.idCategoria} identificativo={i} key={i} handleCategorie={this.handleCategorie} />
 					))}
 				</Form>
 			</div>

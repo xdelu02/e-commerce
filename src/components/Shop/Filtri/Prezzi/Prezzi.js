@@ -3,7 +3,7 @@ import { Form } from '@themesberg/react-bootstrap';
 
 function Prezzi() {
 	return (
-		<Form>
+		<Form className="ms-1">
 			<fieldset>
 				<h5>Range di prezzi</h5>
 				<Form.Check type='radio' label='10' defaultValue='10' name='price' id='price1' htmlFor='price1' />
