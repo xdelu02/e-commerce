@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Prodotto from './Prodotto/Prodotto';
 import { Form, InputGroup } from '@themesberg/react-bootstrap';
+import Pagination from 'react-bootstrap/Pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Filter from './Filtri/Filter';
@@ -10,13 +11,15 @@ import CSSModules from 'react-css-modules';
 import styles from './Shop.module.scss';
 import NotifyAddToCart from '../NotifyAddToCart/NotifyAddToCart';
 
-function load(setProdotti, key) {
+function load(setProdotti, prodPerPage, setPageNumbers, setLoading, key) {
 	fetch('/api/prodotti/?key=' + key)
 		.then((res) => res.json())
 		.then(
 			(result) => {
 				if (result.message !== 'No Prodotti found.' && result.message !== 'No matching Prodotti found.') {
 					setProdotti(result.records);
+					setPageNumbers(Array.from(Array(Math.ceil(result.records.length / prodPerPage)), (_, index) => index + 1));
+					setLoading(false);
 				}
 			},
 			(error) => {
@@ -27,15 +30,23 @@ function load(setProdotti, key) {
 
 function Shop() {
 	const [prodotti, setProdotti] = useState([]);
-	const [prodotto, setProdotto] = useState({nome: 'nome', descS: 'Tiragraffi castello', prezzo: 120, path: 'logo-noname.png'});
+	const [pageNumbers, setPageNumbers] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [prodPerPage, setProdPerPage] = useState(12);
+	const [prodotto, setProdotto] = useState({ nome: 'nome', descS: 'Tiragraffi castello', prezzo: 120, path: 'logo-noname.png' });
 	const [categorie, setCategorie] = useState([]);
 	const [key, setKey] = useState('');
 	const [toast, setToast] = useState(false);
 	const toggleToast = () => setToast(!toast);
 
+	const indexOfLastProd = currentPage * prodPerPage;
+	const indexOfFirstProd = indexOfLastProd - prodPerPage;
+	const currentProds = prodotti.slice(indexOfFirstProd, indexOfLastProd);
+
 	const searchProd = async (event) => {
 		setKey(event.target.value);
-		load(setProdotti, key);
+		load(setProdotti, prodPerPage, setPageNumbers, setLoading, key);
 	};
 
 	const handleCategorie = (cat) => {
@@ -51,11 +62,11 @@ function Shop() {
 			tmp.push(cat);
 		}
 		setCategorie(tmp);
-		load(setProdotti, key);
+		load(setProdotti, prodPerPage, setPageNumbers, setLoading, key);
 	};
 
 	useEffect(() => {
-		load(setProdotti, key);
+		load(setProdotti, prodPerPage, setPageNumbers, setLoading, key);
 	}, [key]);
 
 	return (
@@ -104,8 +115,8 @@ function Shop() {
 						<h3>Catalogo</h3>
 
 						<div styleName='auto-grid'>
-							{prodotti
-								? prodotti
+							{currentProds
+								? currentProds
 										.filter((val) => {
 											if (val.quantita > 0) {
 												if (categorie.length) {
@@ -133,6 +144,19 @@ function Shop() {
 										))
 								: null}
 						</div>
+						<Pagination styleName='paginator'>
+							<Pagination.First onClick={() => setCurrentPage(1)} />
+							{currentPage !== 1 ? <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} /> : null}
+
+							{pageNumbers.map((number) => (
+								<Pagination.Item onClick={() => setCurrentPage(number)} key={number}>
+									{number}
+								</Pagination.Item>
+							))}
+
+							{currentPage !== Math.ceil(prodotti.length / prodPerPage) ? <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} /> : null}
+							<Pagination.Last onClick={() => setCurrentPage(Math.ceil(prodotti.length / prodPerPage))} />
+						</Pagination>
 					</div>
 				</div>
 			</main>

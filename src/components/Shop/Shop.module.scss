@@ -1,5 +1,3 @@
-
-
 .auto-grid > * {
 	max-width: 25rem;
 	margin-left: auto;
@@ -35,4 +33,11 @@
 		align-items: center;
 		gap: 0.5rem;
 	}
+}
+
+.paginator {
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
