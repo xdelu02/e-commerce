@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import CSSModules from 'react-css-modules';
 import styles from './DettaglioProdotto.module.scss';
 import { Button, Form } from '@themesberg/react-bootstrap';
+import NotifyAddToCart from '../NotifyAddToCart/NotifyAddToCart';
 
 function DettaglioProdotto(props) {
 	const cart = useSelector((state) => state.cart);
@@ -15,6 +16,8 @@ function DettaglioProdotto(props) {
 	const dispatch = useDispatch();
 	const history = useHistory('/shop');
 	let id = props.match.params.id;
+	const [toast, setToast] = useState(false);
+	const toggleToast = () => setToast(!toast);
 	const [a, setA] = useState({ idProdotto: 0, path: 'ffffff.png' });
 	const [b, setB] = useState({ idProdotto: 0, path: 'ffffff.png' });
 	const [c, setC] = useState({ idProdotto: 0, path: 'ffffff.png' });
@@ -31,7 +34,7 @@ function DettaglioProdotto(props) {
 					if (result.quantita === '0') {
 						history.push('/shop');
 					}
-					setProdotto(result);
+					setProdotto({ idProdotto: result.idProdotto, nome: result.nome, descS: result.descS, descL: result.descL, prezzo: result.prezzo, quantita:result.quantita, idCategoria: result.idCategoria, path: '/img/' + result.path });
 					setQtaMAX(Math.floor(result.quantita === '1' ? 1 : result.quantita / 2 > 10 ? 10 : result.quantita / 2));
 				},
 				(error) => {
@@ -65,69 +68,73 @@ function DettaglioProdotto(props) {
 	};
 
 	return (
-		<div className='container'>
-			<h1 className='my-4'>{prodotto.nome}</h1>
+		<>
+			<NotifyAddToCart nome={'KAKO'} toast={toast} toggleToast={toggleToast} prodotto={prodotto}></NotifyAddToCart>
+			<div className='container'>
+				<h1 className='my-4'>{prodotto.nome}</h1>
 
-			<div className='row'>
-				<div className='col-md-8'>
-					<img className='img-fluid' src={'/img/' + prodotto.path} alt='' />
+				<div className='row'>
+					<div className='col-md-8'>
+						<img className='img-fluid' src={prodotto.path} alt='' />
+					</div>
+
+					<div className='col-md-4'>
+						<h3 className='my-3'>Descrizione prodotto</h3>
+						<p>{ReactHtmlParser(prodotto.descL)}</p>
+						<p>
+							Prezzo: <span className='fw-bolder'>€ {prodotto.prezzo}</span>
+						</p>
+
+						<Form.Group className='mb-3'>
+							<Form.Label>Quantità:</Form.Label>
+							<Form.Select onChange={handleChange} className='w-25'>
+								{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
+									<option value={n} key={n}>
+										{n}
+									</option>
+								))}
+							</Form.Select>
+						</Form.Group>
+
+						<Button
+							className='mt-4'
+							onClick={() => {
+								dispatch(
+									addToCart({
+										idProdotto: prodotto.idProdotto,
+										quantita: qta,
+										prezzo: prodotto.prezzo
+									})
+								);
+								toggleToast();
+								localStorage.setItem('cart', JSON.stringify(cart));
+							}}
+						>
+							Aggiungi al carrello
+						</Button>
+					</div>
 				</div>
+				<h3 className='my-4'>Potrebbero interessarti</h3>
 
-				<div className='col-md-4'>
-					<h3 className='my-3'>Descrizione prodotto</h3>
-					<p>{ReactHtmlParser(prodotto.descL)}</p>
-					<p>
-						Prezzo: <span className='fw-bolder'>€ {prodotto.prezzo}</span>
-					</p>
+				<div className='row'>
+					<div className='col-md-3 col-sm-6 mb-4'>
+						<img className='img-fluid' styleName='height-max' src={'/img/' + a.path} alt='' onClick={() => history.push('/shop/' + a.idProdotto)} />
+					</div>
 
-					<Form.Group className='mb-3'>
-						<Form.Label>Quantità:</Form.Label>
-						<Form.Select onChange={handleChange} className='w-25'>
-							{Array.from(new Array(qtaMAX), (x, i) => i + 1).map((n) => (
-								<option value={n} key={n}>
-									{n}
-								</option>
-							))}
-						</Form.Select>
-					</Form.Group>
+					<div className='col-md-3 col-sm-6 mb-4'>
+						<img className='img-fluid' styleName='height-max' src={'/img/' + b.path} alt='' onClick={() => history.push('/shop/' + b.idProdotto)} />
+					</div>
 
-					<Button
-						className='mt-4'
-						onClick={() => {
-							dispatch(
-								addToCart({
-									idProdotto: prodotto.idProdotto,
-									quantita: qta,
-									prezzo: prodotto.prezzo
-								})
-							);
-							localStorage.setItem('cart', JSON.stringify(cart));
-						}}
-					>
-						Aggiungi al carrello
-					</Button>
+					<div className='col-md-3 col-sm-6 mb-4'>
+						<img className='img-fluid' styleName='height-max' src={'/img/' + c.path} alt='' onClick={() => history.push('/shop/' + c.idProdotto)} />
+					</div>
+
+					<div className='col-md-3 col-sm-6 mb-4'>
+						<img className='img-fluid' styleName='height-max' src={'/img/' + d.path} alt='' onClick={() => history.push('/shop/' + d.idProdotto)} />
+					</div>
 				</div>
 			</div>
-			<h3 className='my-4'>Potrebbero interessarti</h3>
-
-			<div className='row'>
-				<div className='col-md-3 col-sm-6 mb-4'>
-					<img className='img-fluid' styleName='height-max' src={'/img/' + a.path} alt='' onClick={() => history.push('/shop/' + a.idProdotto)} />
-				</div>
-
-				<div className='col-md-3 col-sm-6 mb-4'>
-					<img className='img-fluid' styleName='height-max' src={'/img/' + b.path} alt='' onClick={() => history.push('/shop/' + b.idProdotto)} />
-				</div>
-
-				<div className='col-md-3 col-sm-6 mb-4'>
-					<img className='img-fluid' styleName='height-max' src={'/img/' + c.path} alt='' onClick={() => history.push('/shop/' + c.idProdotto)} />
-				</div>
-
-				<div className='col-md-3 col-sm-6 mb-4'>
-					<img className='img-fluid' styleName='height-max' src={'/img/' + d.path} alt='' onClick={() => history.push('/shop/' + d.idProdotto)} />
-				</div>
-			</div>
-		</div>
+		</>
 	);
 }
 
