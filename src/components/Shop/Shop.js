@@ -10,6 +10,7 @@ import './Shops.scss';
 import CSSModules from 'react-css-modules';
 import styles from './Shop.module.scss';
 import NotifyAddToCart from '../NotifyAddToCart/NotifyAddToCart';
+import { Fade } from 'react-reveal';
 
 function load(setProdotti, prodPerPage, setPageNumbers, setLoading, key) {
 	fetch('/api/prodotti/?key=' + key)
@@ -114,36 +115,38 @@ function Shop() {
 					<div className='col overflow-auto h-100 ms-md-5'>
 						<h3>Catalogo</h3>
 
-						<div styleName='auto-grid'>
-							{currentProds
-								? currentProds
-										.filter((val) => {
-											if (val.quantita > 0) {
-												if (categorie.length) {
-													return categorie.find((c) => {
-														return c === val.idCategoria;
-													})
-														? val
-														: null;
-												} else {
-													return val;
-												}
-											} else return null;
-										})
-										.map((e, index) => (
-											<Prodotto
-												id={e.idProdotto}
-												path={'/img/' + e.path}
-												prezzo={e.prezzo}
-												titolo={e.nome}
-												descS={e.descS}
-												setProdotto={setProdotto}
-												toggleToast={toggleToast}
-												key={index}
-											/>
-										))
-								: null}
-						</div>
+						<Fade top>
+							<div styleName='auto-grid'>
+								{currentProds
+									? currentProds
+											.filter((val) => {
+												if (val.quantita > 0) {
+													if (categorie.length) {
+														return categorie.find((c) => {
+															return c === val.idCategoria;
+														})
+															? val
+															: null;
+													} else {
+														return val;
+													}
+												} else return null;
+											})
+											.map((e, index) => (
+												<Prodotto
+													id={e.idProdotto}
+													path={'/img/' + e.path}
+													prezzo={e.prezzo}
+													titolo={e.nome}
+													descS={e.descS}
+													setProdotto={setProdotto}
+													toggleToast={toggleToast}
+													key={index}
+												/>
+											))
+									: null}
+							</div>
+						</Fade>
 						<Pagination styleName='paginator'>
 							<Pagination.First onClick={() => setCurrentPage(1)} />
 							{currentPage !== 1 ? <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} /> : null}
