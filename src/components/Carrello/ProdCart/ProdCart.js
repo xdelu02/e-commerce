@@ -6,6 +6,7 @@ import del from '../../../assets/icons/delete-red.png';
 import CSSModules from 'react-css-modules';
 import styles from './Prod.module.scss';
 import { Col } from '@themesberg/react-bootstrap';
+import { useAuth } from '../../../contexts/AuthContext';
 
 function ProdCart(props) {
 	const cartRedux = useSelector((state) => state.cart);
@@ -13,6 +14,7 @@ function ProdCart(props) {
 	const [qta, setQta] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory('/carrello');
+	const { getCurrentUserEmail } = useAuth();
 
 	const removeProd = (e) => {
 		dispatch(
@@ -20,6 +22,40 @@ function ProdCart(props) {
 				idProdotto: e.target.id
 			})
 		);
+		if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+			fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+				.then((res) => res.json())
+				.then((result) => {
+					fetch('/api/dettaglioordine/?codice=' + result.records[0].codice)
+						.then((r) => r.json())
+						.then((resu) => {
+							resu.records.forEach((element) => {
+								if (element.idProdotto === e.target.id) {
+									fetch('/api/dettaglioordine/', {
+										method: 'DELETE',
+										body: JSON.stringify({
+											idDettaglioOrdine: element.idDettaglioOrdine
+										})
+									})
+										.then((re) => re.json())
+										.then((resul) => console.log(resul))
+										.catch((err) => {
+											console.log(err);
+											history.push('/404');
+										});
+								}
+							});
+						})
+						.catch((err) => {
+							console.log(err);
+							history.push('/404');
+						});
+				})
+				.catch((err) => {
+					console.log(err);
+					history.push('/404');
+				});
+		}
 		localStorage.setItem('cart', JSON.stringify(cartRedux));
 		history.push('/carrello');
 	};
@@ -53,16 +89,18 @@ function ProdCart(props) {
 	};
 
 	const increase = async (e) => {
-		setQta(parseInt(qta + 1));
-		dispatch(
-			updateToCart({
-				idProdotto: e.target.id,
-				quantita: parseInt(qta + 1),
-				prezzo: props.prezzo
-			})
-		);
-		localStorage.setItem('cart', JSON.stringify(cartRedux));
-		history.push('/carrello');
+		if (qta < props.quantitaMax) {
+			setQta(parseInt(qta + 1));
+			dispatch(
+				updateToCart({
+					idProdotto: e.target.id,
+					quantita: parseInt(qta + 1),
+					prezzo: props.prezzo
+				})
+			);
+			localStorage.setItem('cart', JSON.stringify(cartRedux));
+			history.push('/carrello');
+		}
 	};
 
 	useEffect(() => {
@@ -97,14 +135,14 @@ function ProdCart(props) {
 					<button id={props.id} onClick={decrease} className='btn btn-primary btn-sm' style={{ borderTopRightRadius: '0px', borderBottomRightRadius: '0px' }}>
 						-
 					</button>
-					<input id={props.id} type='number' onChange={updateProd} value={qta} min='1' max={qta} disabled />
+					<input id={props.id} type='number' onChange={updateProd} value={qta} min='1' max={props.quantitaMax} disabled />
 					<button id={props.id} onClick={increase} className='btn btn-primary btn-sm' style={{ borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px' }}>
 						+
 					</button>
 				</div>
 			</Col>
 			<Col xs={1}>
-				<img src={del} id={props.id} onClick={removeProd} alt='' style={{ width: '24px', height: '24px', float: 'right' }} />
+				<img src={del} id={props.id} onClick={(e) => removeProd(e)} alt='' style={{ width: '24px', height: '24px', float: 'right' }} />
 			</Col>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAsync } from 'react-async';
 import ProdCart from './ProdCart/ProdCart';
 import { useAuth } from '../../contexts/AuthContext';
@@ -6,10 +6,14 @@ import { useHistory } from 'react-router';
 import { Card, Button, Container, Row, Col } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 import arrow from '../../assets/icons/left-arrow.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeAllToCart } from '../../actions';
 
 function Carrello() {
-	const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+	let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+	const cartRedux = useSelector((state) => state.cart);
 	const history = useHistory('/carrello');
+	const dispatch = useDispatch();
 	const { getCurrentUserEmail } = useAuth();
 
 	const fetchProd = async ({ id }, { signal }) => {
@@ -23,12 +27,64 @@ function Carrello() {
 		if (error) {
 			console.log(error.message);
 		}
-		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} path={data.path} /> : null;
+		return data ? <ProdCart id={data.idProdotto} nome={data.nome} descS={data.descS} prezzo={data.prezzo} cart={cart} path={data.path} quantitaMax={data.quantita} /> : null;
 	};
 
 	const handleOnClick = () => {
 		history.push('/checkout');
 	};
+
+	useEffect(() => {
+		if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+			fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+				.then((res) => res.json())
+				.then((result) => {
+					if (result.message === 'No Carrello found.') {
+						fetch('/api/carrelli/', {
+							method: 'POST',
+							body: JSON.stringify({
+								idCliente: getCurrentUserEmail()
+							})
+						})
+							.then((re) => re.json())
+							.then((resul) => console.log(resul))
+							.catch((err) => {
+								console.log(err);
+								history.push('/404');
+							});
+					} else {
+						if (cart.length) {
+							dispatch(removeAllToCart());
+							localStorage.setItem('cart', JSON.stringify([]));
+							history.push('/carrello');
+						}
+						fetch('/api/dettaglioordine/?codice=' + result.records[0].codice)
+							.then((r) => r.json())
+							.then((resu) => {
+								resu.records.forEach((element) => {
+									dispatch(
+										addToCart({
+											idProdotto: element.idProdotto,
+											quantita: parseInt(element.quantita),
+											prezzo: parseFloat(element.prezzoU)
+										})
+									);
+									localStorage.setItem('cart', JSON.stringify(cartRedux));
+								});
+								history.push('/carrello');
+							})
+							.catch((err) => {
+								console.log(err);
+								localStorage.setItem('cart', JSON.stringify([]));
+							});
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+					history.push('/404');
+				});
+		}
+	}, []);
 
 	return (
 		<Container>
