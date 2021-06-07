@@ -37,8 +37,6 @@ function ProdCart(props) {
 											idDettaglioOrdine: element.idDettaglioOrdine
 										})
 									})
-										.then((re) => re.json())
-										.then((resul) => console.log(resul))
 										.catch((err) => {
 											console.log(err);
 											history.push('/404');
@@ -69,6 +67,29 @@ function ProdCart(props) {
 				prezzo: props.prezzo
 			})
 		);
+		if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+			fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+				.then((res) => res.json())
+				.then((result) => {
+					fetch('/api/dettaglioordine/', {
+						method: 'PATCH',
+						body: JSON.stringify({
+							idOrdine: result.records[0].idOrdine,
+							idProdotto: e.target.id,
+							prezzoU: props.prezzo,
+							quantita: parseInt(e.target.value)
+						})
+					})
+						.catch((err) => {
+							console.log(err);
+							history.push('/404');
+						});
+				})
+				.catch((err) => {
+					console.log(err);
+					history.push('/404');
+				});
+		}
 		localStorage.setItem('cart', JSON.stringify(cartRedux));
 		history.push('/carrello');
 	};
@@ -83,6 +104,29 @@ function ProdCart(props) {
 					prezzo: props.prezzo
 				})
 			);
+			if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+				fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+					.then((res) => res.json())
+					.then((result) => {
+						fetch('/api/dettaglioordine/', {
+							method: 'PATCH',
+							body: JSON.stringify({
+								idOrdine: result.records[0].idOrdine,
+								idProdotto: e.target.id,
+								prezzoU: props.prezzo,
+								quantita: parseInt(qta - 1)
+							})
+						})
+							.catch((err) => {
+								console.log(err);
+								history.push('/404');
+							});
+					})
+					.catch((err) => {
+						console.log(err);
+						history.push('/404');
+					});
+			}
 			localStorage.setItem('cart', JSON.stringify(cartRedux));
 			history.push('/carrello');
 		}
@@ -98,6 +142,29 @@ function ProdCart(props) {
 					prezzo: props.prezzo
 				})
 			);
+			if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+				fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+					.then((res) => res.json())
+					.then((result) => {
+						fetch('/api/dettaglioordine/', {
+							method: 'PATCH',
+							body: JSON.stringify({
+								idOrdine: result.records[0].idOrdine,
+								idProdotto: e.target.id,
+								prezzoU: props.prezzo,
+								quantita: parseInt(qta + 1)
+							})
+						})
+							.catch((err) => {
+								console.log(err);
+								history.push('/404');
+							});
+					})
+					.catch((err) => {
+						console.log(err);
+						history.push('/404');
+					});
+			}
 			localStorage.setItem('cart', JSON.stringify(cartRedux));
 			history.push('/carrello');
 		}
