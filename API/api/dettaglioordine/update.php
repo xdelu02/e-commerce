@@ -26,12 +26,12 @@
 		!empty($data->quantita)
 	) {
 		// set ID property to be edited
-		$obj->nome = $data->idOrdine;
-		$obj->cognome = $data->idProdotto;
+		$obj->idOrdine = $data->idOrdine;
+		$obj->idProdotto = $data->idProdotto;
 		
 		// set property values
-		$obj->email = $data->prezzoU;
-		$obj->username = $data->quantita;
+		$obj->prezzoU = $data->prezzoU;
+		$obj->quantita = $data->quantita;
 		
 		// update the obj
 		if($obj->update()) {
