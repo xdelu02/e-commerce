@@ -3,9 +3,16 @@ import CSSModules from 'react-css-modules';
 import styles from './Home.module.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { Carousel, Col } from '@themesberg/react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from '../../contexts/AuthContext';
+import { addToCart, removeAllToCart } from '../../actions';
 
 function Home() {
+	let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+	const cartRedux = useSelector((state) => state.cart);
 	const history = useHistory('/');
+	const dispatch = useDispatch();
+	const { getCurrentUserEmail } = useAuth();
 	const [a, setA] = useState({ idProdotto: 0, path: 'ffffff.png' });
 	const [b, setB] = useState({ idProdotto: 0, path: 'ffffff.png' });
 	const [c, setC] = useState({ idProdotto: 0, path: 'ffffff.png' });
@@ -26,6 +33,56 @@ function Home() {
 			.then((data) => {
 				setC(data);
 			});
+
+		if (getCurrentUserEmail() !== null && getCurrentUserEmail() !== '') {
+			fetch('/api/carrelli/?email=' + getCurrentUserEmail())
+				.then((res) => res.json())
+				.then((result) => {
+					if (result.message === 'No Carrello found.') {
+						fetch('/api/carrelli/', {
+							method: 'POST',
+							body: JSON.stringify({
+								idCliente: getCurrentUserEmail()
+							})
+						})
+							.then((re) => re.json())
+							.then((resul) => console.log(resul))
+							.catch((err) => {
+								console.log(err);
+								history.push('/404');
+							});
+					} else {
+						if (cart.length) {
+							dispatch(removeAllToCart());
+							localStorage.setItem('cart', JSON.stringify([]));
+							history.push('/');
+						}
+						fetch('/api/dettaglioordine/?codice=' + result.records[0].codice)
+							.then((r) => r.json())
+							.then((resu) => {
+								resu.records.forEach((element) => {
+									dispatch(
+										addToCart({
+											idProdotto: element.idProdotto,
+											quantita: parseInt(element.quantita),
+											prezzo: parseFloat(element.prezzoU)
+										})
+									);
+									localStorage.setItem('cart', JSON.stringify(cartRedux));
+								});
+								history.push('/');
+							})
+							.catch((err) => {
+								console.log(err);
+								localStorage.setItem('cart', JSON.stringify([]));
+							});
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+					history.push('/404');
+				});
+		}
 	}, [setA, setB, setC]);
 
 	return (

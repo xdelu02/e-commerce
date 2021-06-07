@@ -43,13 +43,13 @@ function App() {
 		<Router>
 			<RenderNavBar />
 			<Switch>
-				<Route path='/' exact component={Home} />
 				<Route path='/shop' exact component={Shop} />
 				<Route path='/shop/:id' exact component={DettaglioProdotto} />
 				<Route path='/admin' component={Admin} />
 				<Route path='/success' exact component={Success} />
 				<Route path='/404' exact component={NotFound} />
 				<AuthProvider>
+					<Route path='/' exact component={Home} />
 					<Route path='/carrello' exact component={Carrello} />
 					<Route path='/checkout' exact component={Checkout} />
 					<Route path='/account' exact component={Account} />
