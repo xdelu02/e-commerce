@@ -123,5 +123,34 @@
 		
 			return false;
 		}
+
+		// update
+		function update() {
+			// update query
+			$query = "UPDATE
+						" . $this->table_name . "
+					SET
+						prezzoU=:prezzoU, quantita=:quantita
+					WHERE
+						idOrdine=:idOrdine AND idProdotto=:idProdotto";
+
+			$stmt = $this->conn->prepare($query);
+		
+			// sanitize
+			$this->idOrdine=htmlspecialchars(strip_tags($this->idOrdine));
+			$this->idProdotto=htmlspecialchars(strip_tags($this->idProdotto));
+			$this->prezzoU=htmlspecialchars(strip_tags($this->prezzoU));
+			$this->quantita=htmlspecialchars(strip_tags($this->quantita));
+		
+			// bind params
+			$stmt->bindParam(":idOrdine", $this->idOrdine);
+			$stmt->bindParam(":idProdotto", $this->idProdotto);
+			$stmt->bindParam(":prezzoU", $this->prezzoU);
+			$stmt->bindParam(":quantita", $this->quantita);
+			if($stmt->execute())
+				return true;
+		
+			return false;
+		}
 	}
 ?>
