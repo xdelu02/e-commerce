@@ -151,11 +151,27 @@ function Shop() {
 							<Pagination.First onClick={() => setCurrentPage(1)} />
 							{currentPage !== 1 ? <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} /> : null}
 
-							{pageNumbers.map((number) => (
-								<Pagination.Item onClick={() => setCurrentPage(number)} key={number}>
-									{number}
-								</Pagination.Item>
-							))}
+							{pageNumbers.length < 5 ? (
+								pageNumbers.map((number) => (
+									<Pagination.Item onClick={() => setCurrentPage(number)} key={number}>
+										{number}
+									</Pagination.Item>
+								))
+							) : (
+								<>
+									<Pagination.Ellipsis disabled />
+									{pageNumbers.map((number) => (
+										<>
+											{number > currentPage - 2 || number < currentPage + 2 ? (
+												<Pagination.Item onClick={() => setCurrentPage(number)} key={number}>
+													{number}
+												</Pagination.Item>
+											) : null}
+										</>
+									))}
+									<Pagination.Ellipsis disabled />
+								</>
+							)}
 
 							{currentPage !== Math.ceil(prodotti.length / prodPerPage) ? <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} /> : null}
 							<Pagination.Last onClick={() => setCurrentPage(Math.ceil(prodotti.length / prodPerPage))} />
